@@ -7,7 +7,7 @@ export type SizeParam = {
   size: string;
 };
 
-export type ColorParam = {
+export type ColorParams = {
   colorId: number;
   colorName: string;
 };
