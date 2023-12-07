@@ -2,7 +2,7 @@ import type { ColorParams} from "../models/product.types";
 import { Request, Response } from "express";
 import * as dbService from "../services/color.db";
 
-class CategoryController {
+class ColorController {
   public async createColor(req: Request, res: Response): Promise<void> {
     const newColor = req.body as Omit<ColorParams, "id">;
     if (!newColor.colorName) {
@@ -58,4 +58,4 @@ class CategoryController {
   }
 }
 
-export default new CategoryController();
+export default new ColorController();
