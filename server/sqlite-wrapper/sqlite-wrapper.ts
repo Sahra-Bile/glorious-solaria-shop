@@ -1,10 +1,12 @@
 import sqlite3 from "sqlite3";
-import { open, Database } from "sqlite";
+import { open } from "sqlite";
 
 export class SQLiteClient {
-  private db: Database;
-  constructor(db: Database) {
-    this.db = db;
+
+  private db: sqlite3.Database
+
+  constructor(dbFilePath: string) {
+    this.db = new sqlite3.Database(dbFilePath)
   }
 
   public async run(sql: string, params?: unknown[]): Promise<void> {
@@ -47,12 +49,14 @@ export class SQLiteClient {
     await this.db.close();
   }
 }
+
 export const createConnection = async (
-  dbFilePath: string = "./database.db"
+  dbFilePath: string = './database.db',
 ): Promise<SQLiteClient> => {
   const db = await open({
     filename: dbFilePath,
     driver: sqlite3.Database,
-  });
-  return new SQLiteClient(db);
-};
+  })
+  return new SQLiteClient(dbFilePath)
+}
+

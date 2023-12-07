@@ -34,11 +34,11 @@ class DatabaseService {
 
   public async getAllCategories(): Promise<CategoryParams[]> {
     await this.connect();
-    const usersList = await this.db.all<CategoryParams>(
+    const categoryList = await this.db.all<CategoryParams>(
       `SELECT * FROM categories`
     );
 
-    return usersList;
+    return categoryList;
   }
 
   public async getCategoryById(id: number) {

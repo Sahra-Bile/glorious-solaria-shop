@@ -2,8 +2,8 @@ import type { CategoryParams } from "../models/product.types";
 import { Request, Response } from "express";
 import * as dbService from "../services/category.db";
 
-class ProductController {
-  public async createProduct(req: Request, res: Response): Promise<void> {
+class CategoryController {
+  public async createCategory(req: Request, res: Response): Promise<void> {
     const newCategory = req.body as Omit<CategoryParams, "id">;
     if (!newCategory.categoryName) {
       res.status(400).json({
@@ -23,7 +23,7 @@ class ProductController {
     res.status(200).json(category);
   }
 
-  public async getProductById(req: Request, res: Response): Promise<void> {
+  public async getCategoryById(req: Request, res: Response): Promise<void> {
     const categoryId = Number(req.params.id);
 
     const category = await dbService.default.getCategoryById(categoryId);
@@ -37,7 +37,7 @@ class ProductController {
     }
   }
 
-  public async deleteProductById(req: Request, res: Response): Promise<void> {
+  public async deleteCategoryById(req: Request, res: Response): Promise<void> {
     const categoryId = Number(req.params.id);
     try {
       await dbService.default.deleteCategoryById(categoryId);
@@ -58,4 +58,4 @@ class ProductController {
   }
 }
 
-export default new ProductController();
+export default new CategoryController();
