@@ -1,6 +1,6 @@
-import type { ProductParams } from "./models/product.types";
+import type { ProductParams } from "../models/product.types";
 import { Request, Response } from "express";
-import * as dbService from "./services/product.db";
+import * as dbService from "../services/product.db";
 
 class ProductController {
   public async createProduct(req: Request, res: Response): Promise<void> {
