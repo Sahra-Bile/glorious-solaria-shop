@@ -17,7 +17,8 @@ class DatabaseService {
             categoryId INTEGER NOT NULL,
             productName TEXT NOT NULL,
             description TEXT NOT NULL,
-           image TEXT NOT NULL
+           image TEXT NOT NULL,
+           FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
          
           )
       `);
