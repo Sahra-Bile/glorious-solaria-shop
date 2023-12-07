@@ -12,7 +12,6 @@ productRoutes.get(
 
 productRoutes.get(
   '/:id',
-  ProductValidator.checkIdParam(),
   Middleware.handleValidationError,
   ProductController.getProductById,
 )

@@ -51,7 +51,7 @@ class ProductValidator {
 
   checkIdParam() {
     return [
-      param("productId")
+      param("id")
         .notEmpty()
         .withMessage("The value should be not empty")
         .isInt()

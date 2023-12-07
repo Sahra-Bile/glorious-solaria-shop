@@ -11,11 +11,8 @@ class DatabaseService {
 
   public async connect() {
     this.db = await createConnection(this.dbFilePath);
-    await this.db.run(`
-     CREATE TABLE IF NOT EXISTS categories (
-  categoryId INTEGER PRIMARY KEY AUTOINCREMENT,
-  categoryName TEXT NOT NULL
-   )
+    await this.db
+      .run(`CREATE TABLE IF NOT EXISTS categories (categoryId INTEGER PRIMARY KEY AUTOINCREMENT,categoryName TEXT NOT NULL)
  `);
   }
 
@@ -44,7 +41,7 @@ class DatabaseService {
   public async getCategoryById(id: number) {
     await this.connect();
     const category = await this.db.get<CategoryParams>(
-      `SELECT * FROM categories WHERE id =?`,
+      `SELECT * FROM categories WHERE categoryId =?`,
       [id]
     );
 
@@ -54,7 +51,7 @@ class DatabaseService {
   public async deleteCategoryById(id: number) {
     await this.connect();
 
-    await this.db.run(`DELETE FROM categories WHERE id =?`, [id]);
+    await this.db.run(`DELETE FROM categories WHERE categoryId =?`, [id]);
   }
 }
 
