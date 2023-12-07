@@ -41,7 +41,7 @@ class DatabaseService {
     return usersList;
   }
 
-  public async geCategoryById(id: number) {
+  public async getCategoryById(id: number) {
     await this.connect();
     const category = await this.db.get<CategoryParams>(
       `SELECT * FROM categories WHERE id =?`,
