@@ -1,13 +1,13 @@
 import express, { Application, Request, Response } from 'express'
 import bodyParser from 'body-parser'
-// import { userRoutes } from './src/routes/userRoutes'
+import { productRoutes } from './src/routes/product.routes'
 
 const app: Application = express()
 const port = process.env.PORT || 9000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-// app.use('/users', userRoutes)
+app.use('/products', productRoutes)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('We are on home page!')
@@ -25,3 +25,7 @@ const start = () => {
 }
 
 start()
+
+
+
+

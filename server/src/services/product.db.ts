@@ -11,13 +11,13 @@ class DatabaseService {
 
   public async connect() {
     this.db = await createConnection(this.dbFilePath);
-    this.db.run(`
+    await this.db.run(`
           CREATE TABLE IF NOT EXISTS products (
             productId INTEGER PRIMARY KEY AUTOINCREMENT,
             categoryId INTEGER NOT NULL,
             productName TEXT NOT NULL,
             description TEXT NOT NULL,
-          image TEXT NOT NULL
+           image TEXT NOT NULL
          
           )
       `);
@@ -27,7 +27,7 @@ class DatabaseService {
     await this.connect();
     try {
       await this.db.run(
-        "INSERT INTO products (categoryId, productName, description, image) VALUES (?, ?,?,?)",
+        "INSERT INTO products (categoryId, productName, description, image) VALUES (?, ?, ?, ?)",
         [
           product.categoryId,
           product.productName,
@@ -35,10 +35,10 @@ class DatabaseService {
           product.image,
         ]
       );
+
       return;
     } catch (e) {
       console.log(` error from the catch services ${e}`);
-      throw Error(e) as Error;
     }
   }
 
