@@ -11,13 +11,14 @@ class DatabaseService {
 
   public async connect() {
     this.db = await createConnection(this.dbFilePath);
-    this.db.run(`
+    await this.db.run(`
           CREATE TABLE IF NOT EXISTS products (
             productId INTEGER PRIMARY KEY AUTOINCREMENT,
             categoryId INTEGER NOT NULL,
             productName TEXT NOT NULL,
             description TEXT NOT NULL,
-          image TEXT NOT NULL
+           image TEXT NOT NULL,
+           FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
          
           )
       `);
@@ -27,7 +28,7 @@ class DatabaseService {
     await this.connect();
     try {
       await this.db.run(
-        "INSERT INTO products (categoryId, productName, description, image) VALUES (?, ?,?,?)",
+        "INSERT INTO products (categoryId, productName, description, image) VALUES (?, ?, ?, ?)",
         [
           product.categoryId,
           product.productName,
@@ -35,42 +36,42 @@ class DatabaseService {
           product.image,
         ]
       );
+
       return;
     } catch (e) {
       console.log(` error from the catch services ${e}`);
-      throw Error(e) as Error;
     }
   }
 
   public async getAllProducts(): Promise<ProductParams[]> {
     await this.connect();
-    const usersList = await this.db.all<ProductParams>(
+    const productList = await this.db.all<ProductParams>(
       `SELECT * FROM products`
     );
 
-    return usersList;
+    return productList;
   }
 
   public async getProductById(id: number) {
     await this.connect();
-    const user = await this.db.get<ProductParams>(
-      `SELECT * FROM products WHERE id =?`,
+    const product = await this.db.get<ProductParams>(
+      `SELECT * FROM products WHERE productId =?`,
       [id]
     );
 
-    return user;
+    return product;
   }
 
   public async deleteProductById(id: number) {
     await this.connect();
 
-    await this.db.run(`DELETE FROM products WHERE id =?`, [id]);
+    await this.db.run(`DELETE FROM products WHERE productId =?`, [id]);
   }
 
   public async updateProduct(id: number, product: Omit<ProductParams, "id">) {
     await this.connect();
     await this.db.run(
-      "UPDATE products SET categoryId = ? , productName = ? , description = ? , image = ? WHERE id = ? ",
+      "UPDATE products SET categoryId = ? , productName = ? , description = ? , image = ? WHERE productId = ? ",
       [
         product.categoryId,
         product.productName,

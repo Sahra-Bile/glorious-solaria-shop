@@ -12,13 +12,12 @@ export type ColorsParam = {
   colorName: string;
 };
 export type ProductParams = {
-  productId: number;
+  productId?: number;
+  categoryId: number;
   productName: string;
   description: string;
   image: string;
-  categoryId: number;
 };
-
 export type ProductVariantsParams = {
   variantId: number;
   productId: number;
@@ -28,17 +27,6 @@ export type ProductVariantsParams = {
   price: number;
 };
 
-export type CustomerParams = {
-  customerId: number;
-  googleUserID: string | number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  zipCode: string;
-};
 
 export type OrdersParams = {
   orderId: number;
