@@ -1,6 +1,6 @@
-import type { CategoryParams } from "../models/product.types";
+import type { CategoryParams } from "../models";
 import { Request, Response } from "express";
-import * as dbService from "../services/category.db";
+import {categoryDB} from "../services";
 
 class CategoryController {
   public async createCategory(req: Request, res: Response): Promise<void> {
@@ -11,7 +11,7 @@ class CategoryController {
       });
     }
     try {
-      await dbService.default.addCategories(newCategory);
+      await categoryDB.default.addCategories(newCategory);
       res.status(201).json({ mgs: "created the Category successfully!" });
     } catch (e) {
       res.status(500).json({ mgs: "something went wrong" });
@@ -19,14 +19,14 @@ class CategoryController {
   }
 
   public async getAllCategories(req: Request, res: Response) {
-    const category = await dbService.default.getAllCategories();
+    const category = await categoryDB.default.getAllCategories();
     res.status(200).json(category);
   }
 
   public async getCategoryById(req: Request, res: Response): Promise<void> {
     const categoryId = Number(req.params.id);
 
-    const category = await dbService.default.getCategoryById(categoryId);
+    const category = await categoryDB.default.getCategoryById(categoryId);
 
     if (category) {
       res.status(200).json(category);
@@ -40,7 +40,7 @@ class CategoryController {
   public async deleteCategoryById(req: Request, res: Response): Promise<void> {
     const categoryId = Number(req.params.id);
     try {
-      await dbService.default.deleteCategoryById(categoryId);
+      await categoryDB.default.deleteCategoryById(categoryId);
       if (!categoryId) {
         res
           .status(404)

@@ -1,6 +1,6 @@
-import type { SizeParams } from "../models/product.types";
+import type { SizeParams } from "../models";
 import { Request, Response } from "express";
-import * as dbService from "../services/size.db";
+import { sizeDB } from "../services";
 
 class SizeController {
   public async createSize(req: Request, res: Response): Promise<void> {
@@ -11,22 +11,22 @@ class SizeController {
       });
     }
     try {
-      await dbService.default.addSizes(newSize);
+      await sizeDB.default.addSizes(newSize);
       res.status(201).json({ mgs: "created the size successfully!" });
     } catch (e) {
       res.status(500).json({ mgs: "something went wrong" });
     }
   }
 
-  public async getAllSizes( res: Response) {
-    const sizeList = await dbService.default.getAllSizes();
+  public async getAllSizes(res: Response) {
+    const sizeList = await sizeDB.default.getAllSizes();
     res.status(200).json(sizeList);
   }
 
   public async getSizeById(req: Request, res: Response): Promise<void> {
     const sizeId = Number(req.params.id);
 
-    const size = await dbService.default.getSizeById(sizeId);
+    const size = await sizeDB.default.getSizeById(sizeId);
 
     if (size) {
       res.status(200).json(size);
@@ -38,7 +38,7 @@ class SizeController {
   public async deleteSizeById(req: Request, res: Response): Promise<void> {
     const sizeId = Number(req.params.id);
     try {
-      await dbService.default.deleteSizeById(sizeId);
+      await sizeDB.default.deleteSizeById(sizeId);
       if (!sizeId) {
         res.status(404).json({ message: `size with id ${sizeId} not found` });
       } else {
