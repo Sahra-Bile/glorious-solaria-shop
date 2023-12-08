@@ -1,8 +1,5 @@
-import {
-  SQLiteClient,
-  createConnection,
-} from "../../sqlite-wrapper/sqlite-wrapper";
-import type { CategoryParams } from '../models'
+import { SQLiteClient, createConnection } from "../../sqlite-wrapper";
+import type { CategoryParams } from "../models";
 
 class DatabaseService {
   private db!: SQLiteClient;

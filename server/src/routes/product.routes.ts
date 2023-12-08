@@ -1,40 +1,31 @@
-import express from 'express'
-import ProductController from '../controllers/product-controller'
-import ProductValidator from '../validator/product-validator'
-import Middleware from '../middleware/middleware'
-export const productRoutes = express.Router()
+import express from "express";
+import { productController } from "../controllers";
+import { productValidator } from "../validator";
+import { middleware } from "../middleware";
 
+export const productRoutes = express.Router();
+
+productRoutes.use(middleware.default.handleValidationError);
+
+productRoutes.get("/", productController.default.createProduct);
 productRoutes.get(
-  '/',
-  Middleware.handleValidationError,
-  ProductController.getAllProduct,
-)
-
-productRoutes.get(
-  '/:id',
-  ProductValidator.checkIdParam(),
-  Middleware.handleValidationError,
-  ProductController.getProductById,
-)
-
+  "/:id",
+  productValidator.default.checkIdParam(),
+  productController.default.getProductById
+);
 productRoutes.post(
-  '/',
-  ProductValidator.checkCreatedProduct(),
-  Middleware.handleValidationError,
-  ProductController.createProduct,
-)
-
+  "/",
+  productValidator.default.checkCreatedProduct(),
+  productController.default.createProduct
+);
 productRoutes.put(
-  '/:id',
-  ProductValidator.checkIdParam(),
-  ProductValidator.checkUpdatedProduct(),
-  Middleware.handleValidationError,
-  ProductController.updateProduct,
-)
-
+  "/:id",
+  productValidator.default.checkIdParam(),
+  productValidator.default.checkUpdatedProduct(),
+  productController.default.updateProduct
+);
 productRoutes.delete(
-  '/:id',
-  ProductValidator.checkIdParam(),
-  Middleware.handleValidationError,
-  ProductController.deleteProductById,
-)
+  "/:id",
+  productValidator.default.checkIdParam(),
+  productController.default.deleteProductById
+);

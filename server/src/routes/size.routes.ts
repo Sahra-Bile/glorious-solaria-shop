@@ -1,27 +1,12 @@
 import express from "express";
-import SizeController from "../controllers/size-controller";
-import Middleware from "../middleware/middleware";
+import { sizeController } from "../controllers";
+import { middleware } from "../middleware";
+
 export const sizeRoutes = express.Router();
 
-sizeRoutes.get(
-  "/",
-  Middleware.handleValidationError,
-  SizeController.getAllSizes
-);
-sizeRoutes.post(
-  "/",
-  Middleware.handleValidationError,
-  SizeController.createSize
-);
+sizeRoutes.use(middleware.default.handleValidationError);
 
-sizeRoutes.get(
-  "/:id",
-
-  Middleware.handleValidationError,
-  SizeController.getSizeById
-);
-sizeRoutes.delete(
-  "/:id",
-  Middleware.handleValidationError,
-  SizeController.deleteSizeById
-);
+sizeRoutes.get("/", sizeController.default.getAllSizes);
+sizeRoutes.post("/", sizeController.default.createSize);
+sizeRoutes.get("/:id", sizeController.default.getSizeById);
+sizeRoutes.delete("/:id", sizeController.default.deleteSizeById);

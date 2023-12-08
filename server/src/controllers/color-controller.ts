@@ -18,7 +18,7 @@ class ColorController {
     }
   }
 
-  public async getAllColors(res: Response) {
+  public async getAllColors( req: Request,res: Response) {
     const colorList = await colorDB.default.getAllColors();
     res.status(200).json(colorList);
   }

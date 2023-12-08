@@ -18,7 +18,8 @@ class SizeController {
     }
   }
 
-  public async getAllSizes(res: Response) {
+  public async getAllSizes(req: Request,res: Response) {
+    console.log(res);
     const sizeList = await sizeDB.default.getAllSizes();
     res.status(200).json(sizeList);
   }

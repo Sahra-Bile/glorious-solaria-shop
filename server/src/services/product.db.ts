@@ -1,7 +1,4 @@
-import {
-  SQLiteClient,
-  createConnection,
-} from "../../sqlite-wrapper/sqlite-wrapper";
+import { SQLiteClient, createConnection } from "../../sqlite-wrapper";
 import type { ProductParams } from "../models";
 
 class DatabaseService {

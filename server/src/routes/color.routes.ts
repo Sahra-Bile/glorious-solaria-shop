@@ -1,27 +1,12 @@
 import express from "express";
-import ColorController from "../controllers/color-controller";
-import Middleware from "../middleware/middleware";
+import { colorController } from "../controllers";
+import { middleware } from "../middleware";
+
 export const colorRoutes = express.Router();
 
-colorRoutes.get(
-  "/",
-  Middleware.handleValidationError,
-  ColorController.getAllColors
-);
-colorRoutes.post(
-  "/",
-  Middleware.handleValidationError,
-  ColorController.createColor
-);
+colorRoutes.use(middleware.default.handleValidationError);
 
-colorRoutes.get(
-  "/:id",
-
-  Middleware.handleValidationError,
-  ColorController.getColorById
-);
-colorRoutes.delete(
-  "/:id",
-  Middleware.handleValidationError,
-  ColorController.deleteColorById
-);
+colorRoutes.get("/", colorController.default.getAllColors);
+colorRoutes.post("/", colorController.default.createColor);
+colorRoutes.get("/:id", colorController.default.getColorById);
+colorRoutes.delete("/:id", colorController.default.deleteColorById);

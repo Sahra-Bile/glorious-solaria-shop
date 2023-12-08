@@ -23,7 +23,7 @@ class ProductController {
     }
   }
 
-  public async getAllProduct(res: Response) {
+  public async getAllProduct( req: Request,res: Response) {
     const users = await productDB.default.getAllProducts();
     res.status(200).json(users);
   }
