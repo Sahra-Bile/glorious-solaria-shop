@@ -2,7 +2,7 @@ import {
   SQLiteClient,
   createConnection,
 } from "../../sqlite-wrapper/sqlite-wrapper";
-import type { SizeParams } from "../models/product.types";
+import type { SizeParams } from "../models";
 
 class DatabaseService {
   private db!: SQLiteClient;

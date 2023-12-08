@@ -2,7 +2,7 @@ import {
   SQLiteClient,
   createConnection,
 } from "../../sqlite-wrapper/sqlite-wrapper";
-import type { ColorParams } from "../models/product.types";
+import type { ColorParams } from "../models";
 
 class DatabaseService {
   private db!: SQLiteClient;
