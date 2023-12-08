@@ -1,27 +1,13 @@
 import express from "express";
-import CategoryController from "../controllers/category-controller";
-import Middleware from "../middleware/middleware";
+import { categoryController } from "../controllers";
+import { middleware } from "../middleware";
+
 export const categoryRoutes = express.Router();
 
-categoryRoutes.get(
-  "/",
-  Middleware.handleValidationError,
-  CategoryController.getAllCategories
-);
-categoryRoutes.post(
-  "/",
-  Middleware.handleValidationError,
-  CategoryController.createCategory
-);
+categoryRoutes.use(middleware.default.handleValidationError);
 
-categoryRoutes.get(
-  "/:id",
+categoryRoutes.get("/", categoryController.default.getAllCategories);
+categoryRoutes.post("/", categoryController.default.createCategory);
 
-  Middleware.handleValidationError,
-  CategoryController.getCategoryById
-);
-categoryRoutes.delete(
-  "/:id",
-  Middleware.handleValidationError,
-  CategoryController.deleteCategoryById
-);
+categoryRoutes.get("/:id", categoryController.default.getCategoryById);
+categoryRoutes.delete("/:id", categoryController.default.deleteCategoryById);

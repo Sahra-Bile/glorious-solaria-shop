@@ -1,12 +1,10 @@
-import sqlite3 from "sqlite3";
 import { open } from "sqlite";
+import sqlite3 from "sqlite3";
 
 export class SQLiteClient {
-
-  private db: sqlite3.Database
-
-  constructor(dbFilePath: string) {
-    this.db = new sqlite3.Database(dbFilePath)
+  private db: sqlite3.Database;
+  constructor(db: sqlite3.Database) {
+    this.db = db;
   }
 
   public async run(sql: string, params?: unknown[]): Promise<void> {
@@ -49,14 +47,10 @@ export class SQLiteClient {
     await this.db.close();
   }
 }
-
 export const createConnection = async (
-  dbFilePath: string = './database.db',
+  dbFilePath: string = "./database.db"
 ): Promise<SQLiteClient> => {
-  const db = await open({
-    filename: dbFilePath,
-    driver: sqlite3.Database,
-  })
-  return new SQLiteClient(dbFilePath)
-}
-
+  const db = new sqlite3.Database(dbFilePath);
+  db.run("PRAGMA foreign_keys = ON"); // Aktivera foreign keys
+  return new SQLiteClient(db);
+};
