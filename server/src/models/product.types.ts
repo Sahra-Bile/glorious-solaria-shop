@@ -2,7 +2,7 @@ export type CategoryParams = {
   categoryId: number;
   categoryName: string;
 };
-export type SizeParam = {
+export type SizeParams = {
   sizeId: number;
   size: string;
 };

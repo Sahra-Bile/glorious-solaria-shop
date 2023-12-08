@@ -2,7 +2,7 @@ import {
   SQLiteClient,
   createConnection,
 } from "../../sqlite-wrapper/sqlite-wrapper";
-import type { SizeParam } from "../models/product.types";
+import type { SizeParams } from "../models/product.types";
 
 class DatabaseService {
   private db!: SQLiteClient;
@@ -16,7 +16,7 @@ class DatabaseService {
      `);
   }
 
-  public async addSizes(size: Omit<SizeParam, "id">) {
+  public async addSizes(size: Omit<SizeParams, "id">) {
     await this.connect();
     try {
       await this.db.run("INSERT INTO sizes ( size) VALUES (?)", [size.size]);
@@ -27,16 +27,16 @@ class DatabaseService {
     }
   }
 
-  public async getAllSizes(): Promise<SizeParam[]> {
+  public async getAllSizes(): Promise<SizeParams[]> {
     await this.connect();
-    const sizeList = await this.db.all<SizeParam>(`SELECT * FROM sizes`);
+    const sizeList = await this.db.all<SizeParams>(`SELECT * FROM sizes`);
 
     return sizeList;
   }
 
   public async getSizeById(id: number) {
     await this.connect();
-    const size = await this.db.get<SizeParam>(
+    const size = await this.db.get<SizeParams>(
       `SELECT * FROM sizes WHERE sizeId =?`,
       [id]
     );
