@@ -18,7 +18,7 @@ class SizeController {
     }
   }
 
-  public async getAllSizes(req: Request, res: Response) {
+  public async getAllSizes( res: Response) {
     const sizeList = await dbService.default.getAllSizes();
     res.status(200).json(sizeList);
   }
