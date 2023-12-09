@@ -18,7 +18,8 @@ class DatabaseService {
             price INTEGER NOT NULL,
             FOREIGN KEY (productId) REFERENCES products(productId),
             FOREIGN KEY (sizeId) REFERENCES sizes(sizeId),
-            FOREIGN KEY (colorId) REFERENCES colors(colorId)
+            FOREIGN KEY (colorId) REFERENCES colors(colorId),
+            UNIQUE (productId, sizeId, colorId)
         )
     `);
   }
@@ -45,13 +46,27 @@ class DatabaseService {
     }
   }
 
-  public async getAllProductVariants(): Promise<ProductVariantsParams[]> {
+  public async getAllProductVariants(
+    page: number,
+    limit: number
+  ): Promise<ProductVariantsParams[]> {
     await this.connect();
+    const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantsParams>(
-      `SELECT * FROM productVariants`
+      `SELECT * FROM productVariants LIMIT ? OFFSET ?`,
+      [limit, offset]
     );
 
     return productList;
+  }
+
+  public async getTotalProductVariantCount(): Promise<number> {
+    await this.connect();
+    const result = await this.db.get<{ count: number }>(
+      `SELECT COUNT(*) AS count FROM productVariants`
+    );
+    const count = result?.count || 0;
+    return count;
   }
 
   public async getProductVariantById(id: number) {

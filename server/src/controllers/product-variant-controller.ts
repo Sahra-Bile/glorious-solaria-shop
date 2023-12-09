@@ -37,20 +37,37 @@ class ProductVariantController {
         e.message &&
         e.message.SQLITE_CONSTRAINT.includes(" FOREIGN KEY constraint failed")
       ) {
-        res
-          .status(400)
-          .json({
-            message: "Foreign key constraint failed. Please check your input.",
-          });
+        res.status(400).json({
+          message: "Foreign key constraint failed. Please check your input.",
+        });
       } else {
         res.status(500).json({ message: "Internal server error" });
       }
     }
   }
   public async getAllProductVariant(req: Request, res: Response) {
-    const productVariant =
-      await productVariantDB.default.getAllProductVariants();
-    res.status(200).json(productVariant);
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+
+    try {
+      const productVariant =
+        await productVariantDB.default.getAllProductVariants(page, limit);
+
+      // Räkna totala antalet poster för att beräkna totala sidor
+      const totalRows =
+        await productVariantDB.default.getTotalProductVariantCount();
+      const totalPages = Math.ceil(totalRows / limit);
+
+      res.status(200).json({
+        page,
+        totalPages,
+        limit,
+        totalRows,
+        data: productVariant,
+      });
+    } catch (error:any) {
+      res.status(500).send(error.message);
+    }
   }
 
   public async getProductVariantById(

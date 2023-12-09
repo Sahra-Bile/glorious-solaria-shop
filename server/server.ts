@@ -17,7 +17,7 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/colors", colorRoutes);
 app.use("/sizes", sizeRoutes);
-app.use("/productVariants", productVariantRoutes);
+app.use("/product-variants", productVariantRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("We are on home page!");
