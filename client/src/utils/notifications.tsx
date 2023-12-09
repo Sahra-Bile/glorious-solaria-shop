@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// import { IconButton, XmarkIcon, theme } from '@qasa/qds-ui'
 import type { ToastOptions } from 'react-toastify'
 import { toast, ToastContainer as ToastContainerPrimitive } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
