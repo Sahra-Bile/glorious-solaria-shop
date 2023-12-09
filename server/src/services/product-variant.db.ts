@@ -46,20 +46,6 @@ class DatabaseService {
     }
   }
 
-  // public async getAllProductVariants(
-  //   page: number,
-  //   limit: number
-  // ): Promise<ProductVariantsParams[]> {
-  //   await this.connect();
-  //   const offset = (page - 1) * limit;
-  //   const productList = await this.db.all<ProductVariantsParams>(
-  //     `SELECT * FROM productVariants LIMIT ? OFFSET ?`,
-  //     [limit, offset]
-  //   );
-
-  //   return productList;
-  // }
-
   public async getAllProductVariants(page: number, limit: number): Promise<ProductVariantDisplay[]> {
     await this.connect();
     const offset = (page - 1) * limit;
