@@ -12,7 +12,7 @@ export type ColorParams = {
   colorName: string;
 };
 export type ProductParams = {
-  productId?: number;
+  productId: number;
   categoryId: number;
   productName: string;
   description: string;
@@ -26,7 +26,17 @@ export type ProductVariantsParams = {
   stockQuantity: number;
   price: number;
 };
-
+export type ProductVariantDisplay = {
+  variantId: number;
+  productName: string;
+  categoryName: string;
+  description: string;
+  image: string;
+  sizeName: string;
+  colorName: string;
+  stockQuantity: number;
+  price: number;
+};
 
 export type OrdersParams = {
   orderId: number;

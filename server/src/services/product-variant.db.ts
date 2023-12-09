@@ -1,5 +1,5 @@
 import { SQLiteClient, createConnection } from "../../sqlite-wrapper";
-import type { ProductVariantsParams } from "../models";
+import type { ProductVariantDisplay, ProductVariantsParams } from "../models";
 
 class DatabaseService {
   private db!: SQLiteClient;
@@ -18,7 +18,8 @@ class DatabaseService {
             price INTEGER NOT NULL,
             FOREIGN KEY (productId) REFERENCES products(productId),
             FOREIGN KEY (sizeId) REFERENCES sizes(sizeId),
-            FOREIGN KEY (colorId) REFERENCES colors(colorId)
+            FOREIGN KEY (colorId) REFERENCES colors(colorId),
+            UNIQUE (productId, sizeId, colorId)
         )
     `);
   }
@@ -45,13 +46,46 @@ class DatabaseService {
     }
   }
 
-  public async getAllProductVariants(): Promise<ProductVariantsParams[]> {
+  public async getAllProductVariants(page: number, limit: number): Promise<ProductVariantDisplay[]> {
     await this.connect();
-    const productList = await this.db.all<ProductVariantsParams>(
-      `SELECT * FROM productVariants`
+    const offset = (page - 1) * limit;
+    const productList = await this.db.all<ProductVariantDisplay>(
+      `SELECT
+      productVariants.variantId,
+      products.productName,
+      products.description,
+      products.image,
+      categories.categoryName, 
+      sizes.size,
+      colors.colorName,
+      productVariants.stockQuantity,
+      productVariants.price
+    FROM
+      productVariants
+    JOIN
+      products ON productVariants.productId = products.productId
+    JOIN
+      categories ON products.categoryId = categories.categoryId 
+    JOIN
+      sizes ON productVariants.sizeId = sizes.sizeId
+    JOIN
+      colors ON productVariants.colorId = colors.colorId
+    LIMIT ? OFFSET ?;
+    `,
+      [limit, offset]
     );
-
+  
     return productList;
+  }
+  
+
+  public async getTotalProductVariantCount(): Promise<number> {
+    await this.connect();
+    const result = await this.db.get<{ count: number }>(
+      `SELECT COUNT(*) AS count FROM productVariants`
+    );
+    const count = result?.count || 0;
+    return count;
   }
 
   public async getProductVariantById(id: number) {

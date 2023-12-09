@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
+import cors from 'cors'
 import {
   productRoutes,
   categoryRoutes,
@@ -10,6 +11,10 @@ import {
 
 const app: Application = express();
 const port = process.env.PORT || 9000;
+app.use(cors({
+  origin: ' http://localhost:3000', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +22,7 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/colors", colorRoutes);
 app.use("/sizes", sizeRoutes);
-app.use("/productVariants", productVariantRoutes);
+app.use("/product-variants", productVariantRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("We are on home page!");
