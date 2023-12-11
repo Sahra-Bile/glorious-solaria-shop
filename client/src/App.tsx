@@ -16,11 +16,11 @@ export function App() {
       <BrowserRouter>
       <Navbar/>
         <ProductVariantProvider>
-          <FilterProvider>
-            {/* <Sidebar /> */}
+          {/* <FilterProvider>
+            <Sidebar />
+           <ProductsPage />
+          </FilterProvider> */}
           <ProductsPage />
-          </FilterProvider>
-         
         </ProductVariantProvider>
       </BrowserRouter>
     </QueryClientProvider>
