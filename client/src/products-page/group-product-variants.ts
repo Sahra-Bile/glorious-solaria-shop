@@ -1,4 +1,7 @@
-type ProductVariant = {
+import { Filter } from "../context/filter-context";
+
+
+export type ProductVariant = {
   variantId: number;
   productId: number;
   productName: string;
@@ -57,4 +60,14 @@ export const groupProductVariants = (
   });
 
   return Object.values(grouped);
+};
+
+export const filterProducts = (products: ProductVariant[], filters: Filter) => {
+  return products.filter(product => {
+    return (
+      (filters.category ? product.categoryName === filters.category : true) &&
+      (filters.color ? product.colorName === filters.color : true) &&
+      (filters.size ? product.size === filters.size : true)
+    );
+  });
 };
