@@ -22,8 +22,16 @@ class ProductController {
       });
       return;
     }
+     // Konvertera bildarrayen till en sträng för att spara i databasen
+     const imagesString = JSON.stringify(newProduct.image);
+
+     // Skapa ett nytt produktobjekt som inkluderar bildsträngen
+     const productToSave = {
+       ...newProduct,
+       image: imagesString,
+     };
     try {
-      await productDB.default.addProduct(newProduct);
+      await productDB.default.addProduct(productToSave);
       res.status(201).json({ mgs: "created the product  successfully!" });
     } catch (e) {
       res.status(500).json({ mgs: "something went wrong" });
