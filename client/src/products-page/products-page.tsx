@@ -1,30 +1,29 @@
 import React from "react";
 import { useProductVariants } from "../context/product-variant-context";
+import { ProductVariantCard } from "./product-variant-card";
+import { groupProductVariants } from "./group-product-variants";
 
-export const ProductsPage: React.FC = () => {
-  const productContext = useProductVariants();
+export function ProductsPage() {
+  const { productVariants, isFetchProductLoading, isError } =
+    useProductVariants();
 
-  if (!productContext || !productContext.productVariants) {
+  if (isFetchProductLoading) {
     return <div>Loading...</div>;
   }
 
-  const { productVariants } = productContext;
-  console.log(productVariants);
+  if (isError) {
+    return <div> something went wrong...</div>;
+  }
+
+  const groupedProducts = groupProductVariants(productVariants);
 
   return (
-    <div>
-      {productVariants.map((variant) => (
-        <div key={variant.variantId}>
-          <h1>Products</h1>
-          <h3>{variant.productName}</h3>
-          <p>Category: {variant.categoryName}</p>
-          <p>Description: {variant.description}</p>
-          <p>Size: {variant.sizeName}</p>
-          <p>Color: {variant.colorName}</p>
-          <p>Price: {variant.price}</p>
-          <p>Quantity: {variant.stockQuantity}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div>
+        {Object.values(groupedProducts).map((variant) => (
+          <ProductVariantCard key={variant.productId} variant={variant} />
+        ))}
+      </div>
+    </>
   );
-};
+}
