@@ -6,7 +6,7 @@ import { ProductsPage } from "./products-page/products-page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FilterProvider } from "./context/filter-context";
 import { Sidebar } from "./pages/sidebar";
-import { Navbar } from "./pages/navbar";
+import { Navbar } from "./pages/navbar/navbar";
 
 const queryClient = new QueryClient();
 
