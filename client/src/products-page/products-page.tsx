@@ -4,14 +4,29 @@ import { ProductVariantCard } from "./product-variant-card";
 import { groupProductVariants } from "./group-product-variants";
 import { styled } from "styled-components";
 
-export const MainContent = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 
-  @media (min-width: 768px) {
-    flex-direction: row;
+
+export const MainContent = styled.main`
+  display: grid;
+  gap: 32px 24px; 
+  padding: 16px; 
+  padding-top: 5rem; 
+  justify-content: center;
+  align-items: flex-start; ;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr); 
+    padding-top: 3rem; 
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 4rem; 
+  }
+
+  @media (min-width: 1025px) {
+    grid-template-columns: repeat(3, 1fr); 
+    padding-top: 4rem; 
   }
 `;
 

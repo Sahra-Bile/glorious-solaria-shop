@@ -20,7 +20,7 @@ export const Nav = styled.nav(() => ({
   position: "fixed",
   top: "0",
   left: "0",
-  zIndex: "9",
+  zIndex: "1000",
   gap: "1rem",
 }));
 

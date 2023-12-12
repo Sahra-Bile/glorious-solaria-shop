@@ -6,7 +6,6 @@ html, body {
   box-sizing: border-box;
 }
 body {
-  /* height: 100%; */
   width: 100%;
   min-height: 100%;
   padding: 0;
@@ -17,8 +16,6 @@ body {
   font-family:  'Open Sans', sans-serif;
   line-height: 1.6;
   font-size: 0.9rem;
- 
-  /* min-height: calc(100vh - 10rem); */
 }
 
 input:not([type=checkbox]):not([type=radio]):focus, 
