@@ -8,6 +8,18 @@ import { FilterProvider } from "./context/filter-context";
 import { Sidebar } from "./pages/sidebar";
 
 import { Menu } from "./pages/navbar/menu";
+import { Footer } from "./pages/footer/footer";
+import { styled } from "styled-components";
+
+export const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+export const MainContent = styled.main`
+  flex: 1;
+`;
 
 const queryClient = new QueryClient();
 
@@ -15,14 +27,15 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      <Menu/>
-        <ProductVariantProvider>
-          {/* <FilterProvider>
-            <Sidebar />
-           <ProductsPage />
-          </FilterProvider> */}
-          <ProductsPage />
-        </ProductVariantProvider>
+        <PageWrapper>
+          <Menu />
+          <MainContent>
+            <ProductVariantProvider>
+              <ProductsPage />
+            </ProductVariantProvider>
+          </MainContent>
+          <Footer />
+        </PageWrapper>
       </BrowserRouter>
     </QueryClientProvider>
   );

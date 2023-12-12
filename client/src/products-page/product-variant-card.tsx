@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { GroupedProduct } from "./group-product-variants";
 
 const ProductCard = styled.div(() => ({
-  width: "200px",
+  width: "400px",
   border: "1px solid #ccc",
   padding: "10px",
   position: "relative",

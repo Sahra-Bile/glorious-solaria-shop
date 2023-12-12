@@ -21,8 +21,6 @@ export const Nav = styled.nav(() => ({
   top: "0",
   left: "0",
   zIndex: "9",
-  boxShadow: "0 1rem 1.5rem hsla(270, 68%, 42%, 20%)",
-  transition: "all 500ms ease",
   gap: "1rem",
 }));
 
@@ -57,7 +55,7 @@ export const MobileMenu = styled.div(() => ({
     left: "0",
     right: "0",
     width: "100%",
-    background: "#00552f",
+    background: "#1D6453",
     padding: "1rem",
     zIndex: "10",
   },

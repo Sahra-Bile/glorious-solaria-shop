@@ -2,6 +2,18 @@ import React from "react";
 import { useProductVariants } from "../context/product-variant-context";
 import { ProductVariantCard } from "./product-variant-card";
 import { groupProductVariants } from "./group-product-variants";
+import { styled } from "styled-components";
+
+export const MainContent = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
 
 export function ProductsPage() {
   const { productVariants, isFetchProductLoading, isError } =
@@ -19,11 +31,11 @@ export function ProductsPage() {
 
   return (
     <>
-      <div>
+      <MainContent>
         {Object.values(groupedProducts).map((variant) => (
           <ProductVariantCard key={variant.productId} variant={variant} />
         ))}
-      </div>
+      </MainContent>
     </>
   );
 }
