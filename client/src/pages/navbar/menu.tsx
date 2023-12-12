@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import {
+  BasketIcon,
   Container,
   Hamburger,
   Heading,
+  List,
   ListItem,
   ListItemLink,
   MobileMenu,
@@ -57,6 +59,20 @@ export function Menu() {
             </ListItem>
           </MobileMenu>
         )}
+        <List>
+          {data.map((item) => (
+            <ListItem key={item.id}>
+              <ListItemLink as={Link} to={item.Link}>
+                {item.title}
+              </ListItemLink>
+            </ListItem>
+          ))}
+          <ListItem>
+            <Link to="/cart">
+              <BasketIcon size={24} />
+            </Link>
+          </ListItem>
+        </List>
       </Container>
     </Nav>
   );
