@@ -9,7 +9,10 @@ class ProductController {
       "categoryId",
       "productName",
       "description",
-      "image",
+      "image_1",
+      "image_2",
+      "image_3",
+      "image_4",
     ];
     const missingFields = requiredFields.filter(
       (field) =>
@@ -22,16 +25,9 @@ class ProductController {
       });
       return;
     }
-     // Konvertera bildarrayen till en sträng för att spara i databasen
-     const imagesString = JSON.stringify(newProduct.image);
-
-     // Skapa ett nytt produktobjekt som inkluderar bildsträngen
-     const productToSave = {
-       ...newProduct,
-       image: imagesString,
-     };
+  
     try {
-      await productDB.default.addProduct(productToSave);
+      await productDB.default.addProduct(newProduct);
       res.status(201).json({ mgs: "created the product  successfully!" });
     } catch (e) {
       res.status(500).json({ mgs: "something went wrong" });
