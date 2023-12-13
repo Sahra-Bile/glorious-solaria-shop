@@ -19,7 +19,7 @@ export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true);
   };
 
   return (
@@ -70,6 +70,7 @@ export function Menu() {
           <ListItem>
             <Link to="/cart">
               <BasketIcon size={24} />
+             
             </Link>
           </ListItem>
         </List>

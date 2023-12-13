@@ -114,7 +114,9 @@ export const Heading = styled.h1(() => ({
 
 export const BasketIcon = styled(BsBasketFill)<{ isOpen: boolean }>(
   ({ isOpen }) => ({
+
     color: "#f6f6f3",
+    marginTop: "0.4rem",
     "@media (max-width: 768px)": {
       display: isOpen ? "block" : "none",
     },

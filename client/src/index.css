@@ -1,23 +1,7 @@
 
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  box-sizing: border-box;
+main {
+  height: calc(100% - 175px);
 }
-body {
-  width: 100%;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  font-family:  'Open Sans', sans-serif;
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
 input:not([type=checkbox]):not([type=radio]):focus, 
 select:focus, 
 textarea:focus, 
@@ -31,4 +15,57 @@ a:focus-visible,
 input[type=checkbox]:focus-visible, 
 input[type=radio]:focus-visible {
   outline-offset: 4px;
+} 
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:  'Montserrat', sans-serif;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  background-color: rgba(186, 187, 183, 0.231);
+}
+
+
+.container {
+  width: 76%;
+  margin-inline: auto;
+  max-width: 1920px;
+}
+
+
+section {
+  padding: 5rem 0;
+}
+
+/* GENERAL SECTION STYLES */
+a {
+  color: white;
+  transition: all 500ms ease;
+}
+
+/* GENERAL IMAGES STYLES */
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1024px) {
+  /* body {
+    font-size: 1rem;
+  } */
+
 }

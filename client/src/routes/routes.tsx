@@ -7,6 +7,7 @@ import { Menu } from "../pages/navbar/menu";
 import { ProductsPage } from "../products-page/products-page";
 import { NoMatch } from "./no-match";
 import { Footer } from "../pages/footer/footer";
+import { Contact } from "../pages/contact/contact";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -31,6 +32,7 @@ export function AppRoutes() {
         <PageContent>
           <Routes>
             <Route path="/shop" element={<ProductsPage />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </PageContent>

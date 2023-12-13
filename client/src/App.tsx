@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 import { ProductVariantProvider } from "./context/product-variant-context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
