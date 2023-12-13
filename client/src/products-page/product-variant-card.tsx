@@ -22,7 +22,7 @@ export type ProductVariantCardProps = {
 
 export function ProductVariantCard({ variant }: ProductVariantCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [variant.image_1, variant.image_2, variant.image_3].filter(
+  const images = [variant.image_1, variant.image_2, variant.image_3, variant.image_4].filter(
     Boolean
   );
 
