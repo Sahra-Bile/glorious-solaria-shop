@@ -14,7 +14,10 @@ class DatabaseService {
             categoryId INTEGER NOT NULL,
             productName TEXT NOT NULL,
             description TEXT NOT NULL,
-           image TEXT NOT NULL,
+            image_1 TEXT,
+            image_2 TEXT,
+            image_3 TEXT,
+            image_4 TEXT,
            FOREIGN KEY (categoryId) REFERENCES categories(categoryId),
            UNIQUE (categoryId, productName)
          
@@ -26,12 +29,15 @@ class DatabaseService {
     await this.connect();
     try {
       await this.db.run(
-        "INSERT INTO products (categoryId, productName, description, image) VALUES (?, ?, ?, ?)",
+        "INSERT INTO products (categoryId, productName, description, image_1, image_2, image_3,image_3) VALUES (?, ?, ?, ?,?,?,?)",
         [
           product.categoryId,
           product.productName,
           product.description,
-          product.image,
+          product.image_1,
+          product.image_2,
+          product.image_3,
+          product.image_4,
         ]
       );
 
@@ -46,17 +52,15 @@ class DatabaseService {
     const productList = await this.db.all<ProductParams>(
       `SELECT * FROM products`
     );
-
     return productList;
   }
 
-  public async getProductById(id: number) {
+  public async getProductById(id: number): Promise<ProductParams | undefined> {
     await this.connect();
     const product = await this.db.get<ProductParams>(
-      `SELECT * FROM products WHERE productId =?`,
+      `SELECT * FROM products WHERE productId = ?`,
       [id]
     );
-
     return product;
   }
 
@@ -69,12 +73,16 @@ class DatabaseService {
   public async updateProduct(id: number, product: Omit<ProductParams, "id">) {
     await this.connect();
     await this.db.run(
-      "UPDATE products SET categoryId = ? , productName = ? , description = ? , image = ? WHERE productId = ? ",
+      "UPDATE products SET categoryId = ? , productName = ? , description = ? , image_1 = ? , image_2 = ? ,image_3 = ? image_4 = ? WHERE productId = ? ",
       [
         product.categoryId,
         product.productName,
         product.description,
-        product.image,
+        product.image_1,
+        product.image_2,
+        product.image_3,
+        product.image_4,
+
         id,
       ]
     );

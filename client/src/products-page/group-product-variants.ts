@@ -7,7 +7,10 @@ export type ProductVariant = {
   productName: string;
   categoryName: string;
   description: string;
-  image: string;
+  image_1: string;
+  image_2: string;
+  image_3: string;
+  image_4: string;
   size: string;
   colorName: string;
   stockQuantity: number;
@@ -19,7 +22,10 @@ export type GroupedProduct = {
   productName: string;
   categoryName: string;
   description: string;
-  image: string;
+  image_1: string;
+  image_2: string;
+  image_3: string;
+  image_4: string;
   stockQuantity: number;
   price: number;
   sizes: string[];
@@ -40,9 +46,12 @@ export const groupProductVariants = (
         productName: variant.productName,
         categoryName: variant.categoryName,
         description: variant.description,
-        image: variant.image,
         stockQuantity: variant.stockQuantity,
         price: variant.price,
+        image_1: variant.image_1,
+        image_2: variant.image_2,
+        image_3: variant.image_3,
+        image_4: variant.image_4,
         sizes: [],
         colors: [],
       };
