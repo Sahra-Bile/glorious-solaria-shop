@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "../utils/notifications";
-import { Menu } from "../pages/navbar/menu";
+import { Navbar } from "../pages/navbar/navbar";
 import { ProductsPage } from "../products-page/products-page";
 import { NoMatch } from "./no-match";
 import { Footer } from "../pages/footer/footer";
@@ -29,7 +29,7 @@ export function AppRoutes() {
     <Wrapper>
       <ToastContainer />
       <BrowserRouter>
-        <Menu />
+        <Navbar />
         <PageContent>
           <Routes>
             <Route path="/" element={<HomePage />} />

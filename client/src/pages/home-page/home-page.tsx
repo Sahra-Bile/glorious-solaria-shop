@@ -1,73 +1,88 @@
-import React from 'react';
-import styled from 'styled-components';
-import HeroImage from '../../asserts/hero2.png';
-
-// Styled components for different sections of the home page
-const HomePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  
-`;
-
-const HeroSection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  max-width: 1200px;
-  background: url(${HeroImage}) center/cover no-repeat;
-`;
-
-const HeroText = styled.div`
-  color: white;
-  text-align: center;
-`;
-
-const FeaturedProductsSection = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-`;
-
-const ProductCard = styled.div`
-  border: 1px solid #ddd;
-  padding: 10px;
-  background: white;
-`;
-
-const SustainabilitySection = styled.section`
-  background-color: #e8f5e9;
-  padding: 20px;
-`;
-
-const AboutSection = styled.section`
-  padding: 20px;
-`;
+import React from "react";
+import HeroImage2 from "../../asserts/hero.png";
+import SectionImage from "../../asserts/product.png";
+import ProductImage from "../../asserts/product2.png";
+import Shoes from "../../asserts//shoes.png";
+import ShoesImg from "../../asserts/shoes1.png";
+import { Link } from "react-router-dom";
+import {
+  AboutSection,
+  Button,
+  FeaturedProductsSection,
+  HeroSection,
+  HeroText,
+  HomePageContainer,
+  ProductCard,
+  SustainabilitySection,
+} from "./home.page.styles";
 
 export const HomePage = () => {
   return (
-    <HomePageContainer>
-      <HeroSection >
+    <HomePageContainer className="container">
+      <HeroSection>
         <HeroText>
-          <h1>Welcome toGlorious Solaria</h1>
-          <p>Discover sustainable and eco-friendly fashion</p>
+          <h1>Welcome to Glorious Solaria</h1>
+          <p>
+            Discover sustainable and <br /> eco-friendly fashion
+          </p>
+        <div>
+        <Link to="/shop">
+            <Button>Shop Now</Button>
+          </Link>
+        </div>
         </HeroText>
       </HeroSection>
+      <ProductCard>Upcoming products</ProductCard>
       <FeaturedProductsSection>
-        {/* Render your product cards here */}
+        <img src={HeroImage2} alt="img" />
+        <img src={ProductImage} alt="img" />
+        <img src={SectionImage} alt="img" />
+        <p>
+          At Glorious Solaria, our passion for fashion goes hand in hand with
+          our dedication to the planet.
+          <br />
+          Born from a dream to create a wardrobe that cherishes the earth, we
+          offer an array of exquisite, eco-conscious garments designed for the
+          modern woman who stands bold and beautiful.
+        </p>
+        <img src={Shoes} alt="img" />
+        <img src={ShoesImg} alt="img" />
       </FeaturedProductsSection>
       <SustainabilitySection>
         <h2>Our Commitment to Sustainability</h2>
-        <p>Learn more about our practices and how we're helping the planet</p>
+        <p>Learn more about our practices and how we're helping the planet.</p>
       </SustainabilitySection>
       <AboutSection>
-        <h2>About EcoFashion</h2>
-        <p>Find out who we are and why we started this journey</p>
+        <h2>About Glorious Solaria</h2>
+        <p>
+          Glorious Solaria is where timeless fashion meets environmental
+          consciousness. Our ethos is woven into every garment we present to
+          you, the discerning and environmentally aware shopper. Our journey is
+          fueled by the belief that fashion should be a force for good - good
+          for the people who make it, good for those who wear it, and good for
+          the planet we all share.
+        </p>
+        <p>
+          Each thread, each stitch, each pattern is a commitment to ecological
+          integrity and ethical transparency. We meticulously select materials
+          that are not only gentle on the environment but also on your skin. Our
+          clothing line, crafted from organic, renewable, and recycled
+          resources, speaks to those who are passionate about nurturing the
+          environment without compromising on style and quality.
+        </p>
+        <p>
+          At Glorious Solaria, we're not just selling clothes; we're cultivating
+          a movement. A movement that celebrates the beauty of nature through
+          sustainable practices that support a balanced ecosystem. Join us in
+          embracing fashion that cares, fashion that matters, and fashion that
+          makes a difference.
+        </p>
+        <p>
+          Welcome to our world - a world where green is not just a color, but a
+          promise of a brighter, more sustainable future. Step into the world of
+          Glorious Solaria, and dress in the change you wish to see.
+        </p>
       </AboutSection>
-      {/* Add more sections as needed */}
     </HomePageContainer>
   );
 };
-
-

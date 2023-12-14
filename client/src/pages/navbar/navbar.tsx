@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { data } from "./data";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-export function Menu() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,7 +24,7 @@ export function Menu() {
 
   return (
     <Nav>
-      <Container>
+      <Container className="container">
         <ListItemLink as={Link} to="/">
           <Heading>Glorious Solaria</Heading>
         </ListItemLink>
