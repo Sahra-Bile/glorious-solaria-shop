@@ -39,7 +39,7 @@ export function ProductVariantCard({ variant }: ProductVariantCardProps) {
   };
 
   return (
-    <ProductCards>
+    <ProductCards className="container">
     <ProductCard>
       <Arrow direction="prev" onClick={prevImage}>
         &lt;
