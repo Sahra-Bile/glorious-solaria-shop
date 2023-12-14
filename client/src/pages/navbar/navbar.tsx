@@ -15,16 +15,16 @@ import { Link } from "react-router-dom";
 import { data } from "./data";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-export function Menu() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true);
   };
 
   return (
-    <Nav>
-      <Container>
+    <Nav >
+      <Container >
         <ListItemLink as={Link} to="/">
           <Heading>Glorious Solaria</Heading>
         </ListItemLink>
@@ -69,7 +69,8 @@ export function Menu() {
           ))}
           <ListItem>
             <Link to="/cart">
-              <BasketIcon size={24} />
+              <BasketIcon size={30} />
+             
             </Link>
           </ListItem>
         </List>

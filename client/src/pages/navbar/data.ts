@@ -12,13 +12,13 @@ export const data = [
 
   {
     id: 3,
-    Link: "/About",
-    title: "About us",
+    Link: "/about",
+    title: "About",
   },
   {
     id: 5,
     Link: "/contact",
-    title: "Contact us ",
+    title: "Contact ",
   },
   {
     id: 4,

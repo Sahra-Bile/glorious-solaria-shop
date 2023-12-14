@@ -1,19 +1,35 @@
 import { styled } from "styled-components";
+import { MediaQueries } from "../../utils/style-constants";
 
-export const ProductCard = styled.div`
+
+
+export const ListContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
   width: 100%;
+`;
+
+export const ProductCard= styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  border: 1px solid #ccc;
-  padding: 10px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
   position: relative;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 100px;
 `;
 export const ProductInfo = styled.div(() => ({
   textAlign: "center",
   marginTop: "10px",
 }));
 
-export const Price = styled.div(() => ({
+export const Price = styled.p(() => ({
   margin: "10px 0",
+  fontFamily: "Open Sans",
+  fontSize: "1.5rem",
 }));
 
 export const OriginalPrice = styled.span(() => ({
@@ -45,14 +61,20 @@ export const ProductTitle = styled.h1(() => ({
   textAlign: "center",
 }));
 
-export const AddToBagButton = styled.button(() => ({
-  background: "#1D6453",
-  color: "white",
-  border: "none",
-  padding: "10px",
-  width: "100%",
-  cursor: "pointer",
-}));
+export const AddToBagButton = styled.button`
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #1d6453;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
 
 export const Carousel = styled.div`
   display: flex;
@@ -99,36 +121,18 @@ export const Dot = styled.span`
   border-radius: 50%;
   cursor: pointer;
 `;
-// export const MainContent = styled.main`
-//   display: grid;
-//   gap: 32px 24px;
-//   padding: 16px;
-//   margin-top: 5rem;
-//   justify-content: center;
-//   align-items: flex-start;
 
-//   @media (max-width: 768px) {
-//     grid-template-columns: repeat(1, 1fr);
-//     padding-top: 3rem;
-//   }
+export const ProductPageContainer = styled.div`
+display: flex;
+// flex-wrap: wrap;
+justify-content: space-between;
+flex-direction: column;
+align-items: center;
+ padding: 20px;
+  margin-top: 100px;
 
-//   @media (min-width: 769px) and (max-width: 1024px) {
-//     grid-template-columns: repeat(2, 1fr);
-//     padding-top: 4rem;
-//   }
-
-//   @media (min-width: 1025px) {
-//     grid-template-columns: repeat(3, 1fr);
-//     padding-top: 4rem;
-//   }
-// `;
-
-export const MainContent = styled.main`
-  display: flex;
-  gap: 32px 24px;
-  padding: 16px;
-  margin-top: 5rem;
-  justify-content: center;
-  align-items: center;
-
+  @media ${MediaQueries.mdUp} {
+    flex-direction: row;
+}
+ 
 `;
