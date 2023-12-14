@@ -1,24 +1,9 @@
-import { Filter } from "../context/filter-context";
-
-
-export type ProductVariant = {
-  variantId: number;
-  productId: number;
-  productName: string;
-  categoryName: string;
-  description: string;
-  image_1: string;
-  image_2: string;
-  image_3: string;
-  image_4: string;
-  size: string;
-  colorName: string;
-  stockQuantity: number;
-  price: number;
-};
+import { ProductVariantsParams } from "../../api/api-service.types";
+import { Filter } from "../../context/filter-context";
 
 export type GroupedProduct = {
   productId: number;
+  variantId: number;
   productName: string;
   categoryName: string;
   description: string;
@@ -33,7 +18,7 @@ export type GroupedProduct = {
 };
 
 export const groupProductVariants = (
-  variants: ProductVariant[]
+  variants: ProductVariantsParams[]
 ): GroupedProduct[] => {
   const grouped: Record<string, GroupedProduct> = {};
 
@@ -43,6 +28,7 @@ export const groupProductVariants = (
     if (!grouped[productIdKey]) {
       grouped[productIdKey] = {
         productId: variant.productId,
+        variantId: variant.variantId,
         productName: variant.productName,
         categoryName: variant.categoryName,
         description: variant.description,
@@ -71,7 +57,7 @@ export const groupProductVariants = (
   return Object.values(grouped);
 };
 
-export const filterProducts = (products: ProductVariant[], filters: Filter) => {
+export const filterProducts = (products: ProductVariantsParams[], filters: Filter) => {
   return products.filter(product => {
     return (
       (filters.category ? product.categoryName === filters.category : true) &&

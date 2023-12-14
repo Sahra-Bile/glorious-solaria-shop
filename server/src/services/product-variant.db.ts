@@ -46,7 +46,10 @@ class DatabaseService {
     }
   }
 
-  public async getAllProductVariants(page: number, limit: number): Promise<ProductVariantDisplay[]> {
+  public async getAllProductVariants(
+    page: number,
+    limit: number
+  ): Promise<ProductVariantDisplay[]> {
     await this.connect();
     const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantDisplay>(
@@ -77,10 +80,9 @@ class DatabaseService {
     `,
       [limit, offset]
     );
-  
+
     return productList;
   }
-  
 
   public async getTotalProductVariantCount(): Promise<number> {
     await this.connect();
@@ -94,7 +96,29 @@ class DatabaseService {
   public async getProductVariantById(id: number) {
     await this.connect();
     const productVariant = await this.db.get<ProductVariantsParams>(
-      `SELECT * FROM productVariants WHERE variantId =?`,
+      `SELECT
+      productVariants.variantId,
+      products.productName,
+      products.description,
+      products.image_1,
+      products.image_2,
+      products.image_3,
+      products.image_4,
+      categories.categoryName, 
+      sizes.size,
+      colors.colorName,
+      productVariants.stockQuantity,
+      productVariants.price
+    FROM
+      productVariants
+    JOIN
+      products ON productVariants.productId = products.productId
+    JOIN
+      categories ON products.categoryId = categories.categoryId 
+    JOIN
+      sizes ON productVariants.sizeId = sizes.sizeId
+    JOIN
+      colors ON productVariants.colorId = colors.colorId WHERE variantId =?`,
       [id]
     );
 

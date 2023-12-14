@@ -1,9 +1,10 @@
 import React from "react";
-import { useProductVariants } from "../context/product-variant-context";
-import { ProductVariantCard } from "./product-variant-card";
+import { useProductVariants } from "../../context/product-variant-context";
 import { groupProductVariants } from "./group-product-variants";
+import { ProductPageContainer } from "./product.styles";
+import { ProductItem } from "./product-item";
 
-export function ProductsPage() {
+export function ProductPage() {
   const { productVariants, isFetchProductLoading, isError } =
     useProductVariants();
 
@@ -19,11 +20,11 @@ export function ProductsPage() {
 
   return (
     <>
-      <main className="container">
+      <ProductPageContainer className="container">
         {Object.values(groupedProducts).map((variant) => (
-          <ProductVariantCard key={variant.productId} variant={variant} />
+          <ProductItem key={variant.variantId} variant={variant} />
         ))}
-      </main>
+      </ProductPageContainer>
     </>
   );
 }

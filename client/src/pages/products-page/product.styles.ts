@@ -1,4 +1,14 @@
 import { styled } from "styled-components";
+import { MediaQueries } from "../../utils/style-constants";
+
+
+
+export const ListContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+`;
 
 export const ProductCard= styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -110,4 +120,19 @@ export const Dot = styled.span`
   background-color: #bbb;
   border-radius: 50%;
   cursor: pointer;
+`;
+
+export const ProductPageContainer = styled.div`
+display: flex;
+// flex-wrap: wrap;
+justify-content: space-between;
+flex-direction: column;
+align-items: center;
+ padding: 20px;
+  margin-top: 100px;
+
+  @media ${MediaQueries.mdUp} {
+    flex-direction: row;
+}
+ 
 `;
