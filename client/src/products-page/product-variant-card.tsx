@@ -10,7 +10,6 @@ import {
   OriginalPrice,
   Price,
   ProductCard,
-  ProductCards,
   ProductInfo,
   ProductTitle,
 } from "./product.styles";
@@ -39,7 +38,7 @@ export function ProductVariantCard({ variant }: ProductVariantCardProps) {
   };
 
   return (
-    <ProductCards className="container">
+    
     <ProductCard>
       <Arrow direction="prev" onClick={prevImage}>
         &lt;
@@ -78,6 +77,6 @@ export function ProductVariantCard({ variant }: ProductVariantCardProps) {
         <AddToBagButton>ADD TO BAG</AddToBagButton>
       </ProductInfo>
     </ProductCard>
-    </ProductCards>
+    
   );
 }

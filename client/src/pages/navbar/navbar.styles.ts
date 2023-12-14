@@ -4,10 +4,9 @@ import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 
 
-
 export const Nav = styled.nav`
   width: 100%;
-  height: 4.5rem;
+  height: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +15,7 @@ export const Nav = styled.nav`
   top: 0;
   left: 0;
   z-index: 1000;
-  gap: 1rem;
+  
 `;
 
 export const Container = styled.div`
@@ -28,6 +27,7 @@ export const Container = styled.div`
 export const Hamburger = styled.div`
   display: block;
   cursor: pointer;
+  padding: 1.5rem;
 
   @media ${MediaQueries.mdUp} {
     display: none;
@@ -61,21 +61,20 @@ export const List = styled.ul`
   list-style: none;
   display: none;
   flex-direction: column;
-  padding: 1rem;
+  padding: 4rem;
+
 
   @media ${MediaQueries.mdUp} {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     gap: 5rem;
-    padding: 0;
   }
 
   @media ${MediaQueries.lgUp} {
     display: flex;
     flex-direction: row;
     gap: none;
-    padding: 0;
     justify-content: flex-end;
   }
 `;
@@ -86,7 +85,7 @@ export const ListItem = styled.li`
 export const ListItemLink = styled(Link)`
   text-decoration: none;
   color: #f6f6f3;
-  padding: 0.5rem 1rem;
+  padding: 2rem;
   font-family: "Open Sans";
 
   &:hover {
@@ -101,7 +100,6 @@ export const Heading = styled.h1`
 `;
 export const BasketIcon = styled(BsBasketFill)<{ isOpen: boolean }>`
   color: #f6f6f3;
-  margin-top: 0.4rem;
   display: ${(props) => (props.isOpen ? "block" : "none")};
   @media ${MediaQueries.mdUp} {
     display: block;

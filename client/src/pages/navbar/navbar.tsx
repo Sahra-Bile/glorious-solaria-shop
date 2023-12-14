@@ -23,8 +23,8 @@ export function Navbar() {
   };
 
   return (
-    <Nav>
-      <Container className="container">
+    <Nav >
+      <Container >
         <ListItemLink as={Link} to="/">
           <Heading>Glorious Solaria</Heading>
         </ListItemLink>
@@ -69,7 +69,7 @@ export function Navbar() {
           ))}
           <ListItem>
             <Link to="/cart">
-              <BasketIcon size={24} />
+              <BasketIcon size={30} />
              
             </Link>
           </ListItem>

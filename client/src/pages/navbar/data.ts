@@ -12,7 +12,7 @@ export const data = [
 
   {
     id: 3,
-    Link: "/About",
+    Link: "/about",
     title: "About",
   },
   {

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const ProductCard = styled.div`
+export const ProductCard= styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: auto;
@@ -9,34 +9,8 @@ export const ProductCard = styled.div`
   position: relative;
   border-radius: 5px;
   border: 1px solid black;
+  margin-top: 100px;
 `;
-
-export const ProductCardsl = styled.div`
- display: grid;
-  grid-gap: 30px;
-  padding: 20px
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
-  align-items: center;
-
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-`;
-
-
-export const ProductCards = styled.div({
-  display: 'grid',
-  gridTemplateColumns: '350px auto',
-  gridRowGap: 20,
-  alignItems: 'center',
-})
-
 export const ProductInfo = styled.div(() => ({
   textAlign: "center",
   marginTop: "10px",
