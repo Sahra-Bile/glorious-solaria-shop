@@ -27,9 +27,9 @@ type FormData = {
   message: string;
 };
 
-const templateId =  "template_2id74wq"
-const serviceId =  "service_gl5fwls"
- const publicKey =  "5BUctxtwb5HjEpcrA"
+const templateId = "template_2id74wq";
+const serviceId = "service_gl5fwls";
+const publicKey = "5BUctxtwb5HjEpcrA";
 
 export function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -44,15 +44,15 @@ export function Contact() {
     if (form.current) {
       emailjs
         .sendForm(
-            process.env.REACT_APP_SERVICE_ID  ||  serviceId,
-            process.env.REACT_APP_TEMPLATE_ID  || templateId,
-            form.current,
-            process.env.REACT_APP_PUBLIC_KEY  || publicKey
+          process.env.REACT_APP_SERVICE_ID || serviceId,
+          process.env.REACT_APP_TEMPLATE_ID || templateId,
+          form.current,
+          process.env.REACT_APP_PUBLIC_KEY || publicKey
         )
         .then(
           (result) => {
             console.log("Email successfully sent");
-            reset(); // Reset the form fields after successful submission
+            reset(); 
           },
           (error) => {
             console.log("Error sending email", error);
@@ -68,11 +68,10 @@ export function Contact() {
           <Heading>Contact</Heading>
           <Paragraph>
             If you have any questions, feedback, or just want to say hello, we'd
-            love to hear from you!<br></br>
-            Fill out the form with your details, and we'll get back to you as
-            soon as possible.<br></br>
-            Your insights and inquiries are invaluable to us.
+            love to hear from you! Fill out the form with your details,
           </Paragraph>
+          <Paragraph> and we'll get back to you as soon as possible.
+             Your insights and inquiries are invaluable to us.</Paragraph>
         </ContactWrapper>
         <ListWrapper>
           <ListContainer>
@@ -118,16 +117,14 @@ export function Contact() {
               })}
             />
             <Label>Message</Label>
-            <TextArea
-              rows={4}
-              cols={50}
-              placeholder="Message"
+            <TextArea 
+              placeholder="I would like to..."
               {...register("message", {
                 required: "Message is required",
               })}
             ></TextArea>
             <Button type="submit" disabled={!isValid}>
-              Send
+              Send message
             </Button>
           </Form>
         </MessageContainer>

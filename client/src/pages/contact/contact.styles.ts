@@ -27,9 +27,8 @@ export const Heading = styled.h1`
     font-size: 1rem;
   }
 `;
-
 export const Paragraph = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   font-family:
     Open Sans,
@@ -38,10 +37,9 @@ export const Paragraph = styled.p`
   @media (max-width: 768px) {
     font-size: 1rem;
     text-align: center;
-    line-height: 1.5;
+   
   }
 `;
-
 export const ListWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -56,7 +54,6 @@ export const ListContainer = styled.ul`
   margin: 30px;
   padding: 1em;
 `;
-
 export const IconPlaceholder = styled.li`
   font-size: 50px;
   color: black;
@@ -65,11 +62,9 @@ export const IconPlaceholder = styled.li`
     transform: translateY(-0.5rem);
   }
 `;
-
 export const List = styled.li`
   font-size: 20px;
 `;
-
 export const MessageContainer = styled.div`
   padding: 15px;
   width: 90%;
@@ -85,13 +80,11 @@ export const Header = styled.h2`
   color: black;
   text-align: center;
 `;
-
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: rgba(22, 16, 26, 0.2);
 `;
 
 export const Input = styled.input`
@@ -99,40 +92,47 @@ export const Input = styled.input`
   width: 30%;
   height: 70px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
+  background-color: #f6f6f3;
 
   @media (max-width: 768px) {
     width: 70%;
   }
-
   @media (max-width: 1024px) {
-    width: 70%;
+    width: 90%;
   }
 `;
-
 export const TextArea = styled.textarea`
-  padding: 10px;
+ padding: 10px;
+ width: 100%;
+  height: 150px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
-`;
+  resize: vertical; 
+  background-color: #f6f6f3;
+   
+  @media (min-width: 768px) {
+    height: 400px; 
+    max-width: 700px; 
 
-export const Button = styled.button`
-background: #1D6453;
-color: white;
-border: none;
-padding: 10px;
-width: 300px;
-cursor: pointer;
-  &:hover {
-    background-color: #1D6453;
   }
 `;
-
-  
+export const Button = styled.button`
+  background: #1d6453;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 300px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  &:hover {
+    background-color: #e0e0d6;
+  }
+`;
 export const Label = styled.label`
-  font-weight: bold;
   font-size: 1rem;
   color: black;
   font-family:

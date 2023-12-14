@@ -5,13 +5,12 @@ import {
   Arrow,
   Carousel,
   CarouselItem,
-  ColorOption,
-  ColorOptions,
   Dot,
   DotsContainer,
   OriginalPrice,
   Price,
   ProductCard,
+  ProductCards,
   ProductInfo,
   ProductTitle,
 } from "./product.styles";
@@ -22,9 +21,12 @@ export type ProductVariantCardProps = {
 
 export function ProductVariantCard({ variant }: ProductVariantCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [variant.image_1, variant.image_2, variant.image_3, variant.image_4].filter(
-    Boolean
-  );
+  const images = [
+    variant.image_1,
+    variant.image_2,
+    variant.image_3,
+    variant.image_4,
+  ].filter(Boolean);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -37,6 +39,7 @@ export function ProductVariantCard({ variant }: ProductVariantCardProps) {
   };
 
   return (
+    <ProductCards>
     <ProductCard>
       <Arrow direction="prev" onClick={prevImage}>
         &lt;
@@ -69,22 +72,12 @@ export function ProductVariantCard({ variant }: ProductVariantCardProps) {
       </DotsContainer>
       <ProductInfo>
         <ProductTitle>{variant.productName}</ProductTitle>
-        <ColorOptions>
-          {variant.colors.map((color) => (
-            <ColorOption
-              key={color}
-              style={{ backgroundColor: color }}
-            ></ColorOption>
-          ))}
-        </ColorOptions>
-        {variant.sizes.map((size) => (
-          <ColorOption key={size}> {size}</ColorOption>
-        ))}
         <Price>
           <OriginalPrice>{" SEK " + variant.price}</OriginalPrice>
         </Price>
         <AddToBagButton>ADD TO BAG</AddToBagButton>
       </ProductInfo>
     </ProductCard>
+    </ProductCards>
   );
 }

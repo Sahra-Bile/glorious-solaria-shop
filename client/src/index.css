@@ -1,7 +1,4 @@
 
-main {
-  height: calc(100% - 175px);
-}
 input:not([type=checkbox]):not([type=radio]):focus, 
 select:focus, 
 textarea:focus, 
@@ -48,6 +45,13 @@ body {
 
 section {
   padding: 5rem 0;
+}
+textarea::placeholder {
+  text-align: start;
+}
+
+input::placeholder {
+  text-align: center;
 }
 
 /* GENERAL SECTION STYLES */
