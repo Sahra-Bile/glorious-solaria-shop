@@ -7,7 +7,7 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 5em;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
