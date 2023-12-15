@@ -13,6 +13,7 @@ import {
   ProductPage,
   ProductDetails,
 } from "../pages";
+import { ScrollToTop } from "../helpers/scroll";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -32,6 +33,7 @@ export function AppRoutes() {
     <Wrapper>
       <ToastContainer />
       <BrowserRouter>
+      <ScrollToTop/>
         <Navbar />
         <PageContent>
           <Routes>
