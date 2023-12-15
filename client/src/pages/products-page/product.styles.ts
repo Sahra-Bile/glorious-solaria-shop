@@ -1,6 +1,17 @@
 import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 
+export const ProductPageContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+flex-direction: column;
+align-items: center;
+gap: 2rem;
+  @media ${MediaQueries.mdUp} {
+    flex-direction: row;
+}
+`;
 export const AddToBagButton = styled.button`
   border: none;
   outline: 0;
@@ -55,18 +66,6 @@ export const Dot = styled.span`
   background-color: #bbb;
   border-radius: 50%;
   cursor: pointer;
-`;
-export const ProductPageContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: column;
-align-items: center;
- padding: 20px;
-  margin-top: 100px;
-  @media ${MediaQueries.mdUp} {
-    flex-direction: row;
-}
 `;
 export const InfoContainer = styled.div`
   display: flex;
@@ -134,6 +133,7 @@ export const IconWrapper = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }
@@ -142,14 +142,14 @@ export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
   padding: 20px;
-  background-color: #1d6453;
+  background-color: rgba(22,16,26,0.2);
   height: auto;
   overflow-y: visible;
   @media ${MediaQueries.mdUp} {
     width: 250px;
     min-width: 250px;
     overflow-y: auto;
-    height: calc(100% - 3em);
+    height: calc(100% - 1rem);
   }
 `;
 export const RightWrapper = styled.div`
@@ -158,7 +158,7 @@ export const RightWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
   flex-direction: row;
   padding: 20px;
 `;

@@ -19,6 +19,7 @@ import {
   Title,
   Wrapper,
 } from "./product.styles";
+import { Newsletter } from "../news-letter/news-letter";
 
 type FilterProductProps = {
   products: GroupedProduct[];
@@ -58,63 +59,109 @@ export function FilterProduct({ products }: FilterProductProps) {
   };
 
   return (
-    <Wrapper>
-      <LeftWrapper>
-        <FilterContainer>
-          <Title>Filter products</Title>
-          <Filter>
-            <Select onChange={handleColorChange} value={selectedColor}>
-              <SelectOption value="">All colors</SelectOption>
-              {colors.map((color, index) => (
-                <SelectOption key={index} value={color}>
-                  {color}
-                </SelectOption>
-              ))}
-            </Select>
-          </Filter>
-          <Filter>
-            <Select onChange={handleSizeChange} value={selectedSize}>
-              <SelectOption value="">All size</SelectOption>
-              {sizes.map((size, index) => (
-                <SelectOption key={index} value={size}>
-                  {size}
-                </SelectOption>
-              ))}
-            </Select>
-          </Filter>
-          <Filter>
-            <Select onChange={handleCategoryChange} value={selectedCategory}>
-              <SelectOption value="">All categories</SelectOption>
-              {categories.map((category, index) => (
-                <SelectOption key={index} value={category}>
-                  {category}
-                </SelectOption>
-              ))}
-            </Select>
-          </Filter>
-        </FilterContainer>
-      </LeftWrapper>
-      <RightWrapper>
-        {filteredProducts.map((product) => (
-          <ProductWrapper>
-            <Circle />
-            <Image src={product.image_3} alt={product.productName} />
-            <InfoContainer>
-              <IconWrapper>
-                <BsFillBasket3Fill />
-              </IconWrapper>
-              <IconWrapper>
-                <Link to={`/shop/${product.variantId}`}>
-                  <IoSearchSharp size={20} />
-                </Link>
-              </IconWrapper>
-              <IconWrapper>
-                <FaHeart />
-              </IconWrapper>
-            </InfoContainer>
-          </ProductWrapper>
-        ))}
-      </RightWrapper>
-    </Wrapper>
+    <main>
+      <Wrapper>
+        <LeftWrapper>
+          <FilterContainer>
+            <Title>Filter products</Title>
+            <Filter>
+              <Select onChange={handleColorChange} value={selectedColor}>
+                <SelectOption value="">All colors</SelectOption>
+                {colors.map((color, index) => (
+                  <SelectOption key={index} value={color}>
+                    {color}
+                  </SelectOption>
+                ))}
+              </Select>
+            </Filter>
+            <Filter>
+              <Select onChange={handleSizeChange} value={selectedSize}>
+                <SelectOption value="">All size</SelectOption>
+                {sizes.map((size, index) => (
+                  <SelectOption key={index} value={size}>
+                    {size}
+                  </SelectOption>
+                ))}
+              </Select>
+            </Filter>
+            <Filter>
+              <Select onChange={handleCategoryChange} value={selectedCategory}>
+                <SelectOption value="">All categories</SelectOption>
+                {categories.map((category, index) => (
+                  <SelectOption key={index} value={category}>
+                    {category}
+                  </SelectOption>
+                ))}
+              </Select>
+            </Filter>
+          </FilterContainer>
+        </LeftWrapper>
+        <RightWrapper>
+          {filteredProducts.map((product) => (
+            <ProductWrapper>
+              <Circle />
+              <Image src={product.image_3} alt={product.productName} />
+              <InfoContainer>
+                <IconWrapper>
+                  <BsFillBasket3Fill />
+                </IconWrapper>
+                <IconWrapper>
+                  <Link to={`/shop/${product.variantId}`}>
+                    <IoSearchSharp size={20} />
+                  </Link>
+                </IconWrapper>
+                <IconWrapper>
+                  <FaHeart />
+                </IconWrapper>
+              </InfoContainer>
+            </ProductWrapper>
+          ))}
+        </RightWrapper>
+        <RightWrapper>
+          {filteredProducts.map((product) => (
+            <ProductWrapper>
+              <Circle />
+              <Image src={product.image_1} alt={product.productName} />
+              <InfoContainer>
+                <IconWrapper>
+                  <BsFillBasket3Fill />
+                </IconWrapper>
+                <IconWrapper>
+                  <Link to={`/shop/${product.variantId}`}>
+                    <IoSearchSharp size={20} />
+                  </Link>
+                </IconWrapper>
+                <IconWrapper>
+                  <FaHeart />
+                </IconWrapper>
+              </InfoContainer>
+            </ProductWrapper>
+          ))}
+        </RightWrapper>
+        <RightWrapper>
+          {filteredProducts.map((product) => (
+            <ProductWrapper>
+              <Circle />
+              <Image src={product.image_2} alt={product.productName} />
+              <InfoContainer>
+                <IconWrapper>
+                  <BsFillBasket3Fill />
+                </IconWrapper>
+                <IconWrapper>
+                  <Link to={`/shop/${product.variantId}`}>
+                    <IoSearchSharp size={20} />
+                  </Link>
+                </IconWrapper>
+                <IconWrapper>
+                  <FaHeart />
+                </IconWrapper>
+              </InfoContainer>
+            </ProductWrapper>
+          ))}
+        </RightWrapper>
+      </Wrapper>
+      <Newsletter />
+      </main>
+ 
   );
 }
