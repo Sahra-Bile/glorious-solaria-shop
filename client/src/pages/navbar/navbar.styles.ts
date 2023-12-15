@@ -86,7 +86,6 @@ export const ListItemLink = styled(Link)`
   text-decoration: none;
   color: #f6f6f3;
   padding: 2rem;
-  font-family: "Open Sans";
 
   &:hover {
     color: #ccc;

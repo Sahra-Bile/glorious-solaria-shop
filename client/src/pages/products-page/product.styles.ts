@@ -15,7 +15,6 @@ export const ProductCard= styled.div`
   max-width: 300px;
   margin: auto;
   text-align: center;
-  font-family: arial;
   position: relative;
   border-radius: 5px;
   border: 1px solid black;

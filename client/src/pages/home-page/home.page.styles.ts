@@ -23,14 +23,6 @@ export const HeroText = styled.div`
   color: #e0e0d6;
   text-shadow: 4px 4px 6px #000000;
   line-height: 1.5;
-  font-family:
-      "Diatype Rounded Semi-Mono",
-      Helvetica,
-      -apple-system,
-      BlinkMacSystemFont,
-      Roboto,
-      "Helvetica Neue",
-      sans-serif;
   & h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -52,14 +44,6 @@ export const FeaturedProductsSection = styled.section`
     font-feature-settings: "ss05";
     line-break: loose;
     color: black;
-    font-family:
-      "Diatype Rounded Semi-Mono",
-      Helvetica,
-      -apple-system,
-      BlinkMacSystemFont,
-      Roboto,
-      "Helvetica Neue",
-      sans-serif;
   }
 `;
  export const ProductCard = styled.div`
@@ -80,14 +64,6 @@ export const AboutSection = styled.section`
   line-break: loose;
   padding: 20px;
   color: black;
-  font-family:
-    "Diatype Rounded Semi-Mono",
-    Helvetica,
-    -apple-system,
-    BlinkMacSystemFont,
-    Roboto,
-    "Helvetica Neue",
-    sans-serif;
   @media ${MediaQueries.smUp} {
     font-size: 1.8rem;
     line-height: 4.25rem;
