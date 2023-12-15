@@ -1,14 +1,8 @@
 import { Send } from "@material-ui/icons";
 import { styled } from "styled-components";
-import { css } from "styled-components";
+import { mobile } from "../../utils/responsive";
 
-export const mobile = (props:any) => {
-  return css`
-    @media only screen and (max-width: 480px) {
-      ${props}
-    }
-  `;
-};
+
 
 const Container = styled.div`
   height: 70vh;
