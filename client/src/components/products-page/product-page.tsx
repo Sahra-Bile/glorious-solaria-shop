@@ -2,7 +2,8 @@ import React from "react";
 import { useProductVariants } from "../../context/product-variant-context";
 import { groupProductVariants } from "./group-product-variants";
 import { ProductPageContainer } from "./product.styles";
-import { ProductItem } from "./product-item";
+import {Announcement} from "../announcement/announcement";
+import { FilterProduct } from "./Filter-product";
 
 export function ProductPage() {
   const { productVariants, isFetchProductLoading, isError } =
@@ -19,12 +20,11 @@ export function ProductPage() {
   const groupedProducts = groupProductVariants(productVariants);
 
   return (
-    <>
-      <ProductPageContainer className="container">
-        {Object.values(groupedProducts).map((variant) => (
-          <ProductItem key={variant.variantId} variant={variant} />
-        ))}
-      </ProductPageContainer>
-    </>
+    <section>
+    <ProductPageContainer >
+        <Announcement />
+      <FilterProduct products={groupedProducts} />
+    </ProductPageContainer>
+    </section>
   );
 }

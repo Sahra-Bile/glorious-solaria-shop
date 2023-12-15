@@ -10,9 +10,9 @@ import {
   Contact,
   Footer,
   HomePage,
-  ProductPage,
-  ProductDetails,
 } from "../pages";
+import { ScrollToTop } from "../helpers/scroll";
+import { ProductDetails, ProductPage } from "../components";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -32,6 +32,7 @@ export function AppRoutes() {
     <Wrapper>
       <ToastContainer />
       <BrowserRouter>
+      <ScrollToTop/>
         <Navbar />
         <PageContent>
           <Routes>

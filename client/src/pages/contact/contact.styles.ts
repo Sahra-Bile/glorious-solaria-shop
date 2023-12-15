@@ -15,9 +15,6 @@ export const Heading = styled.h1`
   margin-bottom: 15px;
   margin-top: 15px;
   font-size: 2rem;
-  font-family:
-    Open Sans,
-    sans-serif;
   color: black;
   padding-top: 2.5em;
   text-align: start;
@@ -30,9 +27,6 @@ export const Heading = styled.h1`
 export const Paragraph = styled.p`
   font-size: 1.5rem;
   line-height: 1.5;
-  font-family:
-    Open Sans,
-    sans-serif;
 
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -73,9 +67,6 @@ export const MessageContainer = styled.div`
 export const Header = styled.h2`
   margin-bottom: 30px;
   font-size: 40px;
-  font-family:
-    Open Sans,
-    sans-serif;
   font-size: 2rem;
   color: black;
   text-align: center;
@@ -135,7 +126,4 @@ export const Button = styled.button`
 export const Label = styled.label`
   font-size: 1rem;
   color: black;
-  font-family:
-    Open Sans,
-    sans-serif;
 `;

@@ -36,7 +36,7 @@ export function Contact() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: {isValid },
     reset,
   } = useForm<FormData>();
 
