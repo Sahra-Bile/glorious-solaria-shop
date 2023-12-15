@@ -8,6 +8,9 @@ export type ProductContextValue = {
   setPage: (page: number) => void;
   limit: number;
   setLimit: (limit: number) => void;
+  currentPage: number;
+  totalPages: number;
+  totalProducts: number;
   isError: boolean;
   isFetchProductLoading: boolean;
 } | null;
@@ -30,6 +33,10 @@ export const ProductVariantProvider = ({ children }: Props) => {
 
   const productVariants = queryResult?.data ?? [];
 
+  const currentPage = queryResult?.page ?? 1;
+  const totalPages = queryResult?.totalPages ?? 0;
+  const totalProducts = queryResult?.totalRows ?? 0;
+
   return (
     <ProductVariantContext.Provider
       value={{
@@ -38,6 +45,9 @@ export const ProductVariantProvider = ({ children }: Props) => {
         setPage,
         limit,
         setLimit,
+        currentPage,
+        totalPages,
+        totalProducts,
         isError,
         isFetchProductLoading,
       }}

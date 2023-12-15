@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import { GroupedProduct } from "./group-product-variants";
 import { Wrapper } from "./product.styles";
 import { FilterContainer, Newsletter, ProductList, SearchBar } from "..";
+import { Pagination } from "../pagination/pagination";
+import { styled } from "styled-components";
+
+
+const ProductFilterWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+`;
 type FilterProductProps = {
   products: GroupedProduct[];
 };
@@ -40,7 +51,7 @@ export function FilterProduct({ products }: FilterProductProps) {
   }, [searchTerm, products]);
 
   return (
-    <main>
+    <ProductFilterWrapper>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Wrapper>
         <FilterContainer
@@ -56,7 +67,8 @@ export function FilterProduct({ products }: FilterProductProps) {
         />
         <ProductList products={filteredProducts} />
       </Wrapper>
+      <Pagination/>
       <Newsletter />
-    </main>
+    </ProductFilterWrapper>
   );
 }
