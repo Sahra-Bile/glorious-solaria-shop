@@ -182,3 +182,8 @@ export const Select = styled.select`
   margin-right: 10px;
   background-color: lightgray;
 `;
+export const SelectOption = styled.option`
+  background-color: gray;
+  font-size: 6rem;
+  color:  white;
+`;

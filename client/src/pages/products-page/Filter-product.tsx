@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
 import { GroupedProduct } from "./group-product-variants";
-
 import { Link } from "react-router-dom";
 import { BsFillBasket3Fill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
@@ -16,6 +15,7 @@ import {
   ProductWrapper,
   RightWrapper,
   Select,
+  SelectOption,
   Title,
   Wrapper,
 } from "./product.styles";
@@ -64,31 +64,31 @@ export function FilterProduct({ products }: FilterProductProps) {
           <Title>Filter products</Title>
           <Filter>
             <Select onChange={handleColorChange} value={selectedColor}>
-              <option value="">All colors</option>
+              <SelectOption value="">All colors</SelectOption>
               {colors.map((color, index) => (
-                <option key={index} value={color}>
+                <SelectOption key={index} value={color}>
                   {color}
-                </option>
+                </SelectOption>
               ))}
             </Select>
           </Filter>
           <Filter>
             <Select onChange={handleSizeChange} value={selectedSize}>
-              <option value="">All size</option>
+              <SelectOption value="">All size</SelectOption>
               {sizes.map((size, index) => (
-                <option key={index} value={size}>
+                <SelectOption key={index} value={size}>
                   {size}
-                </option>
+                </SelectOption>
               ))}
             </Select>
           </Filter>
           <Filter>
             <Select onChange={handleCategoryChange} value={selectedCategory}>
-              <option value="">All categories</option>
+              <SelectOption value="">All categories</SelectOption>
               {categories.map((category, index) => (
-                <option key={index} value={category}>
+                <SelectOption key={index} value={category}>
                   {category}
-                </option>
+                </SelectOption>
               ))}
             </Select>
           </Filter>
