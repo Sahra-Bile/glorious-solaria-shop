@@ -98,51 +98,9 @@ export function FilterProduct({ products }: FilterProductProps) {
         </LeftWrapper>
         <RightWrapper>
           {filteredProducts.map((product) => (
-            <ProductWrapper>
+            <ProductWrapper key={product.variantId}>
               <Circle />
               <Image src={product.image_3} alt={product.productName} />
-              <InfoContainer>
-                <IconWrapper>
-                  <BsFillBasket3Fill />
-                </IconWrapper>
-                <IconWrapper>
-                  <Link to={`/shop/${product.variantId}`}>
-                    <IoSearchSharp size={20} />
-                  </Link>
-                </IconWrapper>
-                <IconWrapper>
-                  <FaHeart />
-                </IconWrapper>
-              </InfoContainer>
-            </ProductWrapper>
-          ))}
-        </RightWrapper>
-        <RightWrapper>
-          {filteredProducts.map((product) => (
-            <ProductWrapper>
-              <Circle />
-              <Image src={product.image_1} alt={product.productName} />
-              <InfoContainer>
-                <IconWrapper>
-                  <BsFillBasket3Fill />
-                </IconWrapper>
-                <IconWrapper>
-                  <Link to={`/shop/${product.variantId}`}>
-                    <IoSearchSharp size={20} />
-                  </Link>
-                </IconWrapper>
-                <IconWrapper>
-                  <FaHeart />
-                </IconWrapper>
-              </InfoContainer>
-            </ProductWrapper>
-          ))}
-        </RightWrapper>
-        <RightWrapper>
-          {filteredProducts.map((product) => (
-            <ProductWrapper>
-              <Circle />
-              <Image src={product.image_2} alt={product.productName} />
               <InfoContainer>
                 <IconWrapper>
                   <BsFillBasket3Fill />
