@@ -10,10 +10,9 @@ import {
   Contact,
   Footer,
   HomePage,
-  ProductPage,
-  ProductDetails,
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
+import { ProductDetails, ProductPage } from "../components";
 
 const Wrapper = styled.div({
   height: "100%",

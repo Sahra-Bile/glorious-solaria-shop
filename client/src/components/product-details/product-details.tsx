@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useFetchProduct } from "../../../queries/product-queries";
-import { Newsletter } from "../../news-letter/news-letter";
-import { Announcement } from "../../announcement/announcement";
+import { useFetchProduct } from "../../queries/product-queries";
+import { Newsletter } from "../news-letter/news-letter";
+import { Announcement } from "../announcement/announcement";
 import { Add, Remove } from "@material-ui/icons";
 import {
   AddContainer,

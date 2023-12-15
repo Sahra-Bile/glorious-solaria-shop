@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { mobile } from "../../../utils/responsive";
+import { mobile } from "../../utils/responsive";
 
 export const Container = styled.div`
   margin-top: 100px;

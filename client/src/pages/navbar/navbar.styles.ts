@@ -1,9 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 import { ShoppingCartOutlined } from "@material-ui/icons";
-
 
 export const Nav = styled.nav`
   width: 100%;
@@ -16,7 +14,6 @@ export const Nav = styled.nav`
   top: 0;
   left: 0;
   z-index: 1000;
-  
 `;
 
 export const Container = styled.div`
@@ -67,7 +64,7 @@ export const List = styled.ul`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-   padding: 5rem;
+    padding: 5rem;
   }
 
   @media ${MediaQueries.lgUp} {
@@ -89,7 +86,7 @@ export const ListItemLink = styled(Link)`
     color: #ccc;
   }
   @media ${MediaQueries.lgUp} {
-     padding: 4rem;
+    padding: 4rem;
   }
 `;
 export const Heading = styled.h1`
@@ -110,21 +107,4 @@ export const BasketIcon = styled(ShoppingCartOutlined)<{ isOpen: boolean }>`
   @media ${MediaQueries.mdUp} {
     display: block;
   }
-  
 `;
-
-export const SearchContainer = styled.div`
-border: 0.5px solid lightgray;
-display: flex;
-align-items: center;
-justify-content: center;
-background: #e0e0d6;
-
- `;
-
-export const SearchInput = styled.input`
-border: none;
-background: #e0e0d6;
-padding: 5px;
-
- `;
