@@ -1,7 +1,8 @@
-import { BsBasketFill } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 
 
 export const Nav = styled.nav`
@@ -61,46 +62,69 @@ export const List = styled.ul`
   list-style: none;
   display: none;
   flex-direction: column;
-  padding: 4rem;
-
 
   @media ${MediaQueries.mdUp} {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    gap: 5rem;
+   padding: 5rem;
   }
 
   @media ${MediaQueries.lgUp} {
     display: flex;
     flex-direction: row;
-    gap: none;
     justify-content: flex-end;
+    padding: 5rem;
   }
 `;
 export const ListItem = styled.li`
   color: #f6f6f3;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 `;
 export const ListItemLink = styled(Link)`
   text-decoration: none;
   color: #f6f6f3;
-  padding: 2rem;
 
   &:hover {
     color: #ccc;
+  }
+  @media ${MediaQueries.lgUp} {
+     padding: 4rem;
   }
 `;
 export const Heading = styled.h1`
   text-align: center;
   color: #f6f6f3;
-  font-size: 24px;
+  font-size: 16px;
   font-family: cursive;
+  @media ${MediaQueries.mdUp} {
+    font-size: 20px;
+  }
+  @media ${MediaQueries.lgUp} {
+    font-size: 24px;
+  }
 `;
-export const BasketIcon = styled(BsBasketFill)<{ isOpen: boolean }>`
+export const BasketIcon = styled(ShoppingCartOutlined)<{ isOpen: boolean }>`
   color: #f6f6f3;
   display: ${(props) => (props.isOpen ? "block" : "none")};
   @media ${MediaQueries.mdUp} {
     display: block;
   }
+  
 `;
+
+export const SearchContainer = styled.div`
+border: 0.5px solid lightgray;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #e0e0d6;
+
+ `;
+
+export const SearchInput = styled.input`
+border: none;
+background: #e0e0d6;
+padding: 5px;
+
+ `;

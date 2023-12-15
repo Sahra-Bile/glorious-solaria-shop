@@ -9,11 +9,14 @@ import {
   ListItemLink,
   MobileMenu,
   Nav,
+  SearchContainer,
+  SearchInput,
 } from "./navbar.styles";
-import { BsBasketFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { data } from "./data";
 import { FaBars, FaTimes } from "react-icons/fa";
+import  Badge  from "@material-ui/core/Badge";
+import { Pageview, ShoppingCartOutlined } from "@material-ui/icons";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +31,10 @@ export function Navbar() {
         <ListItemLink as={Link} to="/">
           <Heading>Glorious Solaria</Heading>
         </ListItemLink>
+        <SearchContainer>
+          <SearchInput/>
+          <Pageview color="action"  style={{color: 'grey', fontSize: '30px'}} />
+        </SearchContainer>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (
             <FaTimes size={24} style={{ color: "#f6f6f3" }} />
@@ -49,13 +56,14 @@ export function Navbar() {
               </ListItem>
             ))}
             <ListItem>
-              <ListItemLink
-                as={Link}
+            <Badge  badgeContent={4} color="primary">
+              <Link
                 to="/cart"
                 onClick={() => setIsOpen(false)}
               >
-                <BsBasketFill size={24} style={{ color: "#f6f6f3" }} />
-              </ListItemLink>
+                  <ShoppingCartOutlined fontSize="large"/>
+              </Link>
+              </Badge>
             </ListItem>
           </MobileMenu>
         )}
@@ -67,13 +75,14 @@ export function Navbar() {
               </ListItemLink>
             </ListItem>
           ))}
-          <ListItem>
+        <ListItem>
+            <Badge badgeContent={4} color="default" >
             <Link to="/cart">
-              <BasketIcon size={30} />
-             
+              <BasketIcon fontSize="medium"/>
             </Link>
+            </Badge>
           </ListItem>
-        </List>
+          </List>
       </Container>
     </Nav>
   );
