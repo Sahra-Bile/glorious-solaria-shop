@@ -54,29 +54,31 @@ class DatabaseService {
     const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantDisplay>(
       `SELECT
-      productVariants.variantId,
-      products.productName,
-      products.description,
-      products.image_1,
-      products.image_2,
-      products.image_3,
-      products.image_4,
-      categories.categoryName, 
-      sizes.size,
-      colors.colorName,
-      productVariants.stockQuantity,
-      productVariants.price
+      p.productId,
+      p.productName,
+      p.description,
+      p.image_1,
+      p.image_2,
+      p.image_3,
+      p.image_4,
+      c.categoryName,
+      GROUP_CONCAT(DISTINCT s.size) AS sizes,
+      GROUP_CONCAT(DISTINCT cl.colorName) AS colors,
+      MIN(pv.stockQuantity) AS stockQuantity,
+      MIN(pv.price) AS price
     FROM
-      productVariants
+      productVariants pv
     JOIN
-      products ON productVariants.productId = products.productId
+      products p ON pv.productId = p.productId
     JOIN
-      categories ON products.categoryId = categories.categoryId 
+      categories c ON p.categoryId = c.categoryId 
     JOIN
-      sizes ON productVariants.sizeId = sizes.sizeId
+      sizes s ON pv.sizeId = s.sizeId
     JOIN
-      colors ON productVariants.colorId = colors.colorId
+      colors cl ON pv.colorId = cl.colorId
+    GROUP BY p.productId
     LIMIT ? OFFSET ?;
+     
     `,
       [limit, offset]
     );
@@ -87,7 +89,7 @@ class DatabaseService {
   public async getTotalProductVariantCount(): Promise<number> {
     await this.connect();
     const result = await this.db.get<{ count: number }>(
-      `SELECT COUNT(*) AS count FROM productVariants`
+      `SELECT COUNT(DISTINCT productId) AS count FROM products`
     );
     const count = result?.count || 0;
     return count;

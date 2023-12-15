@@ -33,6 +33,10 @@ export function FilterProduct({ products }: FilterProductProps) {
   const categories = Array.from(
     new Set(products.flatMap((product) => product.categoryName))
   );
+//   const sizes = product.sizes.split(',');
+// const colors = product.colors.split(',');
+// const categories = product.colors.split(',');
+
 
   const filteredProducts = products.filter(
     (product) =>
