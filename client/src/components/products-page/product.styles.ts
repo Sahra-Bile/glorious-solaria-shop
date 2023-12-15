@@ -2,15 +2,15 @@ import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 
 export const ProductPageContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-flex-direction: column;
-align-items: center;
-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
-}
+  }
 `;
 export const AddToBagButton = styled.button`
   border: none;
@@ -25,47 +25,6 @@ export const AddToBagButton = styled.button`
   &:hover {
     opacity: 0.7;
   }
-`;
-export const Carousel = styled.div`
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-`;
-export const CarouselItem = styled.img`
-  scroll-snap-align: start;
-  flex-shrink: 0;
-  width: 90%;
-  margin-right: 5%;
-  object-fit: cover;
-`;
-export const Arrow = styled.div<{ direction: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  ${(props) => (props.direction === "prev" ? "left: 10px;" : "right: 10px;")}
-  height: 30px;
-  width: 30px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  z-index: 2;
-`;
-export const DotsContainer = styled.div`
-  text-align: center;
-  padding-top: 10px;
-`;
-export const Dot = styled.span`
-  display: inline-block;
-  margin: 0 5px;
-  width: 10px;
-  height: 10px;
-  background-color: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
 `;
 export const InfoContainer = styled.div`
   display: flex;
@@ -142,7 +101,7 @@ export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
   padding: 20px;
-  background-color: rgba(22,16,26,0.2);
+  background-color: rgba(22, 16, 26, 0.2);
   height: auto;
   overflow-y: visible;
   @media ${MediaQueries.mdUp} {
@@ -162,7 +121,7 @@ export const RightWrapper = styled.div`
   flex-direction: row;
   padding: 20px;
 `;
-export  const FilterContainer = styled.div`
+export const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -185,5 +144,5 @@ export const Select = styled.select`
 export const SelectOption = styled.option`
   background-color: gray;
   font-size: 6rem;
-  color:  white;
+  color: white;
 `;
