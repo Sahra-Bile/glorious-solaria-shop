@@ -1,8 +1,7 @@
 import React from "react";
 import { useProductVariants } from "../../context/product-variant-context";
-import { groupProductVariants } from "./group-product-variants";
 import { ProductPageContainer } from "./product.styles";
-import {Announcement} from "../announcement/announcement";
+import { Announcement } from "../announcement/announcement";
 import { FilterProduct } from "./Filter-product";
 
 export function ProductPage() {
@@ -17,14 +16,12 @@ export function ProductPage() {
     return <div> something went wrong...</div>;
   }
 
-  const groupedProducts = groupProductVariants(productVariants);
-
   return (
     <section>
-    <ProductPageContainer >
+      <ProductPageContainer>
         <Announcement />
-      <FilterProduct products={groupedProducts} />
-    </ProductPageContainer>
+        <FilterProduct products={productVariants} />
+      </ProductPageContainer>
     </section>
   );
 }

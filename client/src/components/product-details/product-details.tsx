@@ -103,15 +103,15 @@ export function ProductDetails() {
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color={product.colorName} />
-              <FilterColor color={product.colorName} />
-              <FilterColor color={product.colorName} />
+              <FilterColor color={product.colors} />
+              <FilterColor color={product.colors} />
+              <FilterColor color={product.colors} />
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize>
-                <FilterSizeOption>{product.size}</FilterSizeOption>
-                <FilterSizeOption>{product.size}</FilterSizeOption>
+                <FilterSizeOption>{product.sizes}</FilterSizeOption>
+                <FilterSizeOption>{product.sizes}</FilterSizeOption>
               </FilterSize>
             </Filter>
           </FilterContainer>

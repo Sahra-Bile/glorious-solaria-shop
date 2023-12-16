@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
-import { GroupedProduct } from "../products-page/group-product-variants";
 import { MediaQueries } from "../../utils/style-constants";
 import { Link } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { BsFillBasket3Fill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
+import { ProductVariantsParams } from "../../api/api-service.types";
 
 const RightWrapper = styled.div`
   flex: 1;
@@ -81,7 +81,7 @@ const IconWrapper = styled.div`
 `;
 
 type ProductListProps = {
-  products: GroupedProduct[];
+  products: ProductVariantsParams[];
 };
 
 export const ProductList: React.FC<ProductListProps> = ({ products }) => (

@@ -54,6 +54,7 @@ class DatabaseService {
     const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantDisplay>(
       `SELECT
+      pv.variantId,
       p.productId,
       p.productName,
       p.description,

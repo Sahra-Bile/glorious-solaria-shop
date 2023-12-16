@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { GroupedProduct } from "./group-product-variants";
 import { Wrapper } from "./product.styles";
 import { FilterContainer, Newsletter, ProductList, SearchBar } from "..";
 import { Pagination } from "../pagination/pagination";
 import { styled } from "styled-components";
-
+import { ProductVariantsParams } from "../../api/api-service.types";
 
 const ProductFilterWrapper = styled.main`
   display: flex;
@@ -14,7 +13,7 @@ const ProductFilterWrapper = styled.main`
   gap: 1.5rem;
 `;
 type FilterProductProps = {
-  products: GroupedProduct[];
+  products: ProductVariantsParams[];
 };
 
 export function FilterProduct({ products }: FilterProductProps) {
@@ -22,37 +21,45 @@ export function FilterProduct({ products }: FilterProductProps) {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const validProducts = products.filter(
+    (product) => product.colors && product.sizes
+  );
 
   const colors = Array.from(
-    new Set(products.flatMap((product) => product.colors))
+    new Set(validProducts.flatMap((product) => product.colors.split(",")))
   );
+
   const sizes = Array.from(
-    new Set(products.flatMap((product) => product.sizes))
+    new Set(validProducts.flatMap((product) => product.sizes.split(",")))
   );
 
   const categories = Array.from(
     new Set(products.flatMap((product) => product.categoryName))
   );
-//   const sizes = product.sizes.split(',');
-// const colors = product.colors.split(',');
-// const categories = product.colors.split(',');
 
-
-  const filteredProducts = products.filter(
-    (product) =>
-      (selectedColor ? product.colors.includes(selectedColor) : true) &&
-      (selectedSize ? product.sizes.includes(selectedSize) : true) &&
-      (selectedCategory ? product.categoryName === selectedCategory : true) &&
-      (searchTerm
-        ? product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-        : true)
-  );
-
-  useEffect(() => {
-    products.filter((product) =>
-      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+  const handleFilters = () => {
+    const filtered = products.filter(
+      (product) =>
+        (selectedColor
+          ? product.colors.split(",").includes(selectedColor)
+          : true) &&
+        (selectedSize
+          ? product.sizes.split(",").includes(selectedSize)
+          : true) &&
+        (selectedCategory ? product.categoryName === selectedCategory : true) &&
+        (searchTerm
+          ? product.colors.toLowerCase().includes(searchTerm.toLowerCase())
+          : true)
     );
-  }, [searchTerm, products]);
+    setFilteredProducts(filtered);
+  };
+
+  console.log(colors);
+  useEffect(() => {
+    handleFilters();
+  }, [searchTerm, selectedColor, selectedSize, selectedCategory, products]);
 
   return (
     <ProductFilterWrapper>
@@ -71,7 +78,7 @@ export function FilterProduct({ products }: FilterProductProps) {
         />
         <ProductList products={filteredProducts} />
       </Wrapper>
-      <Pagination/>
+      <Pagination />
       <Newsletter />
     </ProductFilterWrapper>
   );
