@@ -8,8 +8,8 @@ export type ProductVariantsParams = {
   image_2: string;
   image_3: string;
   image_4: string;
-  size: string;
-  colorName: string;
+  sizes: string;
+  colors: string;
   stockQuantity: number;
   price: number;
 };

@@ -7,7 +7,7 @@ export const ProductPageContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }

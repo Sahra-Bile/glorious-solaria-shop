@@ -1,10 +1,11 @@
 import React from "react";
-import HeroImage2 from "../../asserts/hero.png";
 import SectionImage from "../../asserts/product.png";
 import ProductImage from "../../asserts/product2.png";
 import Shoes from "../../asserts//shoes.png";
 import ShoesImg from "../../asserts/shoes1.png";
-import { Link } from "react-router-dom";
+import EcoWoman from "../../asserts/eco-woman.png";
+import EcoShop from "../../asserts//eco-woman2.png";
+
 import {
   AboutSection,
   Button,
@@ -15,6 +16,7 @@ import {
   ProductCard,
   SustainabilitySection,
 } from "./home.page.styles";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   return (
@@ -25,28 +27,30 @@ export const HomePage = () => {
           <p>
             Discover sustainable and <br /> eco-friendly fashion
           </p>
-        <div>
-        <Link to="/shop">
-            <Button>Shop Now</Button>
-          </Link>
-        </div>
+          <div>
+            <Link to="/shop">
+              <Button>Shop Now</Button>
+            </Link>
+          </div>
         </HeroText>
       </HeroSection>
       <ProductCard>Upcoming products</ProductCard>
       <FeaturedProductsSection>
-        <img src={HeroImage2} alt="img" />
-        <img src={ProductImage} alt="img" />
-        <img src={SectionImage} alt="img" />
         <p>
           At Glorious Solaria, our passion for fashion goes hand in hand with
           our dedication to the planet.
-          <br />
+        </p>
+        <img src={Shoes} alt="img" />
+        <p>
           Born from a dream to create a wardrobe that cherishes the earth, we
           offer an array of exquisite, eco-conscious garments designed for the
           modern woman who stands bold and beautiful.
         </p>
-        <img src={Shoes} alt="img" />
         <img src={ShoesImg} alt="img" />
+        <img src={EcoShop} alt="img" />
+        <img src={ProductImage} alt="img" />
+        <img src={EcoWoman} alt="img" />
+        <img src={SectionImage} alt="img" />
       </FeaturedProductsSection>
       <SustainabilitySection>
         <h2>Our Commitment to Sustainability</h2>

@@ -1,47 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { GroupedProduct } from "./group-product-variants";
+import React, { useCallback, useEffect, useState } from "react";
 import { Wrapper } from "./product.styles";
-import { FilterContainer, Newsletter, ProductList, SearchBar } from "..";
+import { FilterContainer, ProductList } from "..";
+import { Pagination } from "../pagination/pagination";
+import { styled } from "styled-components";
+import { ProductVariantsParams } from "../../api/api-service.types";
+
+const ProductFilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  `;
+
 type FilterProductProps = {
-  products: GroupedProduct[];
+  products: ProductVariantsParams[];
+  hasMorePages: boolean;
 };
 
-export function FilterProduct({ products }: FilterProductProps) {
+export function FilterProduct(props: FilterProductProps) {
+  const { products, hasMorePages } = props;
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const validProducts = filteredProducts.filter(
+    (product) => product.colors && product.sizes
+  );
 
   const colors = Array.from(
-    new Set(products.flatMap((product) => product.colors))
+    new Set(
+      validProducts.flatMap((filteredProducts) =>
+        filteredProducts.colors.split(",")
+      )
+    )
   );
+
   const sizes = Array.from(
-    new Set(products.flatMap((product) => product.sizes))
+    new Set(validProducts.flatMap((product) => product.sizes.split(",")))
   );
 
   const categories = Array.from(
-    new Set(products.flatMap((product) => product.categoryName))
+    new Set(filteredProducts.flatMap((product) => product.categoryName))
   );
 
-  const filteredProducts = products.filter(
-    (product) =>
-      (selectedColor ? product.colors.includes(selectedColor) : true) &&
-      (selectedSize ? product.sizes.includes(selectedSize) : true) &&
-      (selectedCategory ? product.categoryName === selectedCategory : true) &&
-      (searchTerm
-        ? product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-        : true)
-  );
+  const handleFilters = useCallback(() => {
+    const filtered = products.filter(
+      (product) =>
+        (selectedColor
+          ? product.colors.split(",").includes(selectedColor)
+          : true) &&
+        (selectedSize
+          ? product.sizes.split(",").includes(selectedSize)
+          : true) &&
+        (selectedCategory ? product.categoryName === selectedCategory : true)
+    );
+    setFilteredProducts(filtered);
+  }, [products, selectedColor, selectedSize, selectedCategory]);
 
   useEffect(() => {
-    products.filter((product) =>
-      product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm, products]);
+    handleFilters();
+  }, [handleFilters]);
 
   return (
-    <main>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+    <ProductFilterWrapper>
       <Wrapper>
         <FilterContainer
           colors={colors}
@@ -56,7 +78,7 @@ export function FilterProduct({ products }: FilterProductProps) {
         />
         <ProductList products={filteredProducts} />
       </Wrapper>
-      <Newsletter />
-    </main>
+      {hasMorePages && <Pagination />}
+    </ProductFilterWrapper>
   );
 }
