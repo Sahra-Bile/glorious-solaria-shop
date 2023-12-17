@@ -7,9 +7,6 @@ const PaginationWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: 20px 0;
-
-
- 
 `;
 const PageNumber = styled.button<{ isActive?: boolean }>`
   background: ${(props) => (props.isActive ? " #1d6453" : "transparent")};
@@ -19,7 +16,6 @@ const PageNumber = styled.button<{ isActive?: boolean }>`
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.2rem;
-
   &:hover {
     background: #d6d6cd;
   }
