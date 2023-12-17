@@ -1,35 +1,39 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Wrapper } from "./product.styles";
-import { FilterContainer, Newsletter, ProductList, SearchBar } from "..";
+import { FilterContainer, ProductList } from "..";
 import { Pagination } from "../pagination/pagination";
 import { styled } from "styled-components";
 import { ProductVariantsParams } from "../../api/api-service.types";
 
-const ProductFilterWrapper = styled.main`
+const ProductFilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-`;
+  `;
+
 type FilterProductProps = {
   products: ProductVariantsParams[];
   hasMorePages: boolean;
 };
 
-export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
+export function FilterProduct(props: FilterProductProps) {
+  const { products, hasMorePages } = props;
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
 
-  const validProducts = products.filter(
+  const validProducts = filteredProducts.filter(
     (product) => product.colors && product.sizes
   );
 
   const colors = Array.from(
-    new Set(validProducts.flatMap((product) => product.colors.split(",")))
+    new Set(
+      validProducts.flatMap((filteredProducts) =>
+        filteredProducts.colors.split(",")
+      )
+    )
   );
 
   const sizes = Array.from(
@@ -37,7 +41,7 @@ export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
   );
 
   const categories = Array.from(
-    new Set(products.flatMap((product) => product.categoryName))
+    new Set(filteredProducts.flatMap((product) => product.categoryName))
   );
 
   const handleFilters = useCallback(() => {
@@ -49,13 +53,10 @@ export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
         (selectedSize
           ? product.sizes.split(",").includes(selectedSize)
           : true) &&
-        (selectedCategory ? product.categoryName === selectedCategory : true) &&
-        (searchTerm
-          ? product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-          : true)
+        (selectedCategory ? product.categoryName === selectedCategory : true)
     );
     setFilteredProducts(filtered);
-  }, [products, selectedColor, selectedSize, selectedCategory, searchTerm]);
+  }, [products, selectedColor, selectedSize, selectedCategory]);
 
   useEffect(() => {
     handleFilters();
@@ -63,7 +64,6 @@ export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
 
   return (
     <ProductFilterWrapper>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Wrapper>
         <FilterContainer
           colors={colors}
@@ -79,7 +79,6 @@ export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
         <ProductList products={filteredProducts} />
       </Wrapper>
       {hasMorePages && <Pagination />}
-      <Newsletter />
     </ProductFilterWrapper>
   );
 }
