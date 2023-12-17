@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Wrapper } from "./product.styles";
 import { FilterContainer, Newsletter, ProductList, SearchBar } from "..";
 import { Pagination } from "../pagination/pagination";
@@ -14,9 +14,10 @@ const ProductFilterWrapper = styled.main`
 `;
 type FilterProductProps = {
   products: ProductVariantsParams[];
+  hasMorePages: boolean;
 };
 
-export function FilterProduct({ products }: FilterProductProps) {
+export function FilterProduct({ products, hasMorePages }: FilterProductProps) {
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -39,7 +40,7 @@ export function FilterProduct({ products }: FilterProductProps) {
     new Set(products.flatMap((product) => product.categoryName))
   );
 
-  const handleFilters = () => {
+  const handleFilters = useCallback(() => {
     const filtered = products.filter(
       (product) =>
         (selectedColor
@@ -50,16 +51,15 @@ export function FilterProduct({ products }: FilterProductProps) {
           : true) &&
         (selectedCategory ? product.categoryName === selectedCategory : true) &&
         (searchTerm
-          ? product.colors.toLowerCase().includes(searchTerm.toLowerCase())
+          ? product.productName.toLowerCase().includes(searchTerm.toLowerCase())
           : true)
     );
     setFilteredProducts(filtered);
-  };
+  }, [products, selectedColor, selectedSize, selectedCategory, searchTerm]);
 
-  console.log(colors);
   useEffect(() => {
     handleFilters();
-  }, [searchTerm, selectedColor, selectedSize, selectedCategory, products]);
+  }, [handleFilters]);
 
   return (
     <ProductFilterWrapper>
@@ -78,7 +78,7 @@ export function FilterProduct({ products }: FilterProductProps) {
         />
         <ProductList products={filteredProducts} />
       </Wrapper>
-      <Pagination />
+      {hasMorePages && <Pagination />}
       <Newsletter />
     </ProductFilterWrapper>
   );

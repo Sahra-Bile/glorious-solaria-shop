@@ -12,6 +12,7 @@ export type ProductContextValue = {
   totalPages: number;
   totalProducts: number;
   isError: boolean;
+  hasMorePages: boolean;
   isFetchProductLoading: boolean;
 } | null;
 
@@ -33,9 +34,11 @@ export const ProductVariantProvider = ({ children }: Props) => {
 
   const productVariants = queryResult?.data ?? [];
 
-  const currentPage = queryResult?.page ?? 1;
+  const currentPage = queryResult?.page ?? 0;
   const totalPages = queryResult?.totalPages ?? 0;
   const totalProducts = queryResult?.totalRows ?? 0;
+  const hasMorePages = totalPages > 1;
+
 
   return (
     <ProductVariantContext.Provider
@@ -48,6 +51,7 @@ export const ProductVariantProvider = ({ children }: Props) => {
         currentPage,
         totalPages,
         totalProducts,
+        hasMorePages,
         isError,
         isFetchProductLoading,
       }}

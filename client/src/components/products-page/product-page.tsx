@@ -5,7 +5,7 @@ import { Announcement } from "../announcement/announcement";
 import { FilterProduct } from "./Filter-product";
 
 export function ProductPage() {
-  const { productVariants, isFetchProductLoading, isError } =
+  const { productVariants, isFetchProductLoading, isError ,hasMorePages } =
     useProductVariants();
 
   if (isFetchProductLoading) {
@@ -20,7 +20,7 @@ export function ProductPage() {
     <section>
       <ProductPageContainer>
         <Announcement />
-        <FilterProduct products={productVariants} />
+        <FilterProduct products={productVariants}  hasMorePages={hasMorePages}/>
       </ProductPageContainer>
     </section>
   );

@@ -13,7 +13,6 @@ const RightWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  flex-direction: row;
   padding: 20px;
 `;
 const InfoContainer = styled.div`
