@@ -33,6 +33,7 @@ export const HeroText = styled.div`
 `;
 export const FeaturedProductsSection = styled.section`
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
@@ -46,7 +47,7 @@ export const FeaturedProductsSection = styled.section`
     color: black;
   }
 `;
- export const ProductCard = styled.div`
+export const ProductCard = styled.div`
   border: 1px solid #ddd;
   padding: 10px;
   background: white;
@@ -58,15 +59,19 @@ export const SustainabilitySection = styled.section`
 `;
 export const AboutSection = styled.section`
   font-size: 1.2rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
   letter-spacing: 0.05em;
   font-feature-settings: "ss05";
   line-break: loose;
   padding: 20px;
   color: black;
+  // padding-bottom: 20px;
   @media ${MediaQueries.smUp} {
-    font-size: 1.8rem;
-    line-height: 4.25rem;
+    font-size: 1.3rem;
+    line-height: 3.25rem;
+  }
+  & p {
+    padding-bottom: 20px;
   }
 `;
 export const Button = styled.button`
