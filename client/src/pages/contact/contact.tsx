@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
-
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FaHome, FaMailBulk, FaPhone } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { AddIcCallSharp, Email, Home } from "@material-ui/icons";
+
 import {
   Button,
   ContactPageContainer,
@@ -21,6 +21,7 @@ import {
   TextArea,
 } from "./contact.styles";
 
+
 type FormData = {
   name: string;
   email: string;
@@ -36,7 +37,7 @@ export function Contact() {
   const {
     register,
     handleSubmit,
-    formState: {isValid },
+    formState: { isValid },
     reset,
   } = useForm<FormData>();
 
@@ -52,7 +53,7 @@ export function Contact() {
         .then(
           (result) => {
             console.log("Email successfully sent");
-            reset(); 
+            reset();
           },
           (error) => {
             console.log("Error sending email", error);
@@ -70,29 +71,32 @@ export function Contact() {
             If you have any questions, feedback, or just want to say hello, we'd
             love to hear from you! Fill out the form with your details,
           </Paragraph>
-          <Paragraph> and we'll get back to you as soon as possible.
-             Your insights and inquiries are invaluable to us.</Paragraph>
+          <Paragraph>
+            {" "}
+            and we'll get back to you as soon as possible. Your insights and
+            inquiries are invaluable to us.
+          </Paragraph>
         </ContactWrapper>
         <ListWrapper>
           <ListContainer>
             <IconPlaceholder>
-              <FaPhone />
+              <AddIcCallSharp fontSize="large" />
             </IconPlaceholder>
-            <List>Phone</List>
+
             <List>+ 467 456 7890</List>
           </ListContainer>
           <ListContainer>
             <IconPlaceholder>
-              <FaMailBulk />
+              <Email fontSize="large" />
             </IconPlaceholder>
-            <List>Email</List>
+
             <List>info@glorious-solaria.com</List>
           </ListContainer>
           <ListContainer>
             <IconPlaceholder>
-              <FaHome />
+              <Home fontSize="large" />
             </IconPlaceholder>
-            <List>Address</List>
+
             <List>Solarievägen 12 </List>
             <List>1234 Stockholm</List>
           </ListContainer>
@@ -117,7 +121,7 @@ export function Contact() {
               })}
             />
             <Label>Message</Label>
-            <TextArea 
+            <TextArea
               placeholder="I would like to..."
               {...register("message", {
                 required: "Message is required",

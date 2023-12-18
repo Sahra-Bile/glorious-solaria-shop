@@ -12,9 +12,9 @@ import {
 } from "./navbar.styles";
 import { Link } from "react-router-dom";
 import { data } from "./data";
-import { FaBars, FaTimes } from "react-icons/fa";
 import  Badge  from "@material-ui/core/Badge";
-import {  ShoppingCartOutlined } from "@material-ui/icons";
+import {  CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +31,9 @@ export function Navbar() {
         </ListItemLink>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (
-            <FaTimes size={24} style={{ color: "#f6f6f3" }} />
+            <CloseSharp  style={{ color: "#f6f6f3" }} />
           ) : (
-            <FaBars size={24} style={{ color: "#f6f6f3" }} />
+            <HorizontalSplit  style={{ color: "#f6f6f3" }} />
           )}
         </Hamburger>
         {isOpen && (
