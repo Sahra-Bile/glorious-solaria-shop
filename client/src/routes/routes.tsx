@@ -12,7 +12,7 @@ import {
   HomePage,
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
-import { Login, ProductDetails, ProductPage } from "../components";
+import { Login, ProductDetails, ProductPage, Register } from "../components";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -41,6 +41,7 @@ export function AppRoutes() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </PageContent>
