@@ -8,7 +8,7 @@ import {
   StyledLink,
   Title,
 
-} from "./component.styles";
+} from "./login-register.styles";
 
 export function Login() {
   return (

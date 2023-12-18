@@ -7,7 +7,7 @@ import {
   Input,
   Title,
   Wrapper,
-} from "./component.styles";
+} from "./login-register.styles";
 import Checkbox from "@material-ui/core/Checkbox";
 
 export function Register() {
