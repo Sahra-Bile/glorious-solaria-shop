@@ -18,8 +18,7 @@ text-align: center;
 padding: 4rem 1rem;
 @media ${MediaQueries.smUp} {
     margin-top: 0;
-  }
-
+}
 `;
 const FormWrapper = styled.div`
   width: 76%;
@@ -29,30 +28,25 @@ const FormWrapper = styled.div`
     width: 25%;
   }
 `;
-
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
-
 const Form = styled.form`
   display: flex;
   flex-direction: column;
 `;
-
 const Input = styled.input`
   flex: 1;
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid gray;
-
   &:focus {
     border: 1px solid teal;
     outline: none;
   }
 `;
-
 const Button = styled.button`
   width: 40%;
   border: none;
@@ -62,7 +56,6 @@ const Button = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
 `;
-
 const StyledLink = styled(Link)`
   margin: 5px 0px;
   font-size: 12px;
