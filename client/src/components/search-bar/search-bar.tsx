@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import { BiSearch } from "react-icons/bi";
 import { MediaQueries } from "../../utils/style-constants";
+import isEmpty from "lodash/isEmpty";
 
 const RightWrapper = styled.div`
   display: flex;
@@ -10,18 +10,23 @@ const RightWrapper = styled.div`
   gap: 1rem;
   flex-direction: row;
   padding: 20px;
-  width: calc(100% - 40px);
+  width: calc(100% - 0px);
 `;
-
-export const SearchContainer = styled.div`
-  border: 5px solid lightgray;
+const SearchContainer = styled.div`
+  border: 2px solid #1d6453;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   background: #fff3f2;
 `;
 
-export const SearchInput = styled.input`
+const SearchForm = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+const SearchInput = styled.input`
   border: none;
   background: #fff3f2;
   padding: 10px;
@@ -34,23 +39,66 @@ export const SearchInput = styled.input`
     max-width: 400px;
   }
 `;
+const Button = styled.button`
+  border: none;
+  text-align: center;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  &:hover {
+    opacity: 0.7;
+  }
+`;
 type SearchBarProps = {
   searchTerm: string;
   setSearchTerm: (searchTerm: string) => void;
+  onSearch: (searchTerm: string) => void;
+  onClear: () => void;
+  isSearchPerformed: boolean;
 };
 
-export const SearchBar = ({ searchTerm, setSearchTerm }: SearchBarProps) => {
+export const SearchBar = ({
+  searchTerm,
+  setSearchTerm,
+  onSearch,
+  onClear,
+  isSearchPerformed,
+}: SearchBarProps) => {
+
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isEmpty(searchTerm)) {
+      onSearch(searchTerm);
+    }
+  };
+
   return (
-    <RightWrapper>
-      <SearchContainer>
-        <SearchInput
-          type="text"
-          placeholder="Search for products"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <BiSearch size={30} />
-      </SearchContainer>
-    </RightWrapper>
+    <SearchForm onSubmit={handleSubmit}>
+      <RightWrapper>
+        <SearchContainer>
+          <SearchInput
+            type="text"
+            placeholder="Search for products"
+            value={searchTerm}
+            onChange={handleInputChange}
+          />
+        </SearchContainer>
+        {!isSearchPerformed && (
+          <Button type="submit">Search</Button>
+        )}
+        {isSearchPerformed && (
+          <Button onClick={onClear}>Clear</Button>
+        )}
+      </RightWrapper>
+    </SearchForm>
   );
 };
