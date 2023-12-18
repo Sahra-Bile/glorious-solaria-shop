@@ -7,6 +7,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  gap: 20px;
   ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 export const ImgContainer = styled.div`

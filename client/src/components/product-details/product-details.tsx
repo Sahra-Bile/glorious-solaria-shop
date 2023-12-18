@@ -103,18 +103,23 @@ export function ProductDetails() {
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color={product.colors} />
-              <FilterColor color={product.colors} />
-              <FilterColor color={product.colors} />
+              {product.colors.map((colorObj: any, index: number) => (
+                <FilterColor key={index} color={colorObj.colorName} />
+              ))}
             </Filter>
+
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize>
-                <FilterSizeOption>{product.sizes}</FilterSizeOption>
-                <FilterSizeOption>{product.sizes}</FilterSizeOption>
+                {product.sizes.map((sizeObj: any, index: number) => (
+                  <FilterSizeOption key={index}>
+                    {sizeObj.size}
+                  </FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
+
           <AddContainer>
             <AmountContainer>
               <Remove />
