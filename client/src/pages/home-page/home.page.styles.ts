@@ -65,7 +65,6 @@ export const AboutSection = styled.section`
   line-break: loose;
   padding: 20px;
   color: black;
-  // padding-bottom: 20px;
   @media ${MediaQueries.smUp} {
     font-size: 1.3rem;
     line-height: 3.25rem;

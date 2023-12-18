@@ -12,7 +12,7 @@ import {
   HomePage,
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
-import { ProductDetails, ProductPage } from "../components";
+import { Login, ProductDetails, ProductPage } from "../components";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -23,7 +23,6 @@ const PageContent = styled.div(() => ({
   display: "flex",
   flexDirection: "column",
   flexGrow: 1,
-  padding: "0.75rem 1.5rem",
   overflowX: "scroll",
 }));
 
@@ -41,6 +40,7 @@ export function AppRoutes() {
             <Route path="/shop/:id" element={<ProductDetails />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </PageContent>
