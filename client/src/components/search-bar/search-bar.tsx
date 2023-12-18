@@ -5,19 +5,28 @@ import isEmpty from "lodash/isEmpty";
 
 const RightWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   flex-direction: row;
   padding: 20px;
   width: calc(100% - 0px);
+  @media ${MediaQueries.lgUp} {
+    justify-content: flex-end;
+  align-items: flex-end;
+  }
 `;
 const SearchContainer = styled.div`
   border: 2px solid #1d6453;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   background: #fff3f2;
+
+  @media ${MediaQueries.lgUp} {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 `;
 
 const SearchForm = styled.form`

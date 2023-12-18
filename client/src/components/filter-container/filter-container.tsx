@@ -7,7 +7,7 @@ export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
   padding: 20px;
-  background-color: rgba(22, 16, 26, 0.2);
+  background-color: rgb(0%, 50.2%, 50.2%);
   height: auto;
   overflow-y: visible;
   @media ${MediaQueries.mdUp} {
@@ -65,7 +65,7 @@ export const FilterContainer: React.FC<FilterContainerProps> = ({
 
   return (
     <LeftWrapper>
-        <Title>Filter products</Title>
+      <Title>Filter products</Title>
       <FilterWrapper>
         <FilterDropdown
           title="Colors"

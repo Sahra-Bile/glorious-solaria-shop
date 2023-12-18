@@ -21,7 +21,6 @@ import {
   TextArea,
 } from "./contact.styles";
 
-
 type FormData = {
   name: string;
   email: string;

@@ -12,7 +12,6 @@ const Select = styled.select`
   background-color: lightgray;
 `;
 const SelectOption = styled.option`
-  background-color: gray;
   font-size: 6rem;
   color: white;
 `;

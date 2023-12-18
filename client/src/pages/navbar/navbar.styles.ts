@@ -92,8 +92,7 @@ export const ListItemLink = styled(Link)`
 export const Heading = styled.h1`
   text-align: center;
   color: #f6f6f3;
-  font-size: 16px;
-  font-family: cursive;
+  font-size: 14px;
   @media ${MediaQueries.mdUp} {
     font-size: 20px;
   }
