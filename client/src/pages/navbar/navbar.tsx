@@ -31,9 +31,9 @@ export function Navbar() {
         </ListItemLink>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (
-            <CloseSharp  style={{ color: "#f6f6f3" }} />
+            <CloseSharp fontSize="medium"  style={{ color: "#f6f6f3" }} />
           ) : (
-            <HorizontalSplit  style={{ color: "#f6f6f3" }} />
+            <HorizontalSplit  fontSize="medium" style={{ color: "#f6f6f3" }} />
           )}
         </Hamburger>
         {isOpen && (

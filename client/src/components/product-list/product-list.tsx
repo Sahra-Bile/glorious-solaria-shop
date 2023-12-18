@@ -1,10 +1,12 @@
 import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 import { Link } from "react-router-dom";
-import { IoSearchSharp } from "react-icons/io5";
-import { BsFillBasket3Fill } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
 import { ProductVariantsParams } from "../../api/api-service.types";
+import {
+  FavoriteBorderOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
 
 const RightWrapper = styled.div`
   flex: 1;
@@ -74,7 +76,7 @@ const IconWrapper = styled.div`
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    background-color: #e9f5f5;
+    background-color: teal;
     transform: scale(1.1);
   }
 `;
@@ -91,15 +93,15 @@ export const ProductList: React.FC<ProductListProps> = ({ products }) => (
         <Image src={product.image_3} alt={product.productName} />
         <InfoContainer>
           <IconWrapper>
-            <BsFillBasket3Fill />
+            <ShoppingCartOutlined  />
           </IconWrapper>
           <IconWrapper>
             <Link to={`/shop/${product.variantId}`}>
-              <IoSearchSharp size={20} />
+              <SearchOutlined  color="primary" />
             </Link>
           </IconWrapper>
           <IconWrapper>
-            <FaHeart />
+            <FavoriteBorderOutlined />
           </IconWrapper>
         </InfoContainer>
       </ProductWrapper>
