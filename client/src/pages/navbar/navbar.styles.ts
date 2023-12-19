@@ -5,12 +5,13 @@ import { ShoppingCartOutlined } from "@material-ui/icons";
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 5rem;
+  height: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #1d6453;
   position: fixed;
+
   top: 0;
   left: 0;
   z-index: 1000;
@@ -21,6 +22,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-left:  1rem;
 `;
 export const Hamburger = styled.div`
   display: block;
@@ -44,14 +46,7 @@ right: 0;
 background: #1D6453;
 padding: 1rem;
 z-index: 10;
-}
-& li {
-list-style: none;
-}
-& a {
-color: #f6f6f3;
-}
-  @media ${MediaQueries.smUp} {
+  @media ${MediaQueries.mdUp} {
     display: none;
   }
 `;
@@ -64,15 +59,11 @@ export const List = styled.ul`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 5rem;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
   }
 
-  @media ${MediaQueries.lgUp} {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 5rem;
-  }
 `;
 export const ListItem = styled.li`
   color: #f6f6f3;
@@ -86,18 +77,18 @@ export const ListItemLink = styled(Link)`
     color: #ccc;
   }
   @media ${MediaQueries.lgUp} {
+    padding: 2rem;
+  }
+  @media ${MediaQueries.x2Up} {
     padding: 4rem;
   }
 `;
 export const Heading = styled.h1`
   text-align: center;
   color: #f6f6f3;
-  font-size: 14px;
+  font-size: 20px;
   @media ${MediaQueries.mdUp} {
     font-size: 20px;
-  }
-  @media ${MediaQueries.lgUp} {
-    font-size: 24px;
   }
 `;
 export const BasketIcon = styled(ShoppingCartOutlined)<{ isOpen: boolean }>`

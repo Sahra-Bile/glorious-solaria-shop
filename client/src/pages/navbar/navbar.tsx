@@ -12,8 +12,8 @@ import {
 } from "./navbar.styles";
 import { Link } from "react-router-dom";
 import { data } from "./data";
-import  Badge  from "@material-ui/core/Badge";
-import {  CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+import Badge from "@material-ui/core/Badge";
+import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
 
 
 export function Navbar() {
@@ -31,9 +31,9 @@ export function Navbar() {
         </ListItemLink>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (
-            <CloseSharp fontSize="medium"  style={{ color: "#f6f6f3" }} />
+            <CloseSharp fontSize="medium" style={{ color: "#f6f6f3" }} />
           ) : (
-            <HorizontalSplit  fontSize="medium" style={{ color: "#f6f6f3" }} />
+            <HorizontalSplit fontSize="medium" style={{ color: "#f6f6f3" }} />
           )}
         </Hamburger>
         {isOpen && (
@@ -50,13 +50,13 @@ export function Navbar() {
               </ListItem>
             ))}
             <ListItem>
-            <Badge  badgeContent={4} color="primary">
-              <Link
-                to="/cart"
-                onClick={() => setIsOpen(false)}
-              >
-                  <ShoppingCartOutlined fontSize="large"/>
-              </Link>
+              <Badge badgeContent={4} color="primary">
+                <Link
+                  to="/cart"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <ShoppingCartOutlined fontSize="large" />
+                </Link>
               </Badge>
             </ListItem>
           </MobileMenu>
@@ -69,14 +69,14 @@ export function Navbar() {
               </ListItemLink>
             </ListItem>
           ))}
-        <ListItem>
+          <ListItem>
             <Badge badgeContent={4} color="default" >
-            <Link to="/cart">
-              <BasketIcon fontSize="medium"/>
-            </Link>
+              <Link to="/cart">
+                <BasketIcon fontSize="medium" />
+              </Link>
             </Badge>
           </ListItem>
-          </List>
+        </List>
       </Container>
     </Nav>
   );

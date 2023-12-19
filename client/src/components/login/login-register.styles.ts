@@ -11,23 +11,25 @@ flex-direction: column;
 width: 100%;
 height: 100vh;
 background: url(${HeroImage}) center/cover no-repeat;
-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
 background-size: cover;
 background-position: center;
 text-align: center;
 padding: 4rem 1rem;
-@media ${MediaQueries.smUp} {
+@media ${MediaQueries.mdUp} {
     margin-top: 0;
 }
 `;
 export const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
-  background-color: white;
-  @media ${MediaQueries.smUp} {
+  background-color: #f6f6f3;
+  @media ${MediaQueries.mdUp} {
+    width: 50%;
+  }
+  @media ${MediaQueries.lgUp} {
     width: 40%;
   }
-`;
+  `;
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
@@ -36,11 +38,15 @@ export const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  max-width: 8000px;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
   padding-bottom: 20px;
 `;
 export const Input = styled.input`
   flex: 1;
-  min-width: 40%;
+  min-width: 50%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
   border: 1px solid gray;
@@ -55,7 +61,6 @@ export const Agreement = styled.span`
   margin: 20px 0px;
   padding-bottom: 10px;
   text-align: center;
-  highlight: teal;
   line-height: 1.5rem;
   letter-spacing: 0.05em;
   font-feature-settings: "ss05";
@@ -80,13 +85,16 @@ export const FormWrapper = styled.div`
   width: 76%;
   padding: 30px;
   background-color: white;
-  @media ${MediaQueries.smUp} {
+  @media ${MediaQueries.mdUp }  {
+    width: 40%;
+  }
+  @media ${MediaQueries.lgUp }  {
     width: 25%;
   }
 `;
 export const StyledInput = styled.input`
   flex: 1;
-  min-width: 40%;
+  min-width: 50%;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid gray;
@@ -95,4 +103,10 @@ export const StyledInput = styled.input`
     outline: none;
 
   }
+`;
+export const Label = styled.label`
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: black;
 `;

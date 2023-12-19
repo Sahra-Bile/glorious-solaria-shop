@@ -45,14 +45,14 @@ height: 500px;
 position: relative;
 &:hover{
     ${InfoContainer}{
-        opacity: 1;
+    opacity: 1;
  }
 }
 @media ${MediaQueries.mdUp} {
     flex-direction: row;
     min-width: 380px;
 }
-}
+
 `;
 const Circle = styled.div`
   width: 200px;
@@ -88,23 +88,25 @@ type ProductListProps = {
 export const ProductList: React.FC<ProductListProps> = ({ products }) => (
   <RightWrapper>
     {products.map((product) => (
-      <ProductWrapper key={product.variantId}>
-        <Circle />
-        <Image src={product.image_3} alt={product.productName} />
-        <InfoContainer>
-          <IconWrapper>
-            <ShoppingCartOutlined  />
-          </IconWrapper>
-          <IconWrapper>
-            <Link to={`/shop/${product.variantId}`}>
-              <SearchOutlined  color="primary" />
-            </Link>
-          </IconWrapper>
-          <IconWrapper>
-            <FavoriteBorderOutlined />
-          </IconWrapper>
-        </InfoContainer>
-      </ProductWrapper>
+      <Link to={`/shop/${product.variantId}`}>
+        <ProductWrapper key={product.variantId}>
+          <Circle />
+          <Image src={product.image_3} alt={product.productName} />
+          <InfoContainer>
+            <IconWrapper>
+              <ShoppingCartOutlined />
+            </IconWrapper>
+            <IconWrapper>
+              <Link to={`/shop/${product.variantId}`}>
+                <SearchOutlined color="primary" />
+              </Link>
+            </IconWrapper>
+            <IconWrapper>
+              <FavoriteBorderOutlined />
+            </IconWrapper>
+          </InfoContainer>
+        </ProductWrapper>
+      </Link>
     ))}
   </RightWrapper>
 );
