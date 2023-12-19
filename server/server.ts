@@ -1,6 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from 'cors'
+import passport from 'passport';
+import {authService} from './src/services'
+
 import {
   productRoutes,
   categoryRoutes,
@@ -15,6 +18,9 @@ app.use(cors({
   origin: ' http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
 }));
+
+
+// authService.default.initializePassport();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -9,3 +9,12 @@ export type CustomerParams = {
   city: string;
   zipCode: string;
 };
+
+
+export type UserParams = {
+  userId: number;
+  googleUserId:  string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
