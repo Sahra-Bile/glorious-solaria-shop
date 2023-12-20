@@ -65,6 +65,7 @@ export function FilterProduct(props: FilterProductProps) {
     handleFilters();
   }, [handleFilters]);
 
+
   return (
     <ProductFilterWrapper>
       <Wrapper>

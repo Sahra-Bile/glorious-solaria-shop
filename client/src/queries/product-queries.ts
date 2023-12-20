@@ -15,5 +15,5 @@ export const useFetchProduct = (id: number) => {
     queryKey: ["productVariants", id],
     queryFn: () => getProductById(id),
   });
-  return queryResult;
-};
+  return queryResult
+}

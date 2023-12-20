@@ -58,9 +58,6 @@ module.exports = {
     // Prevent separate import statements from the same module
     'import/no-duplicates': warnInDev,
 
-    // Prevents having unused exports
-    'import/no-unused-modules': [warnInDev], // TODO: set unusedExports to true and fix all warnings related to it
-
     // Prevent circular dependencies
     'import/no-cycle': warnInDev,
 

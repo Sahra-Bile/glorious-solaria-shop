@@ -1,5 +1,6 @@
 import axios from "axios";
-import { SingleProductVariantsParam, ProductVariantsResponse } from "./api-service.types";
+
+import type { SingleProductVariantsParam, ProductVariantsResponse } from "./api-service.types";
 
 export const axiosInstance = axios.create({
   baseURL: " http://localhost:9000/",
