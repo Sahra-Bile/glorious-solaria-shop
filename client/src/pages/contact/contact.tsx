@@ -53,7 +53,7 @@ export function Contact() {
         .then(
           (result) => {
             // eslint-disable-next-line no-console
-            console.log("Email successfully sent");
+            console.log("Email successfully sent", result.text);
             reset();
           },
           (error) => {
