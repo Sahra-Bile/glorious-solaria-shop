@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
 import React from "react";
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import { styled } from "styled-components";
+
 import { ToastContainer } from "../utils/notifications";
-import { NoMatch } from "./no-match";
 import {
   Navbar,
   AboutUs,
@@ -13,6 +13,8 @@ import {
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
 import { Login, ProductDetails, ProductPage, Register } from "../components";
+
+import { NoMatch } from "./no-match";
 
 const Wrapper = styled.div({
   height: "100%",
@@ -31,7 +33,7 @@ export function AppRoutes() {
     <Wrapper>
       <ToastContainer />
       <BrowserRouter>
-      <ScrollToTop/>
+        <ScrollToTop />
         <Navbar />
         <PageContent>
           <Routes>

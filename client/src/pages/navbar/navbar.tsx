@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+import Badge from "@material-ui/core/Badge";
+
 import {
   BasketIcon,
   Container,
@@ -10,10 +14,8 @@ import {
   MobileMenu,
   Nav,
 } from "./navbar.styles";
-import { Link } from "react-router-dom";
 import { data } from "./data";
-import Badge from "@material-ui/core/Badge";
-import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+
 
 
 export function Navbar() {
