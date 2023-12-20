@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { AddIcCallSharp, Email, Home } from "@material-ui/icons";
 
@@ -51,10 +52,12 @@ export function Contact() {
         )
         .then(
           (result) => {
+            // eslint-disable-next-line no-console
             console.log("Email successfully sent");
             reset();
           },
           (error) => {
+            // eslint-disable-next-line no-console
             console.log("Error sending email", error);
           }
         );
@@ -125,7 +128,7 @@ export function Contact() {
               {...register("message", {
                 required: "Message is required",
               })}
-            ></TextArea>
+            />
             <Button type="submit" disabled={!isValid}>
               Send message
             </Button>

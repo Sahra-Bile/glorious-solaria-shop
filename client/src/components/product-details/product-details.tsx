@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Add, Remove } from "@material-ui/icons";
+
 import { useFetchProduct } from "../../queries/product-queries";
 import { Newsletter } from "../news-letter/news-letter";
 import { Announcement } from "../announcement/announcement";
-import { Add, Remove } from "@material-ui/icons";
+
 import {
   AddContainer,
   Amount,
@@ -35,7 +37,7 @@ export function ProductDetails() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const { data: product, isLoading, isError } = useFetchProduct(productId);
-  console.log(product);
+
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);

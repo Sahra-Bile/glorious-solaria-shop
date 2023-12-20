@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import SectionImage from "../../asserts/product.png";
 import ProductImage from "../../asserts/product2.png";
 import Shoes from "../../asserts//shoes.png";
@@ -16,9 +18,9 @@ import {
   ProductCard,
   SustainabilitySection,
 } from "./home.page.styles";
-import { Link } from "react-router-dom";
 
-export const HomePage = () => {
+
+export function HomePage() {
   return (
     <HomePageContainer className="container">
       <HeroSection>
@@ -89,4 +91,4 @@ export const HomePage = () => {
       </AboutSection>
     </HomePageContainer>
   );
-};
+}

@@ -63,7 +63,7 @@ export const SocialIcon = styled.a`
   }
 `;
 
-export const Footer = () => {
+export function Footer() {
   return (
     <FooterContainer>
       <FooterContent>
@@ -109,4 +109,4 @@ export const Footer = () => {
       </FooterContent>
     </FooterContainer>
   );
-};
+}

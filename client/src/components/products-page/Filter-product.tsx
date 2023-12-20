@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Wrapper } from "./product.styles";
+import { styled } from "styled-components";
+
+import type { ProductVariantsParams } from "../../api/api-service.types";
 import { FilterContainer, ProductList } from "..";
 import { Pagination } from "../pagination/pagination";
-import { styled } from "styled-components";
-import { ProductVariantsParams } from "../../api/api-service.types";
+
+import { Wrapper } from "./product.styles";
 
 const ProductFilterWrapper = styled.div`
   display: flex;

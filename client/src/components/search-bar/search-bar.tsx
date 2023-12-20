@@ -1,7 +1,10 @@
-import React, { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
+import React from "react";
 import styled from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import isEmpty from "lodash/isEmpty";
+
+import { MediaQueries } from "../../utils/style-constants";
+
 
 const RightWrapper = styled.div`
   display: flex;
@@ -70,14 +73,15 @@ type SearchBarProps = {
   isSearchPerformed: boolean;
 };
 
-export const SearchBar = ({
-  searchTerm,
-  setSearchTerm,
-  onSearch,
-  onClear,
-  isSearchPerformed,
-}: SearchBarProps) => {
+export function SearchBar(props: SearchBarProps) {
 
+  const {
+    searchTerm,
+    setSearchTerm,
+    onSearch,
+    onClear,
+    isSearchPerformed,
+  } = props;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -110,4 +114,4 @@ export const SearchBar = ({
       </RightWrapper>
     </SearchForm>
   );
-};
+}

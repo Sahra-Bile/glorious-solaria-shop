@@ -4,8 +4,6 @@ import { styled } from "styled-components";
 import { MediaQueries } from "../../utils/style-constants";
 import { FilterDropdown } from "../filter-dropdown/filter-dropdown";
 
-
-
 export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
@@ -31,6 +29,7 @@ const Title = styled.h2`
   margin: 20px;
   color: white;
 `;
+
 type FilterContainerProps = {
   colors: string[];
   sizes: string[];
@@ -43,8 +42,9 @@ type FilterContainerProps = {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export function FilterContainer(): FilterContainerProps {
-  colors,
+export function FilterContainer(props: FilterContainerProps) {
+
+  const { colors,
     sizes,
     categories,
     selectedColor,
@@ -52,8 +52,7 @@ export function FilterContainer(): FilterContainerProps {
     selectedSize,
     setSelectedSize,
     selectedCategory,
-    setSelectedCategory,
-}) => {
+    setSelectedCategory, } = props;
   const handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedColor(event.target.value);
   };
@@ -91,4 +90,4 @@ export function FilterContainer(): FilterContainerProps {
       </FilterWrapper>
     </LeftWrapper>
   );
-};
+}

@@ -1,12 +1,14 @@
 import { styled } from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import { Link } from "react-router-dom";
-import { ProductVariantsParams } from "../../api/api-service.types";
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+
+import { MediaQueries } from "../../utils/style-constants";
+import type { ProductVariantsParams } from "../../api/api-service.types";
+
 
 const RightWrapper = styled.div`
   flex: 1;
@@ -85,28 +87,30 @@ type ProductListProps = {
   products: ProductVariantsParams[];
 };
 
-export const ProductList: React.FC<ProductListProps> = ({ products }) => (
-  <RightWrapper>
-    {products.map((product) => (
-      <Link to={`/shop/${product.variantId}`}>
-        <ProductWrapper key={product.variantId}>
-          <Circle />
-          <Image src={product.image_3} alt={product.productName} />
-          <InfoContainer>
-            <IconWrapper>
-              <ShoppingCartOutlined />
-            </IconWrapper>
-            <IconWrapper>
-              <Link to={`/shop/${product.variantId}`}>
-                <SearchOutlined color="primary" />
-              </Link>
-            </IconWrapper>
-            <IconWrapper>
-              <FavoriteBorderOutlined />
-            </IconWrapper>
-          </InfoContainer>
-        </ProductWrapper>
-      </Link>
-    ))}
-  </RightWrapper>
-);
+export function ProductList({ products }: ProductListProps) {
+  return (
+    <RightWrapper>
+      {products.map((product) => (
+        <Link key={product.variantId} to={`/shop/${product.variantId}`}>
+          <ProductWrapper >
+            <Circle />
+            <Image src={product.image_3} alt={product.productName} />
+            <InfoContainer>
+              <IconWrapper>
+                <ShoppingCartOutlined />
+              </IconWrapper>
+              <IconWrapper>
+                <Link to={`/shop/${product.variantId}`}>
+                  <SearchOutlined color="primary" />
+                </Link>
+              </IconWrapper>
+              <IconWrapper>
+                <FavoriteBorderOutlined />
+              </IconWrapper>
+            </InfoContainer>
+          </ProductWrapper>
+        </Link>
+      ))}
+    </RightWrapper>
+  );
+}

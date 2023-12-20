@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { useProductVariants } from "../../context/product-variant-context";
 
 const PaginationWrapper = styled.div`
@@ -24,7 +25,7 @@ const Ellipsis = styled.span`
   padding: 0 10px;
 `;
 
-export const Pagination = () => {
+export function Pagination() {
   const MAX_PAGE_NUMBERS = 5;
 
   const { setPage, currentPage, totalPages } = useProductVariants();
@@ -41,29 +42,29 @@ export const Pagination = () => {
   );
 
   return (
-   
-      <PaginationWrapper>
-        <PageNumber onClick={() => handlePageChange(currentPage - 1)}>
-          &lt;
+
+    <PaginationWrapper>
+      <PageNumber onClick={() => handlePageChange(currentPage - 1)}>
+        &lt;
+      </PageNumber>
+      {currentPage > 1 + Math.floor(MAX_PAGE_NUMBERS / 2) && (
+        <Ellipsis>...</Ellipsis>
+      )}
+      {pageNumbers.map((number) => (
+        <PageNumber
+          key={number}
+          isActive={currentPage === number}
+          onClick={() => handlePageChange(number)}
+        >
+          {number}
         </PageNumber>
-        {currentPage > 1 + Math.floor(MAX_PAGE_NUMBERS / 2) && (
-          <Ellipsis>...</Ellipsis>
-        )}
-        {pageNumbers.map((number) => (
-          <PageNumber
-            key={number}
-            isActive={currentPage === number}
-            onClick={() => handlePageChange(number)}
-          >
-            {number}
-          </PageNumber>
-        ))}
-        {currentPage < totalPages - Math.floor(MAX_PAGE_NUMBERS / 2) && (
-          <Ellipsis>...</Ellipsis>
-        )}
-        <PageNumber onClick={() => handlePageChange(currentPage + 1)}>
-          &gt;
-        </PageNumber>
-      </PaginationWrapper>
+      ))}
+      {currentPage < totalPages - Math.floor(MAX_PAGE_NUMBERS / 2) && (
+        <Ellipsis>...</Ellipsis>
+      )}
+      <PageNumber onClick={() => handlePageChange(currentPage + 1)}>
+        &gt;
+      </PageNumber>
+    </PaginationWrapper>
   );
-};
+}

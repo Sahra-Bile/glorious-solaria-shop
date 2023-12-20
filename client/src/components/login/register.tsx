@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Checkbox from "@material-ui/core/Checkbox";
+
 import {
   Agreement,
   Button,
@@ -9,11 +11,12 @@ import {
   Label,
   Wrapper,
 } from "./login-register.styles";
-import Checkbox from "@material-ui/core/Checkbox";
+
+
 
 export function Register() {
   const [isAcknowledged, setIsAcknowledged] = useState(false);
-  console.log(isAcknowledged);
+
   return (
     <Container>
       <Wrapper>

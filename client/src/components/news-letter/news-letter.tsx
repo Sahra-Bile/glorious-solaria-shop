@@ -1,7 +1,7 @@
 import { Send } from "@material-ui/icons";
 import { styled } from "styled-components";
-import { mobile } from "../../utils/responsive";
 
+import { mobile } from "../../utils/responsive";
 
 
 const Container = styled.div`
@@ -65,5 +65,5 @@ export function Newsletter() {
       </InputContainer>
     </Container>
   );
-};
+}
 

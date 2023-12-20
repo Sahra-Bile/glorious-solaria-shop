@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+
 import { useProductVariants } from "../../context/product-variant-context";
-import { ProductPageContainer } from "./product.styles";
 import { Announcement } from "../announcement/announcement";
-import { FilterProduct } from "./Filter-product";
 import { SearchBar } from "../search-bar/search-bar";
 import { Newsletter } from "../news-letter/news-letter";
+
+import { FilterProduct } from "./Filter-product";
+import { ProductPageContainer } from "./product.styles";
 
 export function ProductPage() {
   const { productVariants, isFetchProductLoading, isError, hasMorePages } =

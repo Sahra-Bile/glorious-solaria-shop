@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+
+import { MediaQueries } from "../../utils/style-constants";
+
 
 export const Nav = styled.nav`
   width: 100%;

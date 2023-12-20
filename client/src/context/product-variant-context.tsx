@@ -1,5 +1,8 @@
-import React, { ReactNode, createContext, useContext, useState } from "react";
-import { ProductVariantsParams } from "../api/api-service.types";
+import type { ReactNode } from "react";
+import React, { createContext, useContext, useState } from "react";
+
+
+import type { ProductVariantsParams } from "../api/api-service.types";
 import { useFetchProducts } from "../queries/product-queries";
 
 export type ProductContextValue = {
@@ -22,7 +25,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const ProductVariantProvider = ({ children }: Props) => {
+export function ProductVariantProvider({ children }: Props) {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
 
@@ -59,7 +62,7 @@ export const ProductVariantProvider = ({ children }: Props) => {
       {children}
     </ProductVariantContext.Provider>
   );
-};
+}
 
 export const useProductVariants = () => {
   const context = useContext(ProductVariantContext);

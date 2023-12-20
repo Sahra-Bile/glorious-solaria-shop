@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+
 import HeroImage from '../../asserts/about-png.png'; 
 import { MediaQueries } from '../../utils/style-constants';
 
