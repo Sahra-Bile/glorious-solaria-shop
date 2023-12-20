@@ -21,25 +21,25 @@ export const authRoutes = express.Router();
 
     // Omdirigera användaren till  frontend med token
     res.redirect(`http://localhost:3000/shop?token=${token}`);
-});
+    });
 
-authRoutes.get('/protected', (req, res) => {
-  res.send(`Hello ${req.user}`);
-});
-
+    authRoutes.get('/logout', (req, res) => {
+      req.logout(() => {
+      });
+      req.session.destroy((err:any) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+        res.redirect('/'); 
+      });
+    });
+    
 
 authRoutes.get("/users", async (req, res) => {
   const userList = await authService.default.getAllUsers();
   console.log(userList);
   res.status(200).json(userList);
 });
-
-authRoutes.delete("/users/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  await authService.default.deleteUserById(id);
-  res.status(200).json(`${id} deleted successfully`);
-});
-
 
 authRoutes.put("/users/:id", async (req, res) => {
   const googleUserId = req.params.id;
@@ -53,15 +53,8 @@ authRoutes.put("/users/:id", async (req, res) => {
   }
 });
 
-
-
-authRoutes.get('/logout', (req, res) => {
-  req.logout(() => {
-  });
-  req.session.destroy((err:any) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.redirect('/'); 
-  });
+authRoutes.delete("/users/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  await authService.default.deleteUserById(id);
+  res.status(200).json(`${id} deleted successfully`);
 });
