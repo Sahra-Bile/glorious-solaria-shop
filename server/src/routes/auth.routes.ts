@@ -2,8 +2,9 @@
 import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import { UserParams } from '../models';
+import type { UserParams, AddressParams } from "../models";
 import { authService } from "../services";
+import session from 'express-session';
 
 export const authRoutes = express.Router(); 
 
@@ -18,7 +19,7 @@ export const authRoutes = express.Router();
       expiresIn: '1h' 
     });
 
-    // Omdirigera användaren till din frontend med token
+    // Omdirigera användaren till  frontend med token
     res.redirect(`http://localhost:3000/shop?token=${token}`);
 });
 
@@ -37,6 +38,19 @@ authRoutes.delete("/users/:id", async (req, res) => {
   const id = Number(req.params.id);
   await authService.default.deleteUserById(id);
   res.status(200).json(`${id} deleted successfully`);
+});
+
+
+authRoutes.put("/users/:id", async (req, res) => {
+  const googleUserId = req.params.id;
+  const updatedData = req.body as AddressParams;
+
+  try {
+    const updatedUser = await authService.default.updateUseAddress(googleUserId, updatedData);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating user", error });
+  }
 });
 
 

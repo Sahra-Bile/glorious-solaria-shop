@@ -12,7 +12,9 @@ import {
   productVariantRoutes, 
   authRoutes 
 } from "./src/routes";
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 9000;
 

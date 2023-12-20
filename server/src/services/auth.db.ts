@@ -11,8 +11,6 @@ class DatabaseService {
     this.connect().catch(e => console.error(`Database connection failed: ${e.message}`));
   }
   
- 
- 
   private async connect() {
     this.db = await createConnection(this.dbFilePath);
     await this.db.run(`CREATE TABLE IF NOT EXISTS users (
@@ -30,14 +28,11 @@ class DatabaseService {
     `);
   }
   public async getAllUsers(): Promise<UserParams[]> {
-
     const userList = await this.db.all<UserParams>(`SELECT * FROM users`);
-    // console.log("userList from getAllUsers: ", userList);
     return userList;
   }
 
   public async findUserByGoogleId(googleId: string): Promise<UserParams | undefined> {
-
     const user = await this.db.get<UserParams>(`SELECT * FROM users WHERE googleUserId = ?`, [googleId]);
     return user;
   }
@@ -76,13 +71,17 @@ class DatabaseService {
       throw e;
     }
   }
-  
 
+  
   public initializePassport() {
+    const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
+    const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
+    const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL || '';
+
     passport.use(new GoogleStrategy({
-      clientID: process.env.GOOGLE_CLIENT_ID || '233592439149-jminq2kivu76dblr0j8pap2332jq9ih1.apps.googleusercontent.com',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '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',
-      callbackURL: 'http://localhost:9000/auth/google/callback'
+      clientID: GOOGLE_CLIENT_ID ,
+      clientSecret: GOOGLE_CLIENT_SECRET ,
+      callbackURL: GOOGLE_CALLBACK_URL,
     },
       async (accessToken, refreshToken, profile, done) => {
         try {
@@ -118,7 +117,6 @@ class DatabaseService {
         done(err);
       }
     });
-    
     
   }
   
