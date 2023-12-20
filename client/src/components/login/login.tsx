@@ -22,7 +22,11 @@ export function Login() {
           <StyledInput placeholder="sara.bile@gmail.com" />
           <Label>Password</Label>
           <StyledInput placeholder="************" />
-          <Button>LOGIN</Button>
+          <Button>LOGIN
+            <a href="http://localhost:9000/auth/google" />
+          </Button>
+          <a href="http://localhost:9000/auth/google" style={{ color: 'red' }}>Logga in med Google</a>
+
           <StyledLink to={"/forget-password"}>Forgot password?</StyledLink>
           <StyledLink to={"/register"}>Create new account</StyledLink>
         </Form>

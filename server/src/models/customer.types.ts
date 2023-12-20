@@ -1,6 +1,6 @@
 export type CustomerParams = {
   customerId: number;
-  googleUserID: string | number;
+  googleUserId: string ;
   firstName: string;
   lastName: string;
   email: string;
@@ -17,4 +17,12 @@ export type UserParams = {
   firstName: string;
   lastName: string;
   email: string;
+  userProfilePicture: string;
+};
+
+export type AddressParams = {
+  phone: string;
+  address: string;
+  city: string;
+  zipCode: string;
 };
