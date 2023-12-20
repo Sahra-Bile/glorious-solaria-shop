@@ -20,7 +20,7 @@ import {
   MessageContainer,
   Paragraph,
   TextArea,
-} from "./contact.styles";
+} from "./contact.styles"
 
 type FormData = {
   name: string;
