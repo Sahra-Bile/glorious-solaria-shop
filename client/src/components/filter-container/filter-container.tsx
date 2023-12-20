@@ -1,7 +1,10 @@
+import type { ChangeEvent } from "react";
 import { styled } from "styled-components";
+
 import { MediaQueries } from "../../utils/style-constants";
 import { FilterDropdown } from "../filter-dropdown/filter-dropdown";
-import { ChangeEvent } from "react";
+
+
 
 export const LeftWrapper = styled.div`
   width: 100%;
@@ -40,16 +43,16 @@ type FilterContainerProps = {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const FilterContainer: React.FC<FilterContainerProps> = ({
+export function FilterContainer(): FilterContainerProps {
   colors,
-  sizes,
-  categories,
-  selectedColor,
-  setSelectedColor,
-  selectedSize,
-  setSelectedSize,
-  selectedCategory,
-  setSelectedCategory,
+    sizes,
+    categories,
+    selectedColor,
+    setSelectedColor,
+    selectedSize,
+    setSelectedSize,
+    selectedCategory,
+    setSelectedCategory,
 }) => {
   const handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedColor(event.target.value);
