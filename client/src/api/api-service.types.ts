@@ -13,7 +13,6 @@ export type ProductVariantsParams = {
   stockQuantity: number;
   price: number;
 };
-
 export type SingleProductVariantsParam = {
   variantId: number;
   productId: number;
@@ -29,8 +28,6 @@ export type SingleProductVariantsParam = {
   stockQuantity: number;
   price: number;
 };
-
-
 export type ProductVariantsResponse = {
   page: number;
   totalPages?: number;
@@ -38,4 +35,9 @@ export type ProductVariantsResponse = {
   totalRows?: number;
   data: ProductVariantsParams[];
 };
-
+export type AddressParams = {
+  phone: string;
+  address: string;
+  city: string;
+  zipCode: string;
+};

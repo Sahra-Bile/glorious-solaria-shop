@@ -7,6 +7,7 @@ import { AppRoutes } from "./routes/routes";
 
 
 
+
 const queryClient = new QueryClient();
 
 export function App() {

@@ -28,9 +28,7 @@ type FormData = {
   message: string;
 };
 
-const templateId = "template_2id74wq";
-const serviceId = "service_gl5fwls";
-const publicKey = "5BUctxtwb5HjEpcrA";
+
 
 export function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -45,10 +43,10 @@ export function Contact() {
     if (form.current) {
       emailjs
         .sendForm(
-          process.env.REACT_APP_SERVICE_ID || serviceId,
-          process.env.REACT_APP_TEMPLATE_ID || templateId,
+          process.env.REACT_APP_SERVICE_ID || '',
+          process.env.REACT_APP_TEMPLATE_ID || '',
           form.current,
-          process.env.REACT_APP_PUBLIC_KEY || publicKey
+          process.env.REACT_APP_PUBLIC_KEY || '',
         )
         .then(
           (result) => {
