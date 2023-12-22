@@ -12,7 +12,7 @@ import {
   HomePage,
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
-import { Login, ProductDetails, ProductPage, Register } from "../components";
+import { Login, ProductDetails, ProductPage, Register, UpdateUserInfo } from "../components";
 
 import { NoMatch } from "./no-match";
 
@@ -43,6 +43,7 @@ export function AppRoutes() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/update-user-info" element={<UpdateUserInfo />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>

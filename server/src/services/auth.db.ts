@@ -58,11 +58,11 @@ class DatabaseService {
   }
   public async updateUseAddress(googleUserId: string, addressData: AddressParams) {
     try {
-      await this.db.run("UPDATE users SET phone=? address = ?, city = ?, zipCode = ? WHERE googleUserId = ?", [
+      await this.db.run("UPDATE users SET phone= ?, address = ?, city = ?, zipCode = ? WHERE googleUserId = ?", [
+        addressData.phone,
         addressData.address,
         addressData.city,
         addressData.zipCode,
-        addressData.phone,
         googleUserId
       ]);
       return this.findUserByGoogleId(googleUserId);

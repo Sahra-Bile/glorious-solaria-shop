@@ -46,6 +46,8 @@ app.use("/sizes", sizeRoutes);
 app.use("/product-variants", productVariantRoutes);
 app.use(authRoutes);
 
+
+
 const start = () => {
   try {
     app.listen(port, () => {

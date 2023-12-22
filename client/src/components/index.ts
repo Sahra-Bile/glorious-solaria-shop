@@ -9,4 +9,5 @@ export {Newsletter} from './news-letter/news-letter';
 export{Announcement} from './announcement/announcement'
 export {FilterDropdown} from './filter-dropdown/filter-dropdown'
 export {Login} from './login/login'
-export {Register} from './login/register'
+export { Register } from './login/register'
+export { UpdateUserInfo } from './login/update-user-info'

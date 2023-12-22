@@ -20,7 +20,7 @@ export const authRoutes = express.Router();
     });
 
     // Omdirigera användaren till  frontend med token
-    res.redirect(`http://localhost:3000/shop?token=${token}`);
+    res.redirect(`http://localhost:3000/update-user-info?token=${token}`);
     });
 
     authRoutes.get('/logout', (req, res) => {

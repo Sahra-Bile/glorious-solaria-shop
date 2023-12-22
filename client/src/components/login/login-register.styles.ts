@@ -17,6 +17,7 @@ background-size: cover;
 background-position: center;
 text-align: center;
 padding: 4rem 1rem;
+gap: 1rem;
 @media ${MediaQueries.mdUp} {
     margin-top: 0;
 }
@@ -45,6 +46,7 @@ export const Form = styled.form`
   align-items: center;
   flex-direction: column;
   padding-bottom: 20px;
+  gap: 0.5rem;
 `;
 export const Input = styled.input`
   flex: 1;
@@ -107,8 +109,7 @@ export const StyledInput = styled.input`
   }
 `;
 export const Label = styled.label`
-  font-size: 14px;
-  margin-bottom: 5px;
+  margin-top: 2px;
   text-align: center;
-  color: black;
+  
 `;

@@ -9,8 +9,8 @@ export type UserParams = {
 };
 
 export type AddressParams = {
-  phone: string;
+  phone: number;
   address: string;
   city: string;
-  zipCode: string;
+  zipCode: number;
 };
