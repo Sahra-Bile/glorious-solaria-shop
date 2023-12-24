@@ -7,6 +7,7 @@ import Shoes from "../../asserts//shoes.png";
 import ShoesImg from "../../asserts/shoes1.png";
 import EcoWoman from "../../asserts/eco-woman.png";
 import EcoShop from "../../asserts//eco-woman2.png";
+import HeroImage from "../../asserts/hero3.png";
 
 import {
   AboutSection,
@@ -14,7 +15,9 @@ import {
   FeaturedProductsSection,
   HeroSection,
   HeroText,
+  HeroWrapper,
   HomePageContainer,
+  Image,
   ProductCard,
   SustainabilitySection,
 } from "./home.page.styles";
@@ -23,36 +26,41 @@ import {
 export function HomePage() {
   return (
     <HomePageContainer className="container">
-      <HeroSection>
+      <HeroWrapper>
+        <HeroSection>
+          <Image src={HeroImage} alt="hero image" />
+        </HeroSection>
         <HeroText>
+
           <h1>Welcome to Glorious Solaria</h1>
           <p>
-            Discover sustainable and <br /> eco-friendly fashion
+            Discover sustainable and  exo-friendly fashion
           </p>
           <div>
-            <Link to="/shop">
+            <Link to="/shop">p
               <Button>Shop Now</Button>
             </Link>
           </div>
         </HeroText>
-      </HeroSection>
+      </HeroWrapper>
+
       <ProductCard>Upcoming products</ProductCard>
       <FeaturedProductsSection>
         <p>
           At Glorious Solaria, our passion for fashion goes hand in hand with
           our dedication to the planet.
         </p>
-        <img src={Shoes} alt="img" />
+        <Image src={Shoes} alt="Upcoming products" />
         <p>
           Born from a dream to create a wardrobe that cherishes the earth, we
           offer an array of exquisite, eco-conscious garments designed for the
           modern woman who stands bold and beautiful.
         </p>
-        <img src={ShoesImg} alt="img" />
-        <img src={EcoShop} alt="img" />
-        <img src={ProductImage} alt="img" />
-        <img src={EcoWoman} alt="img" />
-        <img src={SectionImage} alt="img" />
+        <Image src={ShoesImg} alt="Upcoming products" />
+        <Image src={EcoShop} alt="Upcoming products" />
+        <Image src={ProductImage} alt="Upcoming products" />
+        <Image src={EcoWoman} alt="Upcoming products" />
+        <Image src={SectionImage} alt="Upcoming products" />
       </FeaturedProductsSection>
       <SustainabilitySection>
         <h2>Our Commitment to Sustainability</h2>

@@ -29,7 +29,7 @@ export function Navbar() {
     <Nav >
       <Container >
         <ListItemLink as={Link} to="/">
-          <Heading>Glorious Solaria</Heading>
+          <Heading className='logo'> Glorious Solaria</Heading>
         </ListItemLink>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (

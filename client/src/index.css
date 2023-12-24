@@ -1,18 +1,17 @@
-
-input:not([type=checkbox]):not([type=radio]):focus, 
-select:focus, 
-textarea:focus, 
-button:focus:not(:focus-visible), 
+input:not([type='checkbox']):not([type='radio']):focus,
+select:focus,
+textarea:focus,
+button:focus:not(:focus-visible),
 a:focus:not(:focus-visible) {
   outline: none;
 }
 
-button:focus-visible, 
-a:focus-visible, 
-input[type=checkbox]:focus-visible, 
-input[type=radio]:focus-visible {
+button:focus-visible,
+a:focus-visible,
+input[type='checkbox']:focus-visible,
+input[type='radio']:focus-visible {
   outline-offset: 4px;
-} 
+}
 
 * {
   margin: 0;
@@ -29,19 +28,36 @@ html {
 }
 
 body {
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Regular */
   line-height: 1.6;
   font-size: 0.9rem;
   background-color: rgba(186, 187, 183, 0.231);
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Regular weight */
+  font-style: normal;
+}
 
 .container {
   width: 100%;
   margin-inline: auto;
   max-width: 1920px;
 }
-
 
 section {
   padding: 5rem 0;
@@ -71,5 +87,4 @@ img {
   .container {
     width: 76%;
   }
-  
 }
