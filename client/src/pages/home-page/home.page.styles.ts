@@ -15,7 +15,7 @@ background-color: #e0e0d6;
 `;
 
 export const HeroWrapper = styled.div`
-  background-color: #fff8eb;
+  /* background-color: #fff8eb; */
   display: flex;
   flex-direction: column; 
   flex-wrap: wrap; 
