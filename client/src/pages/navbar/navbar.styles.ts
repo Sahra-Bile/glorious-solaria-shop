@@ -7,13 +7,12 @@ import { MediaQueries } from "../../utils/style-constants";
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 5em;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #1d6453;
   position: fixed;
-
   top: 0;
   left: 0;
   z-index: 1000;
@@ -74,7 +73,6 @@ export const ListItem = styled.li`
 export const ListItemLink = styled(Link)`
   text-decoration: none;
   color: #f6f6f3;
-
   &:hover {
     color: #ccc;
   }

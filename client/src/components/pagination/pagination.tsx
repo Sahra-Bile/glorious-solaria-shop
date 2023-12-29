@@ -29,6 +29,7 @@ export function Pagination() {
   const MAX_PAGE_NUMBERS = 5;
 
   const { setPage, currentPage, totalPages } = useProductVariants();
+
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);

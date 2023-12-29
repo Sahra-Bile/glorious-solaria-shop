@@ -30,6 +30,7 @@ export function UpdateUserInfo() {
 
   const handleSubmitUpdateUserInfo: SubmitHandler<AddressParams> = (data) => {
 
+    //TODO: get googleUserId from auth
     const googleUserId = "";
 
     updateUserInfo({ googleUserId, params: data }, {
@@ -76,8 +77,8 @@ export function UpdateUserInfo() {
               required: "zip Code is required",
             })}
           />
-          <Button type="submit" disabled={!isValid}>
-            Update
+          <Button type="submit" disabled={!isValid || isLoading}>
+            {isLoading ? 'Updating...' : 'Update'}
           </Button>
         </Form>
       </Wrapper>

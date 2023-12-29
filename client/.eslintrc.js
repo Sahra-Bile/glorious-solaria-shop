@@ -105,12 +105,8 @@ module.exports = {
     // Enforce the use of the record type for objects
     '@typescript-eslint/consistent-indexed-object-style': warnInDev,
 
-    //*** REACT RULES ***//
-    // Prevent strings in markup
-    // 'react/jsx-no-literals': [warnInDev, { allowedStrings: ['.'] }], //Should enable this when we've implemented i18n
-
     // Disallow unnecessary fragments
-    // 'react/jsx-no-useless-fragment': [warnInDev, { allowExpressions: true }],
+    'react/jsx-no-useless-fragment': [warnInDev, { allowExpressions: true }],
 
     // Prevent extra closing tags for components without children
     'react/self-closing-comp': [
@@ -137,7 +133,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
 
-    'react/no-unescaped-entities': 'off', // Should not be needed when we have i18n in place.
     // Disable component display name check
     'react/display-name': ['off'],
 

@@ -18,7 +18,7 @@ dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 9000;
 
-// Konfiguration av CORS, Session, BodyParser
+//! Konfiguration av CORS, Session, BodyParser
 app.use(cors({
   origin: 'http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
@@ -31,14 +31,13 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Konfiguration av Passport
+//! Passport
 authService.default.initializePassport();
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// Använda routes
+// Routes
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/colors", colorRoutes);
@@ -47,14 +46,14 @@ app.use("/product-variants", productVariantRoutes);
 app.use(authRoutes);
 
 
-
+//!Start server
 const start = () => {
   try {
     app.listen(port, () => {
       console.log(`SERVER RUNNING ON PORT: http://localhost:${port}`);
     });
   } catch (e) {
-    console.log(`We have some error: ${e}`);
+    console.log(`OBS server error: ${e}`);
   }
 };
 

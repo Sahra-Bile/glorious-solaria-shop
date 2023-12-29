@@ -4,7 +4,9 @@ import type { ProductVariantDisplay, ProductVariantsParams } from "../models";
 class DatabaseService {
   private db!: SQLiteClient;
 
-  constructor(private dbFilePath?: string) {}
+  constructor(private dbFilePath?: string) {
+    this.connect().catch(e => console.error(`Database connection failed: ${e.message}`));
+  }
 
   public async connect() {
     this.db = await createConnection(this.dbFilePath);
@@ -28,7 +30,6 @@ class DatabaseService {
   public async addProductVariants(
     productVariant: Omit<ProductVariantsParams, "id">
   ) {
-    await this.connect();
     try {
       await this.db.run(
         "INSERT INTO productVariants (productId, sizeId, colorId, stockQuantity,price) VALUES (?, ?, ?, ?,?)",
@@ -40,7 +41,6 @@ class DatabaseService {
           productVariant.price,
         ]
       );
-
       return;
     } catch (e) {
       console.log(` error from the catch services ${e}`);
@@ -51,7 +51,6 @@ class DatabaseService {
     page: number,
     limit: number
   ): Promise<ProductVariantDisplay[]> {
-    await this.connect();
     const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantDisplay>(
       `SELECT
@@ -89,7 +88,6 @@ class DatabaseService {
   }
 
   public async getTotalProductVariantCount(): Promise<number> {
-    await this.connect();
     const result = await this.db.get<{ count: number }>(
       `SELECT COUNT(DISTINCT productId) AS count FROM products`
     );
@@ -98,7 +96,6 @@ class DatabaseService {
   }
 
   public async getProductVariantById(variantId: number) {
-    await this.connect();
 
     // First get the productId from the variantId
     const productIdResult: any = await this.db.get(
@@ -165,8 +162,7 @@ class DatabaseService {
     };
   }
 
-  public async deleteProductVariantById(id: number) {
-    await this.connect();
+  public async deleteProductVariantById(id: number) {   
 
     await this.db.run(`DELETE FROM productVariants WHERE variantId =?`, [id]);
   }
@@ -175,7 +171,6 @@ class DatabaseService {
     id: number,
     productVariant: Omit<ProductVariantsParams, "id">
   ) {
-    await this.connect();
     await this.db.run(
       "UPDATE productVariants SET productId = ? , sizeId = ? , colorId = ? , stockQuantity = ? , price = ? WHERE variantId = ? ",
       [

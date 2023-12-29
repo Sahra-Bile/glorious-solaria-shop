@@ -56,5 +56,5 @@ authRoutes.put("/users/:id", async (req, res) => {
 authRoutes.delete("/users/:id", async (req, res) => {
   const id = Number(req.params.id);
   await authService.default.deleteUserById(id);
-  res.status(200).json(`${id} deleted successfully`);
+  res.status(200).json(` user with id: ${id} deleted successfully`);
 });

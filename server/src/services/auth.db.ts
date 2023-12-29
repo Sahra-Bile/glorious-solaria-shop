@@ -54,7 +54,7 @@ class DatabaseService {
     }
   }
   public async deleteUserById(id: number) {
-    await this.db.run(`DELETE FROM users WHERE Id =?`, [id]);
+    await this.db.run(`DELETE FROM users WHERE userId =?`, [id]);
   }
   public async updateUseAddress(googleUserId: string, addressData: AddressParams) {
     try {
