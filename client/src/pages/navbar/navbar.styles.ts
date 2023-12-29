@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import { ShoppingCartOutlined } from "@material-ui/icons";
+
+import { MediaQueries } from "../../utils/style-constants";
+
 
 export const Nav = styled.nav`
   width: 100%;
@@ -21,6 +23,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-left:  1rem;
 `;
 export const Hamburger = styled.div`
   display: block;
@@ -44,14 +47,7 @@ right: 0;
 background: #1D6453;
 padding: 1rem;
 z-index: 10;
-}
-& li {
-list-style: none;
-}
-& a {
-color: #f6f6f3;
-}
-  @media ${MediaQueries.smUp} {
+  @media ${MediaQueries.mdUp} {
     display: none;
   }
 `;
@@ -64,15 +60,11 @@ export const List = styled.ul`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 5rem;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
   }
 
-  @media ${MediaQueries.lgUp} {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding: 5rem;
-  }
 `;
 export const ListItem = styled.li`
   color: #f6f6f3;
@@ -81,24 +73,22 @@ export const ListItem = styled.li`
 export const ListItemLink = styled(Link)`
   text-decoration: none;
   color: #f6f6f3;
-
   &:hover {
     color: #ccc;
   }
   @media ${MediaQueries.lgUp} {
+    padding: 2rem;
+  }
+  @media ${MediaQueries.x2Up} {
     padding: 4rem;
   }
 `;
 export const Heading = styled.h1`
   text-align: center;
   color: #f6f6f3;
-  font-size: 16px;
-  font-family: cursive;
+  font-size: 20px;
   @media ${MediaQueries.mdUp} {
     font-size: 20px;
-  }
-  @media ${MediaQueries.lgUp} {
-    font-size: 24px;
   }
 `;
 export const BasketIcon = styled(ShoppingCartOutlined)<{ isOpen: boolean }>`

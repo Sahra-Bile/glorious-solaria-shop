@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FaInstagram, FaTwitter, FaFacebook, FaLinkedin } from "react-icons/fa";
-
+import { Facebook, Instagram, LinkedIn, Twitter } from "@material-ui/icons";
 
 export const FooterContainer = styled.footer`
   width: 100%;
-  background-color: #1D6453; 
-  color: #f6f6f3; 
-  padding: 2rem ;
+  background-color: #1d6453;
+  color: #f6f6f3;
+  padding: 2rem;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; 
-  gap: 1rem; 
+  flex-wrap: wrap;
+  gap: 1rem;
   box-sizing: border-box;
 `;
 export const FooterContent = styled.div`
@@ -64,7 +63,7 @@ export const SocialIcon = styled.a`
   }
 `;
 
-export const Footer = () => {
+export function Footer() {
   return (
     <FooterContainer>
       <FooterContent>
@@ -80,10 +79,9 @@ export const Footer = () => {
             <FooterLinkItem>
               <FooterLink to="/about">About Us</FooterLink>
             </FooterLinkItem>
-        
           </FooterLinkList>
         </FooterSection>
-        
+
         <FooterSection>
           <FooterHeading>Contact Us</FooterHeading>
           <p>1234 Solarievägen 12 , Stockholm</p>
@@ -95,22 +93,20 @@ export const Footer = () => {
           <FooterHeading>Follow Us</FooterHeading>
           <div>
             <SocialIcon href="https://instagram.com" target="_blank">
-              <FaInstagram />
+              <Instagram />
             </SocialIcon>
             <SocialIcon href="https://twitter.com" target="_blank">
-              <FaTwitter />
+              <Twitter />
             </SocialIcon>
             <SocialIcon href="https://facebook.com" target="_blank">
-              <FaFacebook />
+              <Facebook />
             </SocialIcon>
             <SocialIcon href="https://linkedin.com" target="_blank">
-              <FaLinkedin />
+              <LinkedIn />
             </SocialIcon>
           </div>
         </FooterSection>
       </FooterContent>
     </FooterContainer>
   );
-};
-
-;
+}

@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+import Badge from "@material-ui/core/Badge";
+
 import {
   BasketIcon,
   Container,
@@ -10,11 +14,9 @@ import {
   MobileMenu,
   Nav,
 } from "./navbar.styles";
-import { Link } from "react-router-dom";
 import { data } from "./data";
-import { FaBars, FaTimes } from "react-icons/fa";
-import  Badge  from "@material-ui/core/Badge";
-import {  ShoppingCartOutlined } from "@material-ui/icons";
+
+
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,13 +29,13 @@ export function Navbar() {
     <Nav >
       <Container >
         <ListItemLink as={Link} to="/">
-          <Heading>Glorious Solaria</Heading>
+          <Heading className='logo'> Glorious Solaria</Heading>
         </ListItemLink>
         <Hamburger onClick={toggleMenu}>
           {isOpen ? (
-            <FaTimes size={24} style={{ color: "#f6f6f3" }} />
+            <CloseSharp fontSize="medium" style={{ color: "#f6f6f3" }} />
           ) : (
-            <FaBars size={24} style={{ color: "#f6f6f3" }} />
+            <HorizontalSplit fontSize="medium" style={{ color: "#f6f6f3" }} />
           )}
         </Hamburger>
         {isOpen && (
@@ -50,13 +52,13 @@ export function Navbar() {
               </ListItem>
             ))}
             <ListItem>
-            <Badge  badgeContent={4} color="primary">
-              <Link
-                to="/cart"
-                onClick={() => setIsOpen(false)}
-              >
-                  <ShoppingCartOutlined fontSize="large"/>
-              </Link>
+              <Badge badgeContent={4} color="primary">
+                <Link
+                  to="/cart"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <ShoppingCartOutlined fontSize="large" />
+                </Link>
               </Badge>
             </ListItem>
           </MobileMenu>
@@ -69,14 +71,14 @@ export function Navbar() {
               </ListItemLink>
             </ListItem>
           ))}
-        <ListItem>
+          <ListItem>
             <Badge badgeContent={4} color="default" >
-            <Link to="/cart">
-              <BasketIcon fontSize="medium"/>
-            </Link>
+              <Link to="/cart">
+                <BasketIcon fontSize="medium" />
+              </Link>
             </Badge>
           </ListItem>
-          </List>
+        </List>
       </Container>
     </Nav>
   );

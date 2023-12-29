@@ -1,2 +1,2 @@
 export * from './product.types'
-export * from './customer.types'
+export * from './user.types'

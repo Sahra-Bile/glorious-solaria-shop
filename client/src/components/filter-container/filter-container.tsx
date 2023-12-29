@@ -1,13 +1,14 @@
+import type { ChangeEvent } from "react";
 import { styled } from "styled-components";
+
 import { MediaQueries } from "../../utils/style-constants";
 import { FilterDropdown } from "../filter-dropdown/filter-dropdown";
-import { ChangeEvent } from "react";
 
 export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
   padding: 20px;
-  background-color: rgba(22, 16, 26, 0.2);
+  background-color: rgb(0%, 50.2%, 50.2%);
   height: auto;
   overflow-y: visible;
   @media ${MediaQueries.mdUp} {
@@ -28,6 +29,7 @@ const Title = styled.h2`
   margin: 20px;
   color: white;
 `;
+
 type FilterContainerProps = {
   colors: string[];
   sizes: string[];
@@ -40,17 +42,17 @@ type FilterContainerProps = {
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const FilterContainer: React.FC<FilterContainerProps> = ({
-  colors,
-  sizes,
-  categories,
-  selectedColor,
-  setSelectedColor,
-  selectedSize,
-  setSelectedSize,
-  selectedCategory,
-  setSelectedCategory,
-}) => {
+export function FilterContainer(props: FilterContainerProps) {
+
+  const { colors,
+    sizes,
+    categories,
+    selectedColor,
+    setSelectedColor,
+    selectedSize,
+    setSelectedSize,
+    selectedCategory,
+    setSelectedCategory, } = props;
   const handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedColor(event.target.value);
   };
@@ -65,7 +67,7 @@ export const FilterContainer: React.FC<FilterContainerProps> = ({
 
   return (
     <LeftWrapper>
-        <Title>Filter products</Title>
+      <Title>Filter products</Title>
       <FilterWrapper>
         <FilterDropdown
           title="Colors"
@@ -88,4 +90,4 @@ export const FilterContainer: React.FC<FilterContainerProps> = ({
       </FilterWrapper>
     </LeftWrapper>
   );
-};
+}

@@ -26,6 +26,7 @@ class DatabaseService {
     }
   }
 
+
   public async getAllColors(): Promise<ColorParams[]> {
     await this.connect();
     const colorList = await this.db.all<ColorParams>(`SELECT * FROM colors`);

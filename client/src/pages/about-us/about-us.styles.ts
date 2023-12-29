@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
+
 import HeroImage from '../../asserts/about-png.png'; 
+import { MediaQueries } from '../../utils/style-constants';
 
 export const AboutPageContainer = styled.div`
   display: flex;
@@ -20,8 +22,11 @@ export const Section = styled.section`
   padding: 2rem;
 `;
 export const Title = styled.h1`
-  font-size: 2.5rem;
-  color: #1D6453; // Your brand's green color
+  font-size: 0.7rem;
+  color: #1D6453; 
+   @media (${MediaQueries.mdUp}){
+    font-size: 1.5rem;
+  }
 `;
 export const Text = styled.p`
   font-size: 1.1rem;
@@ -37,7 +42,7 @@ export const TeamSection = styled.section`
   flex-wrap: wrap;
 `;
 export const TeamMember = styled.div`
-  flex-basis: calc(33% - 1rem); // Three members per row
+  flex-basis: calc(33% - 1rem); 
   margin: 0.5rem;
   text-align: center;
 `;
@@ -45,12 +50,15 @@ export const Image = styled.img`
   width: 100%;
   height: auto;
   border-radius: 50%;
+ 
 
 `;
 export const Name = styled.h3`
   font-size: 1.5rem;
   color: #1D6453;
+  text-align: center;
 `;
 export const Role = styled.p`
   font-style: italic;
+  text-align: center;
 `;

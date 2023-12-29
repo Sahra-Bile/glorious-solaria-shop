@@ -1,23 +1,35 @@
-import React, { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
+import React from "react";
 import styled from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import isEmpty from "lodash/isEmpty";
+
+import { MediaQueries } from "../../utils/style-constants";
+
 
 const RightWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   flex-direction: row;
   padding: 20px;
   width: calc(100% - 0px);
+  @media ${MediaQueries.lgUp} {
+    justify-content: flex-end;
+  align-items: flex-end;
+  }
 `;
 const SearchContainer = styled.div`
   border: 2px solid #1d6453;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   background: #fff3f2;
+
+  @media ${MediaQueries.lgUp} {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 `;
 
 const SearchForm = styled.form`
@@ -61,14 +73,15 @@ type SearchBarProps = {
   isSearchPerformed: boolean;
 };
 
-export const SearchBar = ({
-  searchTerm,
-  setSearchTerm,
-  onSearch,
-  onClear,
-  isSearchPerformed,
-}: SearchBarProps) => {
+export function SearchBar(props: SearchBarProps) {
 
+  const {
+    searchTerm,
+    setSearchTerm,
+    onSearch,
+    onClear,
+    isSearchPerformed,
+  } = props;
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -101,4 +114,4 @@ export const SearchBar = ({
       </RightWrapper>
     </SearchForm>
   );
-};
+}

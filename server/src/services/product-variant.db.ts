@@ -4,12 +4,14 @@ import type { ProductVariantDisplay, ProductVariantsParams } from "../models";
 class DatabaseService {
   private db!: SQLiteClient;
 
-  constructor(private dbFilePath?: string) {}
+  constructor(private dbFilePath?: string) {
+    this.connect().catch(e => console.error(`Database connection failed: ${e.message}`));
+  }
 
   public async connect() {
     this.db = await createConnection(this.dbFilePath);
-    await this.db.run(`
-        CREATE TABLE IF NOT EXISTS productVariants (
+    await this.db.run(
+      `CREATE TABLE IF NOT EXISTS productVariants (
            variantId INTEGER PRIMARY KEY AUTOINCREMENT,
            productId INTEGER NOT NULL,
            sizeId INTEGER NOT NULL,
@@ -21,13 +23,13 @@ class DatabaseService {
             FOREIGN KEY (colorId) REFERENCES colors(colorId),
             UNIQUE (productId, sizeId, colorId)
         )
-    `);
+    `
+    );
   }
 
   public async addProductVariants(
     productVariant: Omit<ProductVariantsParams, "id">
   ) {
-    await this.connect();
     try {
       await this.db.run(
         "INSERT INTO productVariants (productId, sizeId, colorId, stockQuantity,price) VALUES (?, ?, ?, ?,?)",
@@ -39,7 +41,6 @@ class DatabaseService {
           productVariant.price,
         ]
       );
-
       return;
     } catch (e) {
       console.log(` error from the catch services ${e}`);
@@ -50,7 +51,6 @@ class DatabaseService {
     page: number,
     limit: number
   ): Promise<ProductVariantDisplay[]> {
-    await this.connect();
     const offset = (page - 1) * limit;
     const productList = await this.db.all<ProductVariantDisplay>(
       `SELECT
@@ -67,18 +67,18 @@ class DatabaseService {
       GROUP_CONCAT(DISTINCT cl.colorName) AS colors,
       MIN(pv.stockQuantity) AS stockQuantity,
       MIN(pv.price) AS price
-    FROM
+       FROM
       productVariants pv
-    JOIN
+       JOIN
       products p ON pv.productId = p.productId
-    JOIN
-      categories c ON p.categoryId = c.categoryId 
-    JOIN
+      JOIN
+      categories c ON p.categoryId = c.categoryId
+      JOIN
       sizes s ON pv.sizeId = s.sizeId
-    JOIN
+      JOIN
       colors cl ON pv.colorId = cl.colorId
-    GROUP BY p.productId
-    LIMIT ? OFFSET ?;
+      GROUP BY p.productId
+      LIMIT ? OFFSET ?;
      
     `,
       [limit, offset]
@@ -88,7 +88,6 @@ class DatabaseService {
   }
 
   public async getTotalProductVariantCount(): Promise<number> {
-    await this.connect();
     const result = await this.db.get<{ count: number }>(
       `SELECT COUNT(DISTINCT productId) AS count FROM products`
     );
@@ -96,40 +95,74 @@ class DatabaseService {
     return count;
   }
 
-  public async getProductVariantById(id: number) {
-    await this.connect();
-    const productVariant = await this.db.get<ProductVariantsParams>(
-      `SELECT
-      productVariants.variantId,
-      products.productName,
-      products.description,
-      products.image_1,
-      products.image_2,
-      products.image_3,
-      products.image_4,
-      categories.categoryName, 
-      sizes.size,
-      colors.colorName,
-      productVariants.stockQuantity,
-      productVariants.price
-    FROM
-      productVariants
-    JOIN
-      products ON productVariants.productId = products.productId
-    JOIN
-      categories ON products.categoryId = categories.categoryId 
-    JOIN
-      sizes ON productVariants.sizeId = sizes.sizeId
-    JOIN
-      colors ON productVariants.colorId = colors.colorId WHERE variantId =?`,
-      [id]
+  public async getProductVariantById(variantId: number) {
+
+    // First get the productId from the variantId
+    const productIdResult: any = await this.db.get(
+      `SELECT productId FROM productVariants WHERE variantId = ?;`,
+      [variantId]
     );
 
-    return productVariant;
+    const productId = productIdResult?.productId;
+
+    if (!productId) {
+      return null; // No productId found
+    }
+
+    // Get the product info
+    const productInfo = await this.db.get(
+      `SELECT
+        p.productId,
+        p.productName,
+        p.description,
+        p.image_1,
+        p.image_2,
+        p.image_3,
+        p.image_4,
+        c.categoryName,
+        MIN(pv.stockQuantity) AS stockQuantity,
+        MIN(pv.price) AS price
+         FROM products p JOIN
+        categories c ON p.categoryId = c.categoryId 
+         JOIN
+        productVariants pv ON pv.productId = p.productId
+         WHERE p.productId = ?
+      GROUP BY p.productId;
+      `,
+      [productId]
+    );
+
+    if (!productInfo) {
+      return null; // No product found
+    }
+
+    // Get the sizes
+    const sizes = await this.db.all(
+      `SELECT DISTINCT s.size
+      FROM sizes s
+      JOIN productVariants pv ON pv.sizeId = s.sizeId
+      WHERE pv.productId = ?;`,
+      [productId]
+    );
+
+    // Get the colors
+    const colors = await this.db.all(
+      `SELECT DISTINCT cl.colorName
+      FROM colors cl
+      JOIN productVariants pv ON pv.colorId = cl.colorId
+      WHERE pv.productId = ?;`,
+      [productId]
+    );
+
+    // Return the product info with the sizes and colors
+    return {
+      ...productInfo,
+      sizes,
+      colors,
+    };
   }
 
-  public async deleteProductVariantById(id: number) {
-    await this.connect();
+  public async deleteProductVariantById(id: number) {   
 
     await this.db.run(`DELETE FROM productVariants WHERE variantId =?`, [id]);
   }
@@ -138,7 +171,6 @@ class DatabaseService {
     id: number,
     productVariant: Omit<ProductVariantsParams, "id">
   ) {
-    await this.connect();
     await this.db.run(
       "UPDATE productVariants SET productId = ? , sizeId = ? , colorId = ? , stockQuantity = ? , price = ? WHERE variantId = ? ",
       [

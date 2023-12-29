@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 import { styled } from "styled-components";
 
 const Filter = styled.div`
@@ -12,7 +12,6 @@ const Select = styled.select`
   background-color: lightgray;
 `;
 const SelectOption = styled.option`
-  background-color: gray;
   font-size: 6rem;
   color: white;
 `;

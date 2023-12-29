@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+
 import { MediaQueries } from "../../utils/style-constants";
 
 export const ProductPageContainer = styled.div`

@@ -1,10 +1,14 @@
 import { styled } from "styled-components";
-import { MediaQueries } from "../../utils/style-constants";
 import { Link } from "react-router-dom";
-import { IoSearchSharp } from "react-icons/io5";
-import { BsFillBasket3Fill } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
-import { ProductVariantsParams } from "../../api/api-service.types";
+import {
+  FavoriteBorderOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
+
+import { MediaQueries } from "../../utils/style-constants";
+import type { ProductVariantsParams } from "../../api/api-service.types";
+
 
 const RightWrapper = styled.div`
   flex: 1;
@@ -43,14 +47,14 @@ height: 500px;
 position: relative;
 &:hover{
     ${InfoContainer}{
-        opacity: 1;
+    opacity: 1;
  }
 }
 @media ${MediaQueries.mdUp} {
     flex-direction: row;
     min-width: 380px;
 }
-}
+
 `;
 const Circle = styled.div`
   width: 200px;
@@ -74,7 +78,7 @@ const IconWrapper = styled.div`
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    background-color: #e9f5f5;
+    background-color: teal;
     transform: scale(1.1);
   }
 `;
@@ -83,26 +87,30 @@ type ProductListProps = {
   products: ProductVariantsParams[];
 };
 
-export const ProductList: React.FC<ProductListProps> = ({ products }) => (
-  <RightWrapper>
-    {products.map((product) => (
-      <ProductWrapper key={product.variantId}>
-        <Circle />
-        <Image src={product.image_3} alt={product.productName} />
-        <InfoContainer>
-          <IconWrapper>
-            <BsFillBasket3Fill />
-          </IconWrapper>
-          <IconWrapper>
-            <Link to={`/shop/${product.variantId}`}>
-              <IoSearchSharp size={20} />
-            </Link>
-          </IconWrapper>
-          <IconWrapper>
-            <FaHeart />
-          </IconWrapper>
-        </InfoContainer>
-      </ProductWrapper>
-    ))}
-  </RightWrapper>
-);
+export function ProductList({ products }: ProductListProps) {
+  return (
+    <RightWrapper>
+      {products.map((product) => (
+        <Link key={product.variantId} to={`/shop/${product.variantId}`}>
+          <ProductWrapper >
+            <Circle />
+            <Image src={product.image_3} alt={product.productName} />
+            <InfoContainer>
+              <IconWrapper>
+                <ShoppingCartOutlined />
+              </IconWrapper>
+              <IconWrapper>
+                <Link to={`/shop/${product.variantId}`}>
+                  <SearchOutlined color="primary" />
+                </Link>
+              </IconWrapper>
+              <IconWrapper>
+                <FavoriteBorderOutlined />
+              </IconWrapper>
+            </InfoContainer>
+          </ProductWrapper>
+        </Link>
+      ))}
+    </RightWrapper>
+  );
+}

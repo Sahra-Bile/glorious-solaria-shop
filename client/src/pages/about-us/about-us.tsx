@@ -1,6 +1,8 @@
 import React from "react";
+
 import TeamMemberImage from "../../asserts/bile.png";
 import MemberImage from "../../asserts/designer-loura.png";
+
 import {
   AboutPageContainer,
   HeroSection,

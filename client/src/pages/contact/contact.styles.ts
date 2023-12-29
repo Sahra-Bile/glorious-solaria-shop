@@ -6,6 +6,8 @@ export const ContactPageContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  color: black;
+  padding: 20px;
 `;
 export const ContactWrapper = styled.div`
   margin-bottom: 20px;
@@ -15,7 +17,6 @@ export const Heading = styled.h1`
   margin-bottom: 15px;
   margin-top: 15px;
   font-size: 2rem;
-  color: black;
   padding-top: 2.5em;
   text-align: start;
 
@@ -25,13 +26,13 @@ export const Heading = styled.h1`
   }
 `;
 export const Paragraph = styled.p`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.5;
+  padding-bottom: 10px;
 
   @media (max-width: 768px) {
     font-size: 1rem;
     text-align: center;
-   
   }
 `;
 export const ListWrapper = styled.div`
@@ -68,7 +69,6 @@ export const Header = styled.h2`
   margin-bottom: 30px;
   font-size: 40px;
   font-size: 2rem;
-  color: black;
   text-align: center;
 `;
 export const Form = styled.form`
@@ -76,6 +76,7 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding-bottom: 20px;
 `;
 
 export const Input = styled.input`
@@ -85,7 +86,7 @@ export const Input = styled.input`
   margin-bottom: 15px;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: #f6f6f3;
+  background-color: rgba(255,255,255,0.5);
 
   @media (max-width: 768px) {
     width: 70%;
@@ -95,19 +96,17 @@ export const Input = styled.input`
   }
 `;
 export const TextArea = styled.textarea`
- padding: 10px;
- width: 100%;
+  padding: 10px;
+  width: 100%;
   height: 150px;
   margin-bottom: 15px;
   border: 1px solid black;
   border-radius: 5px;
-  resize: vertical; 
-  background-color: #f6f6f3;
-   
+  resize: vertical;
+  background-color: rgba(255,255,255,0.5);
   @media (min-width: 768px) {
-    height: 400px; 
-    max-width: 700px; 
-
+    height: 400px;
+    max-width: 700px;
   }
 `;
 export const Button = styled.button`
@@ -125,5 +124,4 @@ export const Button = styled.button`
 `;
 export const Label = styled.label`
   font-size: 1rem;
-  color: black;
 `;

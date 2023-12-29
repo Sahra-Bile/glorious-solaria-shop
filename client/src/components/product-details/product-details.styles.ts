@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+
 import { mobile } from "../../utils/responsive";
 
 export const Container = styled.div`
@@ -7,6 +8,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  gap: 20px;
   ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 export const ImgContainer = styled.div`

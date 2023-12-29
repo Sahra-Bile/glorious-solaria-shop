@@ -1,7 +1,8 @@
 import axios from "axios";
-import { ProductVariantsParams, ProductVariantsResponse } from "./api-service.types";
 
-export const axiosInstance = axios.create({
+import type { SingleProductVariantsParam, ProductVariantsResponse, AddressParams } from "./api-service.types";
+
+const axiosInstance = axios.create({
   baseURL: " http://localhost:9000/",
 });
 
@@ -17,9 +18,12 @@ export const getProducts = async (
 
 export const getProductById = async (
   id:number
-): Promise<ProductVariantsParams> => {
-  const response = await axiosInstance.get<ProductVariantsParams>(
+): Promise<SingleProductVariantsParam> => {
+  const response = await axiosInstance.get<SingleProductVariantsParam>(
     `product-variants/${id}`
   );
   return response.data;
 };
+
+  export const updateUserInfo = ({ googleUserId, params }: { googleUserId: string, params: AddressParams }) =>
+  axiosInstance.put(`/users/${googleUserId}`, params);
