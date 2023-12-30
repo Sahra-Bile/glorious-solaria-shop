@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import session from 'express-session';
+
 
 import { authService } from '../services';
 import * as utils from '../utils/utils';

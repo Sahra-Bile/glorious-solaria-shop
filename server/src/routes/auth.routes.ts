@@ -1,5 +1,5 @@
 import express from 'express';
-
+import session from 'express-session';
 import { middleware } from "../middleware";
 import {UserController} from '../controllers';
 
