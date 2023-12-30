@@ -1,3 +1,5 @@
+import { Register } from '../components';
+
 export type ProductVariantsParams = {
   variantId: number;
   productId: number;
@@ -35,6 +37,15 @@ export type ProductVariantsResponse = {
   totalRows?: number;
   data: ProductVariantsParams[];
 };
+
+export type RegisterUserParams = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  confirmPassword:string
+
+}
 export type AddressParams = {
   phone: string;
   address: string;

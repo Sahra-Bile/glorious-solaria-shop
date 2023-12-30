@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import {  updateUserInfo } from "../api/api-service";
+import {  register, updateUserInfo } from "../api/api-service";
 import { notifySuccess } from '../utils/notifications';
 import { displayApiErrors } from '../utils/error';
 
@@ -14,5 +14,12 @@ export const useUpdateUserInfo = () => {
   })
 }
 
-
+export const useRegisterUser = () => {
+  return useMutation(register, {
+    onSuccess: () => {
+      notifySuccess('User registered successfully!')
+    },
+    onError: displayApiErrors,
+  })
+}
 
