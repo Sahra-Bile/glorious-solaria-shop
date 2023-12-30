@@ -6,10 +6,9 @@ import {
   Button,
   Container,
   Form,
-  Input,
   Title,
-  Label,
-  Wrapper,
+  StyledInput,
+  FormWrapper,
 } from "./login-register.styles";
 
 
@@ -19,21 +18,14 @@ export function Register() {
 
   return (
     <Container>
-      <Wrapper>
+      <FormWrapper>
         <Title>CREATE ACCOUNT</Title>
         <Form>
-          <Label>First name</Label>
-          <Input placeholder="Sara" />
-          <Label>Last name</Label>
-          <Input placeholder="Bile" />
-          <Label>Username</Label>
-          <Input placeholder="sahra.bile13" />
-          <Label>Email</Label>
-          <Input placeholder="sahra.bile134@gmail.com" />
-          <Label>Password</Label>
-          <Input placeholder="********" />
-          <Label>Confirm password</Label>
-          <Input placeholder="*********" />
+          <StyledInput type='text' placeholder="First name" />
+          <StyledInput type='text' placeholder="Last name" />
+          <StyledInput type='email' placeholder="Email" />
+          <StyledInput type='password' placeholder="Password" />
+          <StyledInput type='password' placeholder="Confirm password" />
           <Agreement>
             By registering for an account, I agree to the collection and use of
             my personal information as outlined in the PRIVACY POLICY
@@ -46,7 +38,7 @@ export function Register() {
             CREATE
           </Button>
         </Form>
-      </Wrapper>
+      </FormWrapper>
     </Container>
   );
 }

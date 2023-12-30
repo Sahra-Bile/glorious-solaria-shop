@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useUpdateUserInfo } from '../../queries/user-queries';
 import type { AddressParams } from '../../api/api-service.types';
 
-import { Form, Label, Input, Button, Wrapper, Container, Title } from './login-register.styles';
+import { Form, Label, Button, FormWrapper, Container, Title, StyledInput } from './login-register.styles';
 
 
 
@@ -42,11 +42,11 @@ export function UpdateUserInfo() {
 
   return (
     <Container>
-      <Wrapper >
+      <FormWrapper >
         <Title>Update address info</Title>
         <Form ref={form} onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>
           <Label>Phone</Label>
-          <Input
+          <StyledInput
             placeholder="0723-2019-12"
             type="number"
             {...register("phone", {
@@ -54,7 +54,7 @@ export function UpdateUserInfo() {
             })}
           />
           <Label>Address</Label>
-          <Input
+          <StyledInput
             placeholder="Frihetsvägen 19"
             type="text"
             {...register("address", {
@@ -62,7 +62,7 @@ export function UpdateUserInfo() {
             })}
           />
           <Label>City</Label>
-          <Input
+          <StyledInput
             placeholder="Stockholm"
             type="text"
             {...register("city", {
@@ -70,7 +70,7 @@ export function UpdateUserInfo() {
             })}
           />
           <Label>zip Code</Label>
-          <Input
+          <StyledInput
             placeholder="Stockholm"
             type='number'
             {...register("zipCode", {
@@ -81,7 +81,7 @@ export function UpdateUserInfo() {
             {isLoading ? 'Updating...' : 'Update'}
           </Button>
         </Form>
-      </Wrapper>
+      </FormWrapper>
     </Container>
   )
 }
