@@ -15,6 +15,7 @@ class DatabaseService {
   
   private async connect() {
     this.db = await createConnection(this.dbFilePath);
+    // await this.db.run("DROP TABLE IF EXISTS users");
     await this.db.run(`CREATE TABLE IF NOT EXISTS users (
       userId INTEGER PRIMARY KEY AUTOINCREMENT,
       googleUserId TEXT , 
