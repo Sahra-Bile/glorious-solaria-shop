@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import {  register, updateUserInfo } from "../api/api-service";
+import {  logIn, register, updateUserInfo } from "../api/api-service";
 import { notifySuccess } from '../utils/notifications';
 import { displayApiErrors } from '../utils/error';
 
@@ -22,4 +22,14 @@ export const useRegisterUser = () => {
     onError: displayApiErrors,
   })
 }
+export const useLogIn = () => {
+  return useMutation(logIn, {
+    onSuccess: () => {
+      notifySuccess('User logged in successfully!')
+    },
+    onError: displayApiErrors,
+  })
+}
+
+
 

@@ -39,7 +39,7 @@ class UserController {
         const jwtToken = utils.getJWTToken(user);
         res.status(200).json({ msg: `Welcome back ${user.firstName}!`, jwtToken });
       } else {
-        res.status(401).json({ message: 'Incorrect password' });
+        res.status(401).json( 'Incorrect password' );
       }
     } catch (error) {
       next(error);

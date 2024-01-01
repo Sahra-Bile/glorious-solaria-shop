@@ -44,7 +44,10 @@ export type RegisterUserParams = {
   email: string
   password: string
   confirmPassword:string
-
+}
+export type LogInParams = {
+  email: string
+  password: string
 }
 export type AddressParams = {
   phone: string;

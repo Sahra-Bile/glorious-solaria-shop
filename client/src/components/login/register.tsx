@@ -2,6 +2,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { useRef, useState } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
+import { useNavigate } from 'react-router-dom'
 
 import { useRegisterUser } from '../../queries/user-queries'
 import type { RegisterUserParams } from '../../api/api-service.types'
@@ -12,6 +13,7 @@ export function Register() {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
   const form = useRef<HTMLFormElement>(null)
   const { mutate: registerUser, isLoading } = useRegisterUser()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -34,6 +36,7 @@ export function Register() {
       {
         onSuccess: () => {
           reset()
+          navigate("/login")
         },
       },
     )

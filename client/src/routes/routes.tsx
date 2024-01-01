@@ -13,8 +13,10 @@ import {
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
 import { Login, ProductDetails, ProductPage, Register, UpdateUserInfo } from "../components";
+import { TrackLastPage } from '../helpers/track-last-page';
 
 import { NoMatch } from "./no-match";
+
 
 const Wrapper = styled.div({
   height: "100%",
@@ -34,6 +36,7 @@ export function AppRoutes() {
       <ToastContainer />
       <BrowserRouter>
         <ScrollToTop />
+        <TrackLastPage />
         <Navbar />
         <PageContent>
           <Routes>

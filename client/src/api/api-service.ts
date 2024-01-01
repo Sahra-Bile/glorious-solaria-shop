@@ -5,6 +5,7 @@ import type {
   ProductVariantsResponse,
   AddressParams,
   RegisterUserParams,
+  LogInParams,
 } from './api-service.types'
 
 const axiosInstance = axios.create({
@@ -28,3 +29,6 @@ export const updateUserInfo = ({ googleUserId, params }: { googleUserId: string;
 
 export const register = ({ params }: { params: RegisterUserParams }) =>
   axiosInstance.post('/register', params)
+
+  export const logIn = ({ params }: { params: LogInParams }) =>
+  axiosInstance.post('/login', params)
