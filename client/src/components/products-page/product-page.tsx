@@ -42,6 +42,7 @@ export function ProductPage() {
   return (
     <section>
       <ProductPageContainer>
+
         <Announcement />
         <SearchBar
           searchTerm={searchTerm}

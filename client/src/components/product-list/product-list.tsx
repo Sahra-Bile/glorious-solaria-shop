@@ -74,7 +74,7 @@ const IconWrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: black;
+  background-color: white;
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
@@ -91,25 +91,23 @@ export function ProductList({ products }: ProductListProps) {
   return (
     <RightWrapper>
       {products.map((product) => (
-        <Link key={product.variantId} to={`/shop/${product.variantId}`}>
-          <ProductWrapper >
-            <Circle />
-            <Image src={product.image_3} alt={product.productName} />
-            <InfoContainer>
-              <IconWrapper>
-                <ShoppingCartOutlined />
-              </IconWrapper>
-              <IconWrapper>
-                <Link to={`/shop/${product.variantId}`}>
-                  <SearchOutlined />
-                </Link>
-              </IconWrapper>
-              <IconWrapper>
-                <FavoriteBorderOutlined />
-              </IconWrapper>
-            </InfoContainer>
-          </ProductWrapper>
-        </Link>
+        <ProductWrapper key={product.variantId}>
+          <Circle />
+          <Image src={product.image_3} alt={product.productName} />
+          <InfoContainer>
+            <IconWrapper>
+              <ShoppingCartOutlined />
+            </IconWrapper>
+            <IconWrapper>
+              <Link to={`/shop/${product.variantId}`}>
+                <SearchOutlined color='primary' />
+              </Link>
+            </IconWrapper>
+            <IconWrapper>
+              <FavoriteBorderOutlined />
+            </IconWrapper>
+          </InfoContainer>
+        </ProductWrapper>
       ))}
     </RightWrapper>
   );
