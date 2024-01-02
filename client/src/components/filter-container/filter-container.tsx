@@ -8,12 +8,11 @@ export const LeftWrapper = styled.div`
   width: 100%;
   min-width: 0;
   padding: 20px;
-  background-color: rgb(0%, 50.2%, 50.2%);
   height: auto;
   overflow-y: visible;
   @media ${MediaQueries.mdUp} {
-    width: 250px;
-    min-width: 300px;
+    width: 300px;
+    min-width: 350px;
     overflow-y: auto;
     height: calc(100% - 1rem);
   }
@@ -27,7 +26,8 @@ const FilterWrapper = styled.div`
 const Title = styled.h2`
   font-size: 1.5rem;
   margin: 20px;
-  color: white;
+  color: black;
+  text-align: center;
 `;
 
 type FilterContainerProps = {

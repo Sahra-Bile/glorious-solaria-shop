@@ -4,6 +4,7 @@ import { MediaQueries } from "../../utils/style-constants";
 
 export const ProductPageContainer = styled.div`
   display: flex;
+  max-width: 2000px;
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;

@@ -66,6 +66,7 @@ export function Pagination() {
       <PageNumber onClick={() => handlePageChange(currentPage + 1)}>
         &gt;
       </PageNumber>
+
     </PaginationWrapper>
   );
 }
