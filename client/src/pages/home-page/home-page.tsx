@@ -7,7 +7,7 @@ import Shoes from "../../asserts//shoes.png";
 import ShoesImg from "../../asserts/shoes1.png";
 import EcoWoman from "../../asserts/eco-woman.png";
 import EcoShop from "../../asserts//eco-woman2.png";
-import HeroImage from "../../asserts/hero3.png";
+import HeroImage from "../../asserts/hero2.png";
 
 import {
   AboutSection,
@@ -65,7 +65,7 @@ export function HomePage() {
       </FeaturedProductsSection>
       <SustainabilitySection>
         <h2>Our Commitment to Sustainability</h2>
-        <p>Learn more about our practices and how we're helping the planet.</p>
+        <p>Learn more about our practices and how we&apos;re helping the planet.</p>
       </SustainabilitySection>
       <AboutSection>
         <h2>About Glorious Solaria</h2>

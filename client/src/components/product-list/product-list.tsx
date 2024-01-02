@@ -74,7 +74,7 @@ const IconWrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background-color: black;
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
@@ -101,7 +101,7 @@ export function ProductList({ products }: ProductListProps) {
               </IconWrapper>
               <IconWrapper>
                 <Link to={`/shop/${product.variantId}`}>
-                  <SearchOutlined color="primary" />
+                  <SearchOutlined />
                 </Link>
               </IconWrapper>
               <IconWrapper>
