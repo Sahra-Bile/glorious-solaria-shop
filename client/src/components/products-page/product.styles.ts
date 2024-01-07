@@ -9,7 +9,7 @@ export const ProductPageContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  margin: 100px auto;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }
@@ -32,7 +32,7 @@ export const AddToBagButton = styled.button`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 4rem;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }

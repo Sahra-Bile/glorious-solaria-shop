@@ -7,12 +7,9 @@ import { Pagination } from "../pagination/pagination";
 
 import { Wrapper } from "./product.styles";
 
-const ProductFilterWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+const ProductFilterWrapper = styled.div` 
+  padding: 30px;
+  
   `;
 
 type FilterProductProps = {

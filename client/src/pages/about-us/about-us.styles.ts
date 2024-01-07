@@ -6,7 +6,6 @@ import { MediaQueries } from '../../utils/style-constants';
 export const AboutPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
 `;
 export const HeroSection = styled.section`
   background-image: url(${HeroImage});
@@ -45,6 +44,9 @@ export const TeamMember = styled.div`
   flex-basis: calc(33% - 1rem); 
   margin: 0.5rem;
   text-align: center;
+  @media (${MediaQueries.mdUp}){
+    flex-basis: calc(25% - 0.5rem); 
+  }
 `;
 export const Image = styled.img`
   width: 100%;

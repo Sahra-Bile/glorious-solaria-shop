@@ -40,23 +40,21 @@ export function ProductPage() {
     return <div> something went wrong...</div>;
   }
   return (
-    <section>
-      <ProductPageContainer>
+    <ProductPageContainer>
+      <Announcement />
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        onSearch={handleSearch}
+        onClear={handleClear}
+        isSearchPerformed={isSearchPerformed}
+      />
+      <FilterProduct
+        products={filteredProducts}
+        hasMorePages={hasMorePages}
+      />
+      <Newsletter />
+    </ProductPageContainer>
 
-        <Announcement />
-        <SearchBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          onSearch={handleSearch}
-          onClear={handleClear}
-          isSearchPerformed={isSearchPerformed}
-        />
-        <FilterProduct
-          products={filteredProducts}
-          hasMorePages={hasMorePages}
-        />
-        <Newsletter />
-      </ProductPageContainer>
-    </section>
   );
 }
