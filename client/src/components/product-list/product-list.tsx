@@ -2,17 +2,16 @@ import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 
-
 import type { ProductVariantsParams } from '../../api/api-service.types'
-
+import { useCartItems } from '../../context/cart-context'
 
 const ProductListWrapper = styled.div`
-display: flex;
-justify-content: space-evenly;
-flex-direction: column;
-align-items: center;
-gap: 5px;
-background-color: #edf4f4;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background-color: #edf4f4;
   color: black;
 
   h3 {
@@ -44,11 +43,10 @@ type ProductListProps = {
   products: ProductVariantsParams[]
 }
 
-
 export function ProductList({ products }: ProductListProps) {
+  const { addToCart } = useCartItems()
 
   return (
-
     <Grid container spacing={3}>
       {products.map((product) => (
         <Grid item key={product.variantId} xs={12} sm={6} md={4}>
@@ -59,11 +57,10 @@ export function ProductList({ products }: ProductListProps) {
             <h3>{product.productName}</h3>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <Button >Add to cart</Button>
+            <Button onClick={() => addToCart({ product, amount: 1 })}>Add to cart</Button>
           </ProductListWrapper>
         </Grid>
       ))}
     </Grid>
-
   )
 }

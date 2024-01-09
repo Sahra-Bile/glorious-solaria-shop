@@ -3,13 +3,11 @@
 import type { ReactNode } from 'react';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
+import type { ProductVariantsParams } from '../api/api-service.types';
+
 
 export type CartItemType = {
-  variantId: number;
-  productName: string;
-  description: string;
-  image: string;
-  price: number;
+  product: ProductVariantsParams
   amount: number;
 };
 
@@ -50,11 +48,11 @@ export function CartProvider({ children }: Props) {
   const addToCart = (clickedItem: CartItemType) => {
     setCartItems(prev => {
       // 1. Is the item already added in the cart?
-      const isItemInCart = prev.find(item => item.variantId === clickedItem.variantId);
+      const isItemInCart = prev.find(item => item.product.variantId === clickedItem.product.variantId);
 
       if (isItemInCart) {
         return prev.map(item =>
-          item.variantId === clickedItem.variantId
+          item.product.variantId === clickedItem.product.variantId
             ? { ...item, amount: item.amount + 1 }
             : item
         );
@@ -67,7 +65,7 @@ export function CartProvider({ children }: Props) {
   const removeFromCart = (id: number) => {
     setCartItems(prev =>
       prev.reduce((ack, item) => {
-        if (item.variantId === id) {
+        if (item.product.variantId === id) {
           if (item.amount === 1) return ack;
           return [...ack, { ...item, amount: item.amount - 1 }];
         } else {
@@ -77,7 +75,7 @@ export function CartProvider({ children }: Props) {
     );
   };
   const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+    items.reduce((ack: number, item) => ack + item.amount * item.product.price, 0);
 
 
   const getTotalItems = (items: CartItemType[]) =>

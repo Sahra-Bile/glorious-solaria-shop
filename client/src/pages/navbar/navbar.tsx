@@ -6,8 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import { styled } from 'styled-components';
 
-// import { Cart } from '../../components/cart/cart';
-
+import { Cart } from '../../components/cart/cart';
 import { useCartItems } from '../../context/cart-context';
 
 import {
@@ -87,7 +86,7 @@ export function Navbar() {
             </ListItem>
           ))}
           <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-            {/* <Cart /> */}
+            <Cart />
           </Drawer>
           <ListItem>
             <StyledButton onClick={() => setCartOpen(true)}>
