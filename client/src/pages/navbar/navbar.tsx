@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
 import Badge from "@material-ui/core/Badge";
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import { styled } from 'styled-components';
+
+// import { Cart } from '../../components/cart/cart';
+
+import { useCartItems } from '../../context/cart-context';
 
 import {
   BasketIcon,
@@ -17,9 +24,17 @@ import {
 import { data } from "./data";
 
 
+const StyledButton = styled(IconButton)`
+  position: fixed;
+  z-index: 100;
+
+`;
+
+
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartOpen, setCartOpen, getTotalItems, cartItems } = useCartItems()
 
   const toggleMenu = () => {
     setIsOpen(true);
@@ -71,15 +86,19 @@ export function Navbar() {
               </ListItemLink>
             </ListItem>
           ))}
+          <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+            {/* <Cart /> */}
+          </Drawer>
           <ListItem>
-            <Badge badgeContent={4} color="default" >
-              <Link to="/cart">
+            <StyledButton onClick={() => setCartOpen(true)}>
+              <Badge badgeContent={getTotalItems(cartItems)} color='error'>
                 <BasketIcon fontSize="medium" />
-              </Link>
-            </Badge>
+              </Badge>
+            </StyledButton>
           </ListItem>
         </List>
       </Container>
     </Nav>
   );
 }
+
