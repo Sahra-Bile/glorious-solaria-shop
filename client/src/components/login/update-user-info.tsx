@@ -1,16 +1,14 @@
-import type { SubmitHandler } from 'react-hook-form';
-import { useForm } from 'react-hook-form';
-import { useRef } from 'react';
+import type { SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useRef } from 'react'
 
-import { useUpdateUserInfo } from '../../queries/user-queries';
-import type { AddressParams } from '../../api/api-service.types';
+import { useUpdateUserInfo } from '../../queries/user-queries'
+import type { AddressParams } from '../../api/api-service.types'
 
-import { Form, Label, Input, Button, Wrapper, Container, Title } from './login-register.styles';
-
-
+import { Form, Label, Button, FormWrapper, Container, Title, StyledInput } from './login-register.styles'
 
 export function UpdateUserInfo() {
-  const form = useRef<HTMLFormElement>(null);
+  const form = useRef<HTMLFormElement>(null)
   const { mutate: updateUserInfo, isLoading } = useUpdateUserInfo()
 
   const {
@@ -27,61 +25,62 @@ export function UpdateUserInfo() {
     },
   })
 
-
   const handleSubmitUpdateUserInfo: SubmitHandler<AddressParams> = (data) => {
-
     //TODO: get googleUserId from auth
-    const googleUserId = "";
+    const googleUserId = ''
 
-    updateUserInfo({ googleUserId, params: data }, {
-      onSuccess: () => {
-        reset();
+    updateUserInfo(
+      { googleUserId, params: data },
+      {
+        onSuccess: () => {
+          reset()
+        },
       },
-    });
-  };
+    )
+  }
 
   return (
     <Container>
-      <Wrapper >
+      <FormWrapper>
         <Title>Update address info</Title>
         <Form ref={form} onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>
           <Label>Phone</Label>
-          <Input
+          <StyledInput
             placeholder="0723-2019-12"
             type="number"
-            {...register("phone", {
-              required: "phone is required",
+            {...register('phone', {
+              required: 'phone is required',
             })}
           />
           <Label>Address</Label>
-          <Input
+          <StyledInput
             placeholder="Frihetsvägen 19"
             type="text"
-            {...register("address", {
-              required: "address is required",
+            {...register('address', {
+              required: 'address is required',
             })}
           />
           <Label>City</Label>
-          <Input
+          <StyledInput
             placeholder="Stockholm"
             type="text"
-            {...register("city", {
-              required: "city is required",
+            {...register('city', {
+              required: 'city is required',
             })}
           />
           <Label>zip Code</Label>
-          <Input
+          <StyledInput
             placeholder="Stockholm"
-            type='number'
-            {...register("zipCode", {
-              required: "zip Code is required",
+            type="number"
+            {...register('zipCode', {
+              required: 'zip Code is required',
             })}
           />
           <Button type="submit" disabled={!isValid || isLoading}>
             {isLoading ? 'Updating...' : 'Update'}
           </Button>
         </Form>
-      </Wrapper>
+      </FormWrapper>
     </Container>
   )
 }

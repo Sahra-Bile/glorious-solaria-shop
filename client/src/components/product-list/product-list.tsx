@@ -1,116 +1,69 @@
-import { styled } from "styled-components";
-import { Link } from "react-router-dom";
-import {
-  FavoriteBorderOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
-
-import { MediaQueries } from "../../utils/style-constants";
-import type { ProductVariantsParams } from "../../api/api-service.types";
+import { styled } from 'styled-components'
+import { Link } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
 
 
-const RightWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 20px;
-`;
-const InfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 3;
-  opacity: 0;
-  transition: all 0.5s ease;
-  cursor: pointer;
-`;
-const ProductWrapper = styled.div`
+import type { ProductVariantsParams } from '../../api/api-service.types'
+
+
+const ProductListWrapper = styled.div`
 display: flex;
-display: 1;
-justify-content: center;
-align-items: center;
+justify-content: space-evenly;
 flex-direction: column;
-background-color: #f6f6f3;
-margin: 5px;
-min-width: 280px;
-height: 500px;
-position: relative;
-&:hover{
-    ${InfoContainer}{
-    opacity: 1;
- }
-}
-@media ${MediaQueries.mdUp} {
-    flex-direction: row;
-    min-width: 380px;
-}
+align-items: center;
+gap: 5px;
+background-color: #edf4f4;
+  color: black;
 
-`;
-const Circle = styled.div`
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-`;
+  h3 {
+    margin: 10px;
+    font-size: 1.5rem;
+  }
+  p {
+    margin: 3px;
+    font-size: 1rem;
+  }
+`
 const Image = styled.img`
   height: 75%;
   z-index: 2;
-`;
-const IconWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  margin: 10px;
-  transition: all 0.5s ease;
+`
+export const Button = styled.button`
+  width: 40%;
+  border: none;
+  padding: 10px 15px;
+  background-color: #065454;
+  color: white;
+  cursor: pointer;
   &:hover {
-    background-color: teal;
-    transform: scale(1.1);
+    background-color: #0a8d8d;
   }
-`;
+`
 
 type ProductListProps = {
-  products: ProductVariantsParams[];
-};
+  products: ProductVariantsParams[]
+}
+
 
 export function ProductList({ products }: ProductListProps) {
+
   return (
-    <RightWrapper>
+
+    <Grid container spacing={3}>
       {products.map((product) => (
-        <Link key={product.variantId} to={`/shop/${product.variantId}`}>
-          <ProductWrapper >
-            <Circle />
+        <Grid item key={product.variantId} xs={12} sm={6} md={4}>
+          <Link to={`/shop/${product.variantId}`}>
             <Image src={product.image_3} alt={product.productName} />
-            <InfoContainer>
-              <IconWrapper>
-                <ShoppingCartOutlined />
-              </IconWrapper>
-              <IconWrapper>
-                <Link to={`/shop/${product.variantId}`}>
-                  <SearchOutlined color="primary" />
-                </Link>
-              </IconWrapper>
-              <IconWrapper>
-                <FavoriteBorderOutlined />
-              </IconWrapper>
-            </InfoContainer>
-          </ProductWrapper>
-        </Link>
+          </Link>
+          <ProductListWrapper>
+            <h3>{product.productName}</h3>
+            <p>{product.description}</p>
+            <h3>${product.price}</h3>
+            <Button >Add to cart</Button>
+          </ProductListWrapper>
+        </Grid>
       ))}
-    </RightWrapper>
-  );
+    </Grid>
+
+  )
 }

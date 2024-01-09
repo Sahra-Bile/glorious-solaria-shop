@@ -3,7 +3,9 @@ import { SQLiteClient, createConnection } from "../../sqlite-wrapper/sqlite-wrap
 import type { UserParams, AddressParams } from "../models";
 import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
 
-
+type UserCountResult = {
+  count: number;
+};
 class DatabaseService {
   private db!: SQLiteClient;
 
@@ -13,12 +15,15 @@ class DatabaseService {
   
   private async connect() {
     this.db = await createConnection(this.dbFilePath);
+    // await this.db.run("DROP TABLE IF EXISTS users");
     await this.db.run(`CREATE TABLE IF NOT EXISTS users (
       userId INTEGER PRIMARY KEY AUTOINCREMENT,
-      googleUserId TEXT NOT NULL, 
+      googleUserId TEXT , 
       firstName TEXT NOT NULL,
       lastName TEXT NOT NULL, 
-      email TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      password TEXT,
+      confirmPassword TEXT,
       userProfilePicture TEXT,
       phone TEXT,
       address TEXT,
@@ -54,7 +59,7 @@ class DatabaseService {
     }
   }
   public async deleteUserById(id: number) {
-    await this.db.run(`DELETE FROM users WHERE userId =?`, [id]);
+    await this.db.run(`DELETE FROM users WHERE  =?`, [id]);
   }
   public async updateUseAddress(googleUserId: string, addressData: AddressParams) {
     try {
@@ -119,7 +124,48 @@ class DatabaseService {
     });
     
   }
+
   
+  public async register(user: UserParams): Promise<void> {
+    const sql = `INSERT INTO users(firstName, lastName, email, password, confirmPassword) VALUES (?, ?, ?, ?, ?)`;
+    
+    const values = [
+      user.firstName,
+      user.lastName,
+      user.email,
+      user.password,
+      user.confirmPassword,
+    ];
+  
+    try {
+      await this.db.run(sql, values);  
+    } catch (e) {
+      console.error(`Error from the catch services: ${e}`);
+      throw e;
+    }
+  }
+  
+public async findUserByEmail(email: string): Promise<number> {
+  const sql = 'SELECT COUNT(*) AS count FROM users WHERE email = ?';
+  const results = await this.db.all<UserCountResult>(sql, [email]);
+
+  if (results.length > 0) {
+    return results[0].count;
+  } else {
+    return 0; 
+  }
+}
+
+
+public async logIn(email: string): Promise<UserParams> {
+  const sql_query = `SELECT * FROM users WHERE email = ?`;
+  const user = await this.db.get<UserParams>(sql_query, [email]);
+  
+  if (!user) {
+    return  {} as UserParams;};
+
+  return user;
+}
 }
 export default new DatabaseService();
 
