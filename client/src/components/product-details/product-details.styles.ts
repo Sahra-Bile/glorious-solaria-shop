@@ -87,7 +87,7 @@ export const Amount = styled.span`
   justify-content: center;
   margin: 0px 5px;
 `;
-export const Button = styled.button`
+export const StyledButton = styled.button`
   padding: 15px;
   border: 2px solid teal;
   background-color: white;

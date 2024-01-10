@@ -29,38 +29,50 @@ type Props = {
 
 export function CartProvider({ children }: Props) {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType[])
+  const [cartItems, setCartItems] = useState<CartItemType[]>(() => {
+    const localData = localStorage.getItem('cart');
+    return localData ? JSON.parse(localData) : [];
+  });
 
-  // Load cart from local storage
-  useEffect(() => {
-    const cartData = localStorage.getItem('cart');
-    if (cartData) {
-      setCartItems(JSON.parse(cartData));
-    }
-  }, []);
-
-  // Save cart to local storage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedCart = localStorage.getItem('cart');
+      if (updatedCart) {
+        setCartItems(JSON.parse(updatedCart));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+
 
   const addToCart = (clickedItem: CartItemType) => {
     setCartItems(prev => {
-      // 1. Is the item already added in the cart?
+      // Check if the item is already in the cart
       const isItemInCart = prev.find(item => item.product.variantId === clickedItem.product.variantId);
 
       if (isItemInCart) {
+        // Update the quantity of the existing item
         return prev.map(item =>
           item.product.variantId === clickedItem.product.variantId
-            ? { ...item, amount: item.amount + 1 }
+            ? { ...item, amount: item.amount + clickedItem.amount }
             : item
         );
       }
-      // First time the item is added
-      return [...prev, { ...clickedItem, amount: 1 }];
+      // Item is not in the cart, add it with its amount
+      return [...prev, clickedItem];
     });
   };
+
 
   const removeFromCart = (id: number) => {
     setCartItems(prev =>
