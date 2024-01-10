@@ -11,7 +11,7 @@ export const HeroSection = styled.section`
   background-image: url(${HeroImage});
   background-size: cover;
   background-position: center;
-  height: 50vh; 
+  height: 70vh; 
   display: flex;
   align-items: center;
   justify-content: center;

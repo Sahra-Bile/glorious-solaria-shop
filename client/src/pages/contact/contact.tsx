@@ -68,12 +68,12 @@ export function Contact() {
         <ContactWrapper>
           <Heading>Contact</Heading>
           <Paragraph>
-            If you have any questions, feedback, or just want to say hello, we'd
+            If you have any questions, feedback, or just want to say hello, we&#39;d
             love to hear from you! Fill out the form with your details,
           </Paragraph>
           <Paragraph>
             {" "}
-            and we'll get back to you as soon as possible. Your insights and
+            and we&#39; ll get back to you as soon as possible. Your insights and
             inquiries are invaluable to us.
           </Paragraph>
         </ContactWrapper>
@@ -103,7 +103,7 @@ export function Contact() {
         </ListWrapper>
         <MessageContainer>
           <Header>Contact Us</Header>
-          <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
+          <Form onSubmit={handleSubmit(sendEmail)}>
             <Label>Name</Label>
             <Input
               placeholder="Sara"

@@ -1,6 +1,6 @@
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +11,6 @@ import { Agreement, Button, Container, Form, Title, StyledInput, FormWrapper } f
 
 export function Register() {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
-  const form = useRef<HTMLFormElement>(null)
   const { mutate: registerUser, isLoading } = useRegisterUser()
   const navigate = useNavigate()
 
@@ -46,7 +45,7 @@ export function Register() {
     <Container>
       <FormWrapper>
         <Title>CREATE ACCOUNT</Title>
-        <Form ref={form} onSubmit={handleSubmit(handleSubmitRegisterUser)}>
+        <Form onSubmit={handleSubmit(handleSubmitRegisterUser)}>
           <StyledInput
             type="text"
             placeholder="First name"

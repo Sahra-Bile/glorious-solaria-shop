@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { CloseSharp, HorizontalSplit, ShoppingCartOutlined } from "@material-ui/icons";
+import { CloseSharp, HorizontalSplit } from "@material-ui/icons";
 import Badge from "@material-ui/core/Badge";
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,14 +22,11 @@ import {
 } from "./navbar.styles";
 import { data } from "./data";
 
-
 const StyledButton = styled(IconButton)`
   position: fixed;
   z-index: 100;
 
 `;
-
-
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,14 +63,11 @@ export function Navbar() {
               </ListItem>
             ))}
             <ListItem>
-              <Badge badgeContent={4} color="primary">
-                <Link
-                  to="/cart"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <ShoppingCartOutlined fontSize="large" />
-                </Link>
-              </Badge>
+              <StyledButton onClick={() => setCartOpen(true)}>
+                <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+                  <BasketIcon fontSize="small" />
+                </Badge>
+              </StyledButton>
             </ListItem>
           </MobileMenu>
         )}

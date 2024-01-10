@@ -1,13 +1,19 @@
 import { styled } from 'styled-components'
 
 import { useCartItems } from '../../context/cart-context'
+import { MediaQueries } from '../../utils/style-constants'
 
 import { CartItem } from './cart-items'
 
+
 const Wrapper = styled.aside`
   font-family: Arial, Helvetica, sans-serif;
-  width: 500px;
-  padding: 20px;
+  width: 350px;
+  padding: 10px;
+  @media ${MediaQueries.mdUp} {
+   width: 500px;
+   padding: 20px;
+  }
 `
 
 export function Cart() {

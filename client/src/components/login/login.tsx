@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom'
-
 
 import { useLogIn } from '../../queries/user-queries';
 import type { LogInParams } from '../../api/api-service.types';
@@ -22,8 +21,6 @@ import {
 
 
 export function Login() {
-
-  const form = useRef<HTMLFormElement>(null)
   const { mutate: logIn, isLoading, error } = useLogIn()
   const navigate = useNavigate();
 
@@ -58,7 +55,7 @@ export function Login() {
     <Container >
       <FormWrapper>
         <Title>SIGN IN</Title>
-        <Form ref={form} onSubmit={handleSubmit(handleSubmitLogIn)}>
+        <Form onSubmit={handleSubmit(handleSubmitLogIn)}>
           <Label>Username</Label>
           <StyledInput type='email' placeholder="sara.bile@gmail.com"   {...register('email', {
             required: 'email is required',

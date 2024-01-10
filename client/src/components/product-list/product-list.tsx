@@ -7,11 +7,11 @@ import { useCartItems } from '../../context/cart-context'
 
 const ProductListWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  background-color: #edf4f4;
+  /* gap: 2px; */
+  /* background-color: #edf4f4; */
   color: black;
 
   h3 {
