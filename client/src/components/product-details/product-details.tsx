@@ -131,7 +131,7 @@ export function ProductDetails() {
         <InfoContainer>
           <Title>{product.productName}</Title>
           <Desc>{product.description}</Desc>
-          <Price>SEK {product.price}</Price>
+          <Price>${product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
@@ -139,7 +139,6 @@ export function ProductDetails() {
                 <FilterColor key={index} color={colorObj.colorName} />
               ))}
             </Filter>
-
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize>

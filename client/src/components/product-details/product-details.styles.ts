@@ -4,6 +4,7 @@ import { mobile } from "../../utils/responsive";
 
 export const Container = styled.div`
   margin-top: 100px;
+ 
 `;
 export const Wrapper = styled.div`
   padding: 50px;
@@ -14,11 +15,13 @@ export const Wrapper = styled.div`
 export const ImgContainer = styled.div`
   flex: 1;
   position: relative;
+ 
 `;
 export const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  height: 70vh;
   object-fit: cover;
+
   ${mobile({ height: "40vh" })}
 `;
 
