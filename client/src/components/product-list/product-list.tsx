@@ -4,14 +4,13 @@ import Grid from '@material-ui/core/Grid'
 
 import type { ProductVariantsParams } from '../../api/api-service.types'
 import { useCartItems } from '../../context/cart-context'
+import { MediaQueries } from '../../utils/style-constants';
 
 const ProductListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  /* gap: 2px; */
-  /* background-color: #edf4f4; */
   color: black;
 
   h3 {
@@ -24,11 +23,11 @@ const ProductListWrapper = styled.div`
   }
 `
 const Image = styled.img`
-  height: 75%;
-  z-index: 2;
+  height: 60%; 
+   z-index: 2; 
 `
 export const Button = styled.button`
-  width: 40%;
+  width: 100%;
   border: none;
   padding: 10px 15px;
   background-color: #065454;
@@ -36,6 +35,15 @@ export const Button = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #0a8d8d;
+  }
+  @media ${MediaQueries.mdUp} {
+    width: 40%;
+    padding: 5px 10px;
+  }
+
+  @media ${MediaQueries.lgUp} {
+    width: 30%;
+    padding: 5px 10px;
   }
 `
 
@@ -47,9 +55,9 @@ export function ProductList({ products }: ProductListProps) {
   const { addToCart } = useCartItems()
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} style={{ gap: 'none' }}>
       {products.map((product) => (
-        <Grid item key={product.variantId} xs={12} sm={6} md={4}>
+        <Grid item key={product.variantId} xs={12} sm={6} md={4} style={{ gap: 'none' }}>
           <Link to={`/shop/${product.variantId}`}>
             <Image src={product.image_3} alt={product.productName} />
           </Link>
