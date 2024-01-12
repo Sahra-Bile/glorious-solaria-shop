@@ -4,13 +4,14 @@ import Grid from '@material-ui/core/Grid'
 
 import type { ProductVariantsParams } from '../../api/api-service.types'
 import { useCartItems } from '../../context/cart-context'
-import { MediaQueries } from '../../utils/style-constants';
+import { MediaQueries } from '../../utils/style-constants'
 
 const ProductListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  background: whitesmoke;
   color: black;
 
   h3 {
@@ -23,8 +24,8 @@ const ProductListWrapper = styled.div`
   }
 `
 const Image = styled.img`
-  height: 60%; 
-   z-index: 2; 
+  height: 60%;
+  z-index: 2;
 `
 export const Button = styled.button`
   width: 100%;
@@ -55,9 +56,9 @@ export function ProductList({ products }: ProductListProps) {
   const { addToCart } = useCartItems()
 
   return (
-    <Grid container spacing={3} style={{ gap: 'none' }}>
+    <Grid container spacing={3}>
       {products.map((product) => (
-        <Grid item key={product.variantId} xs={12} sm={6} md={4} style={{ gap: 'none' }}>
+        <Grid item key={product.variantId} xs={12} sm={6} md={4}>
           <Link to={`/shop/${product.variantId}`}>
             <Image src={product.image_3} alt={product.productName} />
           </Link>

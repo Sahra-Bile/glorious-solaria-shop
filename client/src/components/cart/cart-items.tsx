@@ -7,8 +7,8 @@ import type { CartItemType } from '../../context/cart-context'
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid lightblue;
-  padding-bottom: 20px;
+  border-bottom: 1px solid teal;
+  padding-bottom: 50px;
 
   div {
     flex: 1;

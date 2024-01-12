@@ -1,47 +1,44 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-import { useProductVariants } from "../../context/product-variant-context";
-import { Announcement } from "../announcement/announcement";
-import { SearchBar } from "../search-bar/search-bar";
-import { Newsletter } from "../news-letter/news-letter";
+import { useProductVariants } from '../../context/product-variant-context'
+import { SearchBar } from '../search-bar/search-bar'
+import { Newsletter } from '../news-letter/news-letter'
 
-import { FilterProduct } from "./Filter-product";
-import { ProductPageContainer } from "./product.styles";
+import { FilterProduct } from './Filter-product'
+import { ProductPageContainer } from './product.styles'
 
 export function ProductPage() {
-  const { productVariants, isFetchProductLoading, isError, hasMorePages } =
-    useProductVariants();
-  const [filteredProducts, setFilteredProducts] = useState(productVariants);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isSearchPerformed, setIsSearchPerformed] = useState(false);
+  const { productVariants, isFetchProductLoading, isError, hasMorePages } = useProductVariants()
+  const [filteredProducts, setFilteredProducts] = useState(productVariants)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isSearchPerformed, setIsSearchPerformed] = useState(false)
 
   const handleSearch = (searchTerm: string) => {
-    if (searchTerm === "") {
-      setFilteredProducts(productVariants);
+    if (searchTerm === '') {
+      setFilteredProducts(productVariants)
     } else {
       const filtered = productVariants.filter((product) =>
-        product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-      setIsSearchPerformed(true);
+        product.productName.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
+      setFilteredProducts(filtered)
+      setIsSearchPerformed(true)
     }
-  };
+  }
   const handleClear = () => {
-    setSearchTerm("");
-    setFilteredProducts(productVariants);
-    setIsSearchPerformed(false);
-  };
+    setSearchTerm('')
+    setFilteredProducts(productVariants)
+    setIsSearchPerformed(false)
+  }
 
   if (isFetchProductLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (isError) {
-    return <div> something went wrong...</div>;
+    return <div> something went wrong...</div>
   }
   return (
     <ProductPageContainer>
-      <Announcement />
       <SearchBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -49,12 +46,8 @@ export function ProductPage() {
         onClear={handleClear}
         isSearchPerformed={isSearchPerformed}
       />
-      <FilterProduct
-        products={filteredProducts}
-        hasMorePages={hasMorePages}
-      />
+      <FilterProduct products={filteredProducts} hasMorePages={hasMorePages} />
       <Newsletter />
     </ProductPageContainer>
-
-  );
+  )
 }
