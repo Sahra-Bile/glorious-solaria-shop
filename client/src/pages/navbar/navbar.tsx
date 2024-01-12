@@ -62,7 +62,7 @@ export function Navbar() {
             ))}
             <ListItem>
               <StyledButton onClick={() => setCartOpen(true)}>
-                <Badge badgeContent={getTotalItems(cartItems)} color="error">
+                <Badge badgeContent={getTotalItems(cartItems)} color="secondary">
                   <BasketIcon fontSize="small" />
                 </Badge>
               </StyledButton>
@@ -79,8 +79,8 @@ export function Navbar() {
           ))}
           <ListItem>
             <StyledButton onClick={() => setCartOpen(true)}>
-              <Badge badgeContent={getTotalItems(cartItems)} color="error">
-                <BasketIcon fontSize="medium" />
+              <Badge badgeContent={getTotalItems(cartItems)} color="secondary">
+                <BasketIcon fontSize="small" />
               </Badge>
             </StyledButton>
           </ListItem>
