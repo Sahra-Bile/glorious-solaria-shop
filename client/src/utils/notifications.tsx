@@ -2,6 +2,11 @@ import styled from 'styled-components'
 import type { ToastOptions } from 'react-toastify'
 import { toast, ToastContainer as ToastContainerPrimitive } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
+import { IconButton } from '@material-ui/core'
+import { ClosedCaptionOutlined } from '@material-ui/icons'
+
+
+
 
 const StyledToastContainer = styled(ToastContainerPrimitive)({
   '.Toastify__toast': {
@@ -31,13 +36,17 @@ const StyledToastContainer = styled(ToastContainerPrimitive)({
 
 export function ToastContainer() {
   return (
+
     <StyledToastContainer
-      closeButton={() => <button >Close toast</button>
-    
-    }
+      closeButton={() => {
+        return <IconButton>
+          <ClosedCaptionOutlined color='primary' fontSize='medium' />
+        </IconButton>
+      }}
     />
   )
 }
+
 
 const defaultToastOptions: ToastOptions = {
   position: toast.POSITION.BOTTOM_RIGHT,

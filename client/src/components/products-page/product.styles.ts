@@ -1,19 +1,17 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
-import { MediaQueries } from "../../utils/style-constants";
+import { MediaQueries } from '../../utils/style-constants'
 
 export const ProductPageContainer = styled.div`
   display: flex;
-  max-width: 2000px;
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  margin: 100px auto;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }
-`;
+`
 export const AddToBagButton = styled.button`
   border: none;
   outline: 0;
@@ -27,13 +25,16 @@ export const AddToBagButton = styled.button`
   &:hover {
     opacity: 0.7;
   }
-`;
+`
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 3rem;
+  gap: 5rem;
   @media ${MediaQueries.mdUp} {
     flex-direction: row;
   }
-`;
+`

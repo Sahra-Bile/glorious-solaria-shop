@@ -14,6 +14,7 @@ import {
 import { ScrollToTop } from "../helpers/scroll";
 import { Login, ProductDetails, ProductPage, Register, UpdateUserInfo } from "../components";
 import { TrackLastPage } from '../helpers/track-last-page';
+import { Checkout } from '../components/checkout /checkout ';
 
 import { NoMatch } from "./no-match";
 
@@ -48,6 +49,8 @@ export function AppRoutes() {
             <Route path="/login" element={<Login />} />
             <Route path="/update-user-info" element={<UpdateUserInfo />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/checkout" element={<Checkout />} />
+
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </PageContent>

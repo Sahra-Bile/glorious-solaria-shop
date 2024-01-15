@@ -4,6 +4,7 @@ import { mobile } from "../../utils/responsive";
 
 export const Container = styled.div`
   margin-top: 100px;
+ 
 `;
 export const Wrapper = styled.div`
   padding: 50px;
@@ -14,11 +15,13 @@ export const Wrapper = styled.div`
 export const ImgContainer = styled.div`
   flex: 1;
   position: relative;
+ 
 `;
 export const Image = styled.img`
   width: 100%;
-  height: 90vh;
+  height: 70vh;
   object-fit: cover;
+
   ${mobile({ height: "40vh" })}
 `;
 
@@ -87,7 +90,7 @@ export const Amount = styled.span`
   justify-content: center;
   margin: 0px 5px;
 `;
-export const Button = styled.button`
+export const StyledButton = styled.button`
   padding: 15px;
   border: 2px solid teal;
   background-color: white;

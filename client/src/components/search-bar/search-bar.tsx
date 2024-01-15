@@ -1,118 +1,112 @@
-import type { ChangeEvent } from "react";
-import React from "react";
-import styled from "styled-components";
-import isEmpty from "lodash/isEmpty";
+import type { ChangeEvent } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+import isEmpty from 'lodash/isEmpty'
+import Input from '@material-ui/core/Input/Input'
 
+import SearchImage from '../../asserts/search-product.png'
+import { MediaQueries } from '../../utils/style-constants'
 
-import { MediaQueries } from "../../utils/style-constants";
-
-
-const RightWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  flex-direction: row;
-  padding: 20px;
-  width: calc(100% - 0px);
-  @media ${MediaQueries.lgUp} {
-    justify-content: flex-end;
-  align-items: flex-end;
-  }
-`;
-const SearchContainer = styled.div`
-  border: 2px solid #1d6453;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff3f2;
-
-  @media ${MediaQueries.lgUp} {
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-`;
-
-const SearchForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const SearchBarContainer = styled.div`
   width: 100%;
-`;
-const SearchInput = styled.input`
-  border: none;
-  background: #fff3f2;
+  height: 60vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url(${SearchImage}) center/cover no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+`
+const SearchForm = styled.form`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  @media ${MediaQueries.mdUp} {
+    flex-direction: row;
+  }
+`
+const SearchInput = styled(Input)`
+  background: #e1dad9;
   padding: 10px;
   width: 100%;
-  font-size: 14px;
+  max-width: 250px;
   &:focus {
     width: 100%;
   }
   @media ${MediaQueries.lgUp} {
-    max-width: 400px;
+    max-width: 300px;
   }
-`;
+`
 const Button = styled.button`
-  border: none;
-  text-align: center;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  border: none;
+  background-color: #1d6453;
+  color: #fff;
   padding: 10px;
-  cursor: pointer;
   font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   &:hover {
-    opacity: 0.7;
+    background-color: teal;
   }
-`;
+  &:active {
+    background-color: #534747;
+  }
+  animation: fadeIn 0.5s ease-in-out;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+`
+
 type SearchBarProps = {
-  searchTerm: string;
-  setSearchTerm: (searchTerm: string) => void;
-  onSearch: (searchTerm: string) => void;
-  onClear: () => void;
-  isSearchPerformed: boolean;
-};
+  searchTerm: string
+  setSearchTerm: (searchTerm: string) => void
+  onSearch: (searchTerm: string) => void
+  onClear: () => void
+  isSearchPerformed: boolean
+}
 
 export function SearchBar(props: SearchBarProps) {
-
-  const {
-    searchTerm,
-    setSearchTerm,
-    onSearch,
-    onClear,
-    isSearchPerformed,
-  } = props;
+  const { searchTerm, setSearchTerm, onSearch, onClear, isSearchPerformed } = props
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
+    setSearchTerm(e.target.value)
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isEmpty(searchTerm)) {
-      onSearch(searchTerm);
+      onSearch(searchTerm)
     }
-  };
+  }
 
   return (
-    <SearchForm onSubmit={handleSubmit}>
-      <RightWrapper>
-        <SearchContainer>
-          <SearchInput
-            type="text"
-            placeholder="Search for products"
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-        </SearchContainer>
-        {!isSearchPerformed && (
-          <Button type="submit">Search</Button>
-        )}
-        {isSearchPerformed && (
-          <Button onClick={onClear}>Clear</Button>
-        )}
-      </RightWrapper>
-    </SearchForm>
-  );
+    <SearchBarContainer>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchInput
+          type="text"
+          placeholder="Search for products"
+          value={searchTerm}
+          onChange={handleInputChange}
+        />
+        {!isSearchPerformed && <Button type="submit">Search</Button>}
+        {isSearchPerformed && <Button onClick={onClear}>Clear</Button>}
+      </SearchForm>
+    </SearchBarContainer>
+  )
 }

@@ -9,6 +9,7 @@ import { Wrapper } from "./product.styles";
 
 const ProductFilterWrapper = styled.div` 
   padding: 30px;
+
   
   `;
 
@@ -25,7 +26,7 @@ export function FilterProduct(props: FilterProductProps) {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   const validProducts = filteredProducts.filter(
-    (product) => product.colors && product.sizes
+    (product) => product.colors && product.sizes && product.categoryName
   );
 
   const colors = Array.from(
@@ -41,7 +42,7 @@ export function FilterProduct(props: FilterProductProps) {
   );
 
   const categories = Array.from(
-    new Set(filteredProducts.flatMap((product) => product.categoryName))
+    new Set(validProducts.flatMap((product) => product.categoryName.split(',')))
   );
 
   const handleFilters = useCallback(() => {
@@ -53,7 +54,7 @@ export function FilterProduct(props: FilterProductProps) {
         (selectedSize
           ? product.sizes.split(",").includes(selectedSize)
           : true) &&
-        (selectedCategory ? product.categoryName === selectedCategory : true)
+        (selectedCategory ? product.categoryName.split(",").includes(selectedCategory) : true)
     );
     setFilteredProducts(filtered);
   }, [products, selectedColor, selectedSize, selectedCategory]);

@@ -1,4 +1,3 @@
-import { Register } from '../components';
 
 export type ProductVariantsParams = {
   variantId: number;

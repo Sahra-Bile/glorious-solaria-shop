@@ -1,6 +1,6 @@
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
-import { useRef } from 'react'
+
 
 import { useUpdateUserInfo } from '../../queries/user-queries'
 import type { AddressParams } from '../../api/api-service.types'
@@ -8,7 +8,6 @@ import type { AddressParams } from '../../api/api-service.types'
 import { Form, Label, Button, FormWrapper, Container, Title, StyledInput } from './login-register.styles'
 
 export function UpdateUserInfo() {
-  const form = useRef<HTMLFormElement>(null)
   const { mutate: updateUserInfo, isLoading } = useUpdateUserInfo()
 
   const {
@@ -43,7 +42,7 @@ export function UpdateUserInfo() {
     <Container>
       <FormWrapper>
         <Title>Update address info</Title>
-        <Form ref={form} onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>
+        <Form onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>
           <Label>Phone</Label>
           <StyledInput
             placeholder="0723-2019-12"
