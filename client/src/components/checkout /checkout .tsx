@@ -15,7 +15,6 @@ export const LeftWrapper = styled.div`
   align-items: center;
   gap: 20px;
 `
-
 const ProductWrapper = styled.div`
   width: 75%;
   padding: 15px;
@@ -33,7 +32,6 @@ const Header = styled.h1`
   padding: 15px;
   color: black;
 `
-
 const Image = styled.img`
   width: 300px;
 `
