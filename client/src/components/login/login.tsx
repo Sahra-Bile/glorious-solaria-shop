@@ -69,7 +69,7 @@ export function Login() {
           <Button type="submit" disabled={!isValid}>
             {isLoading ? 'loading...' : 'LOGIN'}
           </Button>
-          <StyledLink to={"http://localhost:9000/auth/google"} style={{ color: "red" }}>Log in with your Google account</StyledLink>
+          <StyledLink to={"http://localhost:9000/auth/google"} >Log in with your Google account</StyledLink>
           <StyledLink to={"/forget-password"}>Forgot password?</StyledLink>
           <StyledLink to={"/register"}>Create new account</StyledLink>
           {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
