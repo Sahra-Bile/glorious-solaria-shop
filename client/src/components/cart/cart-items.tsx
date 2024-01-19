@@ -70,7 +70,7 @@ export function CartItem(props: Props) {
           </Button>
         </div>
       </div>
-      <img src={item.product.image_3} alt={item.product.productName} />
+      <img src={item.product.image_2} alt={item.product.productName} />
     </Wrapper>
   )
 }
