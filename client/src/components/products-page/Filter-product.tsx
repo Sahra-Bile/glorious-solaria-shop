@@ -9,8 +9,6 @@ import { Wrapper } from "./product.styles";
 
 const ProductFilterWrapper = styled.div` 
   padding: 30px;
-
-  
   `;
 
 type FilterProductProps = {

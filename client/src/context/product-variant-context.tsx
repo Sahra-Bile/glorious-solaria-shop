@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 
 import type { ProductVariantsParams } from "../api/api-service.types";
@@ -36,12 +36,14 @@ export function ProductVariantProvider({ children }: Props) {
   } = useFetchProducts(page, limit);
 
   const productVariants = queryResult?.data ?? [];
-
-  const currentPage = queryResult?.page ?? 0;
+  const currentPage = queryResult?.page ?? 0 & page
   const totalPages = queryResult?.totalPages ?? 0;
   const totalProducts = queryResult?.totalRows ?? 0;
   const hasMorePages = totalPages > 1;
 
+  useEffect(() => {
+    setPage(currentPage);
+  }, [currentPage]);
 
   return (
     <ProductVariantContext.Provider

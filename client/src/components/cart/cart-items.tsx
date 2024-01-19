@@ -49,7 +49,7 @@ export function CartItem(props: Props) {
 
   return (
     <Wrapper>
-      <div>
+      <div key={item.product.variantId}>
         <h3>{item.product.productName}</h3>
         <div className="information">
           <p>Price: ${item.product.price}</p>

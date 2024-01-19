@@ -33,6 +33,7 @@ export function Pagination() {
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
+      currentPage === newPage;
     }
   };
 
@@ -66,7 +67,6 @@ export function Pagination() {
       <PageNumber onClick={() => handlePageChange(currentPage + 1)}>
         &gt;
       </PageNumber>
-
     </PaginationWrapper>
   );
 }
