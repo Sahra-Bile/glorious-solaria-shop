@@ -50,7 +50,7 @@ export function ProductDetails() {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
   }
 
-  const images = [product?.image_2, product?.image_1, product?.image_3,].filter(Boolean)
+  const images = [product?.image_1, product?.image_3, product?.image_2,].filter(Boolean)
 
   if (isLoading) {
     return <div>Loading...</div>

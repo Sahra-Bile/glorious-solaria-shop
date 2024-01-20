@@ -19,7 +19,7 @@ const ProductWrapper = styled.div`
   width: 75%;
   padding: 15px;
   border-radius: 5px;
-  background-color: red;
+  background-color: #ebf3ec;
 
   @media ${MediaQueries.mdUp} {
     width: 90%;

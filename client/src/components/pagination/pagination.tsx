@@ -28,43 +28,43 @@ const Ellipsis = styled.span`
 export function Pagination() {
   const MAX_PAGE_NUMBERS = 5;
 
-  const { setPage, currentPage, totalPages } = useProductVariants();
+  const { setPage, totalPages, page } = useProductVariants();
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
-      currentPage === newPage;
+
     }
   };
 
   // count total pages and generate array of pages
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1).slice(
-    Math.max(0, currentPage - 1 - Math.floor(MAX_PAGE_NUMBERS / 2)),
-    Math.min(totalPages, currentPage + Math.floor(MAX_PAGE_NUMBERS / 2))
+    Math.max(0, page - 1 - Math.floor(MAX_PAGE_NUMBERS / 2)),
+    Math.min(totalPages, page + Math.floor(MAX_PAGE_NUMBERS / 2))
   );
 
   return (
 
     <PaginationWrapper>
-      <PageNumber onClick={() => handlePageChange(currentPage - 1)}>
+      <PageNumber onClick={() => handlePageChange(page - 1)}>
         &lt;
       </PageNumber>
-      {currentPage > 1 + Math.floor(MAX_PAGE_NUMBERS / 2) && (
+      {page > 1 + Math.floor(MAX_PAGE_NUMBERS / 2) && (
         <Ellipsis>...</Ellipsis>
       )}
       {pageNumbers.map((number) => (
         <PageNumber
           key={number}
-          isActive={currentPage === number}
+          isActive={page === number}
           onClick={() => handlePageChange(number)}
         >
           {number}
         </PageNumber>
       ))}
-      {currentPage < totalPages - Math.floor(MAX_PAGE_NUMBERS / 2) && (
+      {page < totalPages - Math.floor(MAX_PAGE_NUMBERS / 2) && (
         <Ellipsis>...</Ellipsis>
       )}
-      <PageNumber onClick={() => handlePageChange(currentPage + 1)}>
+      <PageNumber onClick={() => handlePageChange(page + 1)}>
         &gt;
       </PageNumber>
     </PaginationWrapper>

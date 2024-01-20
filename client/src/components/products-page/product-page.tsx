@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useProductVariants } from '../../context/product-variant-context'
 import { SearchBar } from '../search-bar/search-bar'
@@ -12,6 +12,10 @@ export function ProductPage() {
   const [filteredProducts, setFilteredProducts] = useState(productVariants)
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearchPerformed, setIsSearchPerformed] = useState(false)
+
+  useEffect(() => {
+    setFilteredProducts(productVariants);
+  }, [productVariants]);
 
   const handleSearch = (searchTerm: string) => {
     if (searchTerm === '') {
@@ -37,6 +41,7 @@ export function ProductPage() {
   if (isError) {
     return <div> something went wrong...</div>
   }
+
   return (
     <ProductPageContainer>
       <SearchBar

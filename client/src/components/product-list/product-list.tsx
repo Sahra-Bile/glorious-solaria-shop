@@ -73,7 +73,7 @@ export function ProductList({ products }: ProductListProps) {
         <Grid item key={product.variantId} xs={12} sm={6} md={4}>
           <ImgContainer>
             <Link to={`/shop/${product.variantId}`}>
-              <Image src={product.image_2} alt={product.productName} />
+              <Image src={product.image_1} alt={product.productName} />
             </Link>
           </ImgContainer>
           <ProductListWrapper>
