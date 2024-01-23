@@ -19,6 +19,7 @@ type CartValueContext = {
   calculateTotal: (items: CartItemType[]) => number;
   cartOpen: boolean;
   setCartOpen: (cartOpen: boolean) => void;
+  calculateTotalAmount: () => void
 } | null;
 
 const CartContext = createContext<CartValueContext>(null);
@@ -93,6 +94,13 @@ export function CartProvider({ children }: Props) {
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
 
+  const calculateTotalAmount = () => {
+    return cartItems.reduce((total, item) => {
+      return total + (item.amount * item.product.price);
+    }, 0);
+  };
+
+
   return (
     <CartContext.Provider
       value={{
@@ -103,6 +111,7 @@ export function CartProvider({ children }: Props) {
         calculateTotal,
         cartOpen,
         setCartOpen,
+        calculateTotalAmount,
 
       }}
     >

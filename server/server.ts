@@ -4,6 +4,8 @@ import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
 import { authService } from './src/services';
+import Stripe from  'stripe';
+
 import { 
   productRoutes, 
   categoryRoutes, 
@@ -13,10 +15,14 @@ import {
   authRoutes 
 } from "./src/routes";
 import dotenv from 'dotenv';
+import { ProductItemType } from './src/models';
+
 
 dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 9000;
+const stripe = new Stripe((process.env.STRIPE_SECRET as string ));
+
 
 //! Konfiguration av CORS, Session, BodyParser
 app.use(cors({
@@ -44,6 +50,37 @@ app.use("/colors", colorRoutes);
 app.use("/sizes", sizeRoutes);
 app.use("/product-variants", productVariantRoutes);
 app.use(authRoutes);
+
+
+
+// checkout api
+app.post("/api/create-checkout-session",async(req,res)=>{
+  const products = req.body as ProductItemType[]
+
+
+  const lineItems = products.map((product:ProductItemType)=>({
+      price_data:{
+          currency:"usd",
+          product_data:{
+              name:product.product.productName,
+              images:[product.product.image_1, product.product.image_2, product.product.image_3,]
+          },
+          unit_amount:product.product.price * 100,
+      },
+      quantity:product.amount
+  }));
+
+  const session = await stripe.checkout.sessions.create({
+      payment_method_types:["card"],
+      line_items:lineItems,
+      mode:"payment",
+      success_url:"http://localhost:3000/sucess",
+      cancel_url:"http://localhost:3000/cancel",
+  });
+
+  res.json({id:session.id})
+
+})
 
 
 //!Start server

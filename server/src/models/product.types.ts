@@ -57,3 +57,23 @@ export type OrderDetailsParams = {
   quantity: number;
   pricePerItem: number;
 };
+
+type  Product = {
+  variantId: number;
+  productId: number;
+  productName: string;
+  categoryName: string;
+  description: string;
+  image_1: string;
+  image_2: string;
+  image_3: string;
+  image_4: string;
+  sizes: string;
+  colors: string;
+  stockQuantity: number;
+  price: number;
+}
+export type ProductItemType = {
+  product: Product
+  amount: number;
+};
