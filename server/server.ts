@@ -4,7 +4,7 @@ import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
 import { authService } from './src/services';
-import Stripe from  'stripe';
+import {Stripe} from  'stripe';
 
 import { 
   productRoutes, 
@@ -21,7 +21,8 @@ import { ProductItemType } from './src/models';
 dotenv.config();
 const app: Application = express();
 const port = process.env.PORT || 9000;
-const stripe = new Stripe((process.env.STRIPE_SECRET as string ));
+const stripe = new Stripe((process.env.STRIPE_SECRET as string));
+
 
 
 //! Konfiguration av CORS, Session, BodyParser
@@ -57,18 +58,21 @@ app.use(authRoutes);
 app.post("/api/create-checkout-session",async(req,res)=>{
   const products = req.body as ProductItemType[]
 
+  const lineItems = products.map(item => {
+    return {
+      quantity: item.amount,
+      price_data: {
+        currency: 'usd',
+        unit_amount: item.product.price * 100, 
+        product_data: {
+          name: item.product.productName,
+          description: item.product.description,
+          images: [item.product.image_2], 
+        }
+      }
+    }
+  });
 
-  const lineItems = products.map((product:ProductItemType)=>({
-      price_data:{
-          currency:"usd",
-          product_data:{
-              name:product.product.productName,
-              images:[product.product.image_1, product.product.image_2, product.product.image_3,]
-          },
-          unit_amount:product.product.price * 100,
-      },
-      quantity:product.amount
-  }));
 
   const session = await stripe.checkout.sessions.create({
       payment_method_types:["card"],

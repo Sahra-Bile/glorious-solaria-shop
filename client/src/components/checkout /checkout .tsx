@@ -46,7 +46,7 @@ export function Checkout() {
 
   const makePayment = async (event: any) => {
     event.preventDefault()
-    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KE as string);
+    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY as string);
 
     const headers = {
       "Content-Type": "application/json"

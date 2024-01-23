@@ -11,7 +11,8 @@ import { CartProvider } from './context/cart-context';
 
 const queryClient = new QueryClient();
 
-export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KE as string);
+export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY as string);
+
 
 
 export function App() {
