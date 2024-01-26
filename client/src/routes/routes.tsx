@@ -12,9 +12,9 @@ import {
   HomePage,
 } from "../pages";
 import { ScrollToTop } from "../helpers/scroll";
-import { Login, ProductDetails, ProductPage, Register, UpdateUserInfo } from "../components";
+import { Login, ProductDetails, ProductPage, Register, UpdateUserInfo, Checkout } from "../components";
 import { TrackLastPage } from '../helpers/track-last-page';
-import { Checkout } from '../components/checkout /checkout ';
+
 
 import { NoMatch } from "./no-match";
 
