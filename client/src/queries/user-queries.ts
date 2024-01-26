@@ -1,9 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from '@tanstack/react-query'
 
-import {  logIn, register, updateUserInfo } from "../api/api-service";
-import { notifySuccess } from '../utils/notifications';
-import { displayApiErrors } from '../utils/error';
-
+import { logIn, register, updateUserInfo } from '../api/api-service'
+import { notifySuccess } from '../utils/notifications'
+import { displayApiErrors } from '../utils/error'
 
 export const useUpdateUserInfo = () => {
   return useMutation(updateUserInfo, {
@@ -22,14 +21,19 @@ export const useRegisterUser = () => {
     onError: displayApiErrors,
   })
 }
+
 export const useLogIn = () => {
   return useMutation(logIn, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      const token = data.data.token
+      localStorage.setItem('authToken', token)
       notifySuccess('User logged in successfully!')
     },
     onError: displayApiErrors,
   })
 }
 
-
-
+export const useAuth = () => {
+  const token = localStorage.getItem('authToken')
+  return token !== null // true or false
+}

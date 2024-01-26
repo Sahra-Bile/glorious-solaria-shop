@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { loadStripe } from '@stripe/stripe-js'
 
 import { useCartItems } from '../../context/cart-context'
 import { MediaQueries } from '../../utils/style-constants'
@@ -19,7 +20,7 @@ const ProductWrapper = styled.div`
   width: 75%;
   padding: 15px;
   border-radius: 5px;
-  background-color: red;
+  background-color: #ebf3ec;
 
   @media ${MediaQueries.mdUp} {
     width: 90%;
@@ -42,18 +43,50 @@ const InformationWrapper = styled.div`
 export function Checkout() {
   const { cartItems } = useCartItems()
 
+
+  const makePayment = async (event: any) => {
+    event.preventDefault()
+    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY as string);
+
+    const headers = {
+      "Content-Type": "application/json"
+    }
+    const response = await fetch("http://localhost:9000/api/create-checkout-session", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(cartItems)
+    });
+
+    const session = await response.json();
+
+    const result = await stripe?.redirectToCheckout({
+      sessionId: session.id
+    });
+
+    if (result?.error) {
+      // eslint-disable-next-line no-console
+      console.log(result.error.message)
+    }
+
+
+  }
   return (
-    <LeftWrapper>
-      <Header>In your cart</Header>
-      {cartItems.map((item) => (
-        <ProductWrapper key={item.product.variantId}>
-          <Image src={item.product.image_3} alt={item.product.productName} />
-          <InformationWrapper>
-            <h3>{item.product.productName}</h3>
-            <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
-          </InformationWrapper>
-        </ProductWrapper>
-      ))}
-    </LeftWrapper>
+    <section>
+      <LeftWrapper>
+        <Header>In your cart</Header>
+        {cartItems.map((item) => (
+          <ProductWrapper key={item.product.variantId}>
+            <Image src={item.product.image_2} alt={item.product.productName} />
+            <InformationWrapper>
+              <h3>{item.product.productName}</h3>
+              <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
+            </InformationWrapper>
+          </ProductWrapper>
+        ))}
+        <form onSubmit={makePayment}>
+          <button type="submit">Checkout</button>
+        </form>
+      </LeftWrapper>
+    </section>
   )
 }

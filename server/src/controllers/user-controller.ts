@@ -37,7 +37,7 @@ class UserController {
       const user = await authService.default.logIn(email);
       if (user && utils.comparePassword(password, user.password as string)) {
         const jwtToken = utils.getJWTToken(user);
-        res.status(200).json({ msg: `Welcome back ${user.firstName}!`, jwtToken });
+        res.status(200).json({token: jwtToken});
       } else {
         res.status(401).json( 'Incorrect password' );
       }

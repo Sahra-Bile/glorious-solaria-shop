@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input/Input'
 
 import SearchImage from '../../asserts/search-product.png'
 import { MediaQueries } from '../../utils/style-constants'
+import { CustomButton } from '../../utils/custom-button'
 
 const SearchBarContainer = styled.div`
   width: 100%;
@@ -42,36 +43,6 @@ const SearchInput = styled(Input)`
     max-width: 300px;
   }
 `
-const Button = styled.button`
-  background-color: #1d6453;
-  color: #fff;
-  padding: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: teal;
-  }
-  &:active {
-    background-color: #534747;
-  }
-  animation: fadeIn 0.5s ease-in-out;
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  transition: all 0.5s ease-in-out;
-  &:hover {
-    transform: scale(1.1);
-  }
-`
 
 type SearchBarProps = {
   searchTerm: string
@@ -104,9 +75,19 @@ export function SearchBar(props: SearchBarProps) {
           value={searchTerm}
           onChange={handleInputChange}
         />
-        {!isSearchPerformed && <Button type="submit">Search</Button>}
-        {isSearchPerformed && <Button onClick={onClear}>Clear</Button>}
+        {!isSearchPerformed &&
+          <CustomButton
+            onClick={() => onSearch(searchTerm)}
+            label="Search"
+
+          />
+        }
+        {isSearchPerformed && <CustomButton
+          onClick={() => onClear()}
+          label="Clear"
+
+        />}
       </SearchForm>
     </SearchBarContainer>
-  )
+  );
 }

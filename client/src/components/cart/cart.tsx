@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useCartItems } from '../../context/cart-context'
 import { MediaQueries } from '../../utils/style-constants'
+import { useAuth } from '../../queries/user-queries'
 
 import { CartItem } from './cart-items'
 
@@ -56,6 +57,7 @@ const Button = styled.button`
 
 export function Cart() {
   const { addToCart, removeFromCart, cartItems, calculateTotal, setCartOpen } = useCartItems()
+  const isAuthenticated = useAuth()
 
   return (
     <Wrapper>
@@ -69,10 +71,10 @@ export function Cart() {
           removeFromCart={removeFromCart}
         />
       ))}
-      <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
+      <h2>YOUR TOTAL BILL: ${calculateTotal(cartItems).toFixed(2)}</h2>
       <ButtonWrapper>
         {cartItems.length > 0 && (
-          <Link to={'/checkout'}>
+          <Link to={isAuthenticated ? '/checkout' : '/login'}>
             <Button onClick={() => setCartOpen(false)}>Checkout</Button>
           </Link>
         )}
