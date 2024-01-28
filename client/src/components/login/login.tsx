@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLogIn } from '../../queries/user-queries'
 import type { LogInParams } from '../../api/api-service.types'
 import HeroImage from '../../asserts/eco-woman.png'
+import { useAuth } from '../../context/auth-context'
 
 import {
   Button,
@@ -19,7 +20,8 @@ import {
 } from './login-register.styles'
 
 export function Login() {
-  const { mutate: logIn, isLoading, error } = useLogIn()
+  const { mutate: logInWithoutGoogle, isLoading, error } = useLogIn()
+  const { logIn } = useAuth();
   const navigate = useNavigate()
 
   const {
@@ -35,10 +37,11 @@ export function Login() {
   })
 
   const handleSubmitLogIn: SubmitHandler<LogInParams> = (data) => {
-    logIn(
+    logInWithoutGoogle(
       { params: data },
       {
         onSuccess: () => {
+          logIn();
           reset()
           const lastPage = localStorage.getItem('lastVisitedPage') || '/defaultPage'
           navigate(lastPage, { replace: true })
@@ -46,7 +49,18 @@ export function Login() {
       },
     )
   }
+
+  // När användaren loggar in med Google
+  const handleGoogleLogin = () => {
+    // Google login logik...
+    // Om inloggning är framgångsrik
+    logIn(); // Anropa logIn funktion från din AuthContext
+  };
+
+
   const errorMessage = error?.response?.data as string
+
+
 
   return (
     <Container backgroundimage={HeroImage}>

@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button'
 
 import { UpdateUserInfo } from '../login/update-user-info'
 import { useCartItems } from '../../context/cart-context'
-import HeroImage from "../../asserts/checkout-2.png"
-import { MediaQueries } from '../../utils/style-constants';
+import HeroImage from '../../asserts/checkout-2.png'
+import { MediaQueries } from '../../utils/style-constants'
 
 import { CheckoutForm } from './checkout-form'
 
 type ContainerProps = {
-  backgroundimage?: string;
+  backgroundimage?: string
 }
 
 export const CheckoutWrapper = styled.div<ContainerProps>`
@@ -19,32 +19,31 @@ export const CheckoutWrapper = styled.div<ContainerProps>`
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background: ${({ backgroundimage }) => backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
+  background: ${({ backgroundimage }) =>
+    backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
   background-size: cover;
   background-position: center;
   text-align: center;
   padding: 4rem 3rem;
   gap: 0.5rem;
- 
+
   @media ${MediaQueries.mdUp} {
-   flex-direction: row;
-   gap: 2.5rem;
+    flex-direction: row;
+    gap: 2.5rem;
   }
 
-  div{
+  div {
     flex: 2;
-    
   }
-  section{
+  section {
     flex: 3;
   }
-  
-`;
+`
 
 const OrderSummaryWrapper = styled.div`
   padding: 20px;
   border-bottom: 1px solid teal;
-  background-color:  #8daaa3;
+  background-color: #8daaa3;
 `
 const Wrapper = styled.div`
   display: flex;
@@ -83,7 +82,6 @@ const Amount = styled.span`
   margin: 0px 5px;
 `
 
-
 function ProductList() {
   const { cartItems, removeFromCart, addToCart } = useCartItems()
   return (
@@ -118,7 +116,6 @@ function ProductList() {
   )
 }
 
-
 type OrderSummaryProps = {
   total: any
 }
@@ -143,7 +140,7 @@ export function Checkout() {
         <ProductList />
         <OrderSummary total={total} />
       </section>
-      <UpdateUserInfo />s
+      <UpdateUserInfo />
     </CheckoutWrapper>
   )
 }
