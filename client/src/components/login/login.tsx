@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useLogIn } from '../../queries/user-queries'
 import type { LogInParams } from '../../api/api-service.types'
+import HeroImage from '../../asserts/eco-woman.png'
 
 import {
   Button,
@@ -48,7 +49,7 @@ export function Login() {
   const errorMessage = error?.response?.data as string
 
   return (
-    <Container>
+    <Container backgroundimage={HeroImage}>
       <FormWrapper>
         <Title>SIGN IN</Title>
         <Form onSubmit={handleSubmit(handleSubmitLogIn)}>

@@ -1,25 +1,32 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import HeroImage from '../../asserts/eco-woman.png'
+
 import { MediaQueries } from '../../utils/style-constants'
 
-export const Container = styled.div`
+
+type  ContainerProps ={
+  backgroundimage?: string;
+}
+export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
-  background: url(${HeroImage}) center/cover no-repeat;
+  background: ${({ backgroundimage }) => backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
   background-size: cover;
   background-position: center;
   text-align: center;
   padding: 4rem 1rem;
   gap: 1rem;
+
   @media ${MediaQueries.mdUp} {
     margin-top: 0;
   }
-`
+`;
+
+
 export const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;

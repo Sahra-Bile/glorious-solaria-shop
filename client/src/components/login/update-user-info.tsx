@@ -39,7 +39,7 @@ export function UpdateUserInfo() {
   }
 
   return (
-    <Container>
+    <Container >
       <FormWrapper>
         <Title>Update address info</Title>
         <Form onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>
