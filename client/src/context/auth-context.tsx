@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react'
 
 type AuthContextType = {
   isAuthenticated: boolean
-  logIn: () => void
+  logInAndSafeToken: () => void
   logOut: () => void
 } | null
 
@@ -20,10 +20,9 @@ export function AuthProvider({ children }: Props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   // Funktioner för att hantera inloggning och utloggning
-  const logIn = () => setIsAuthenticated(true)
+  const logInAndSafeToken = () => setIsAuthenticated(true)
   const logOut = () => setIsAuthenticated(false)
-  console.log("AuthProvider" + isAuthenticated);
-  return <AuthContext.Provider value={{ isAuthenticated, logIn, logOut }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ isAuthenticated, logInAndSafeToken, logOut }}>{children}</AuthContext.Provider>
 }
 
 

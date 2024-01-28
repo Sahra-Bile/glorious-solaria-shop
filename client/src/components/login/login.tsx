@@ -20,8 +20,8 @@ import {
 } from './login-register.styles'
 
 export function Login() {
-  const { mutate: logInWithoutGoogle, isLoading, error } = useLogIn()
-  const { logIn } = useAuth();
+  const { mutate: logIn, isLoading, error } = useLogIn()
+  const { logInAndSafeToken } = useAuth()
   const navigate = useNavigate()
 
   const {
@@ -37,11 +37,11 @@ export function Login() {
   })
 
   const handleSubmitLogIn: SubmitHandler<LogInParams> = (data) => {
-    logInWithoutGoogle(
+    logIn(
       { params: data },
       {
         onSuccess: () => {
-          logIn();
+          logInAndSafeToken()
           reset()
           const lastPage = localStorage.getItem('lastVisitedPage') || '/defaultPage'
           navigate(lastPage, { replace: true })
@@ -50,17 +50,7 @@ export function Login() {
     )
   }
 
-  // När användaren loggar in med Google
-  const handleGoogleLogin = () => {
-    // Google login logik...
-    // Om inloggning är framgångsrik
-    logIn(); // Anropa logIn funktion från din AuthContext
-  };
-
-
   const errorMessage = error?.response?.data as string
-
-
 
   return (
     <Container backgroundimage={HeroImage}>
