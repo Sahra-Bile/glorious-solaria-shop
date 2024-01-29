@@ -61,16 +61,22 @@ class DatabaseService {
   public async deleteUserById(id: number) {
     await this.db.run(`DELETE FROM users WHERE  =?`, [id]);
   }
-  public async updateUseAddress(googleUserId: string, addressData: AddressParams) {
+  public async updateUseAddress(userId: number, addressData: AddressParams) {
     try {
-      await this.db.run("UPDATE users SET phone= ?, address = ?, city = ?, zipCode = ? WHERE googleUserId = ?", [
+      const result = await this.db.run("UPDATE users SET phone = ?, address = ?, city = ?, zipCode = ? WHERE userId = ?", [
         addressData.phone,
         addressData.address,
         addressData.city,
         addressData.zipCode,
-        googleUserId
+        userId
       ]);
-      return this.findUserByGoogleId(googleUserId);
+      
+      // if (result.stmt.change > 0) {
+      //   // Användaren uppdaterades framgångsrikt
+      // } else {
+      //   // Ingen uppdatering skedde, kanske userId inte fanns?
+      // }
+    
     } catch (e) {
       console.error(`Error updating address: ${e}`);
       throw e;

@@ -21,7 +21,8 @@ import {
 
 export function Login() {
   const { mutate: logIn, isLoading, error } = useLogIn()
-  const { logInAndSafeToken } = useAuth()
+  const { logIn: logInWithAuth } = useAuth();
+
   const navigate = useNavigate()
 
   const {
@@ -41,7 +42,7 @@ export function Login() {
       { params: data },
       {
         onSuccess: () => {
-          logInAndSafeToken()
+          logInWithAuth()
           reset()
           const lastPage = localStorage.getItem('lastVisitedPage') || '/defaultPage'
           navigate(lastPage, { replace: true })

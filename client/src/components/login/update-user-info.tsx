@@ -25,11 +25,11 @@ export function UpdateUserInfo() {
   })
 
   const handleSubmitUpdateUserInfo: SubmitHandler<AddressParams> = (data) => {
-    //TODO: get googleUserId from auth
-    const googleUserId = ''
+
+    const userId = 2
 
     updateUserInfo(
-      { googleUserId, params: data },
+      { userId, params: data },
       {
         onSuccess: () => {
           reset()
