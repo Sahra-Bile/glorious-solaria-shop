@@ -20,6 +20,7 @@ type CartValueContext = {
   cartOpen: boolean;
   setCartOpen: (cartOpen: boolean) => void;
   calculateTotalAmount: () => void
+  clearCart: () => void
 } | null;
 
 const CartContext = createContext<CartValueContext>(null);
@@ -73,6 +74,11 @@ export function CartProvider({ children }: Props) {
       return [...prev, clickedItem];
     });
   };
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+    setCartItems([]);
+
+  }
 
 
   const removeFromCart = (id: number) => {
@@ -112,6 +118,7 @@ export function CartProvider({ children }: Props) {
         cartOpen,
         setCartOpen,
         calculateTotalAmount,
+        clearCart
 
       }}
     >

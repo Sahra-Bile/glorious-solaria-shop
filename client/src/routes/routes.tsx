@@ -6,7 +6,16 @@ import { styled } from 'styled-components'
 import { ToastContainer } from '../utils/notifications'
 import { Navbar, AboutUs, Contact, Footer, HomePage } from '../pages'
 import { ScrollToTop } from '../helpers/scroll'
-import { Login, ProductDetails, ProductPage, Register, Checkout, GoogleAuthRedirect } from '../components'
+import {
+  Login,
+  ProductDetails,
+  ProductPage,
+  Register,
+  Checkout,
+  GoogleAuthRedirect,
+  Success,
+  Cancel,
+} from '../components'
 import { TrackLastPage } from '../helpers/track-last-page'
 
 import { NoMatch } from './no-match'
@@ -42,6 +51,8 @@ export function AppRoutes() {
             <Route path="/register" element={<Register />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/" element={<GoogleAuthRedirect />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Cancel />} />
 
             <Route path="*" element={<NoMatch />} />
           </Routes>
