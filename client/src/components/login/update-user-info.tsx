@@ -27,6 +27,8 @@ export function UpdateUserInfo() {
   const handleSubmitUpdateUserInfo: SubmitHandler<AddressParams> = (data) => {
 
     const userId = 2
+    //Todo get userId from BE
+
 
     updateUserInfo(
       { userId, params: data },

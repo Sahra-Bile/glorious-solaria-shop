@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CloseSharp, HorizontalSplit } from '@material-ui/icons'
 import Badge from '@material-ui/core/Badge'
@@ -30,10 +30,25 @@ const StyledButton = styled(IconButton)`
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { cartOpen, setCartOpen, getTotalItems, cartItems } = useCartItems()
+  const navRef = React.useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
-    setIsOpen(true)
+    setIsOpen(!isOpen)
   }
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node) && isOpen) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [isOpen, navRef])
 
   return (
     <Nav>
