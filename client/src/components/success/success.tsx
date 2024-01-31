@@ -51,8 +51,9 @@ const Paragraph = styled.p`
 
 export function Success() {
   const navigate = useNavigate()
+  const { cartItems, clearCart, calculateTotal } = useCartItems()
+  const total = calculateTotal(cartItems)
 
-  const { cartItems, clearCart } = useCartItems()
 
   useEffect(() => {
     if (cartItems.length !== 0) {
@@ -68,10 +69,12 @@ export function Success() {
           We are currently processing your order and will <br />
           send you a confirmation email shortly!
         </Paragraph>
-        <div>
-          <Button onClick={() => navigate('/shop')}>Continue Shopping</Button>
-        </div>
+        <Paragraph>
+          Total: <span>${total}</span>
+        </Paragraph>
+        <Button onClick={() => navigate('/shop')}>Continue Shopping</Button>
       </div>
+
     </Container>
   )
 }

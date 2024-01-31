@@ -66,7 +66,7 @@ export function CartProvider({ children }: Props) {
         // Update the quantity of the existing item
         return prev.map(item =>
           item.product.variantId === clickedItem.product.variantId
-            ? { ...item, amount: item.amount + clickedItem.amount }
+            ? { ...item, amount: item.amount + 1 }
             : item
         );
       }
