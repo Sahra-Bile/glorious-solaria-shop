@@ -25,11 +25,13 @@ export function UpdateUserInfo() {
   })
 
   const handleSubmitUpdateUserInfo: SubmitHandler<AddressParams> = (data) => {
-    //TODO: get googleUserId from auth
-    const googleUserId = ''
+
+    const userId = 2
+    //Todo get userId from BE
+
 
     updateUserInfo(
-      { googleUserId, params: data },
+      { userId, params: data },
       {
         onSuccess: () => {
           reset()
@@ -39,7 +41,7 @@ export function UpdateUserInfo() {
   }
 
   return (
-    <Container>
+    <Container >
       <FormWrapper>
         <Title>Update address info</Title>
         <Form onSubmit={handleSubmit(handleSubmitUpdateUserInfo)}>

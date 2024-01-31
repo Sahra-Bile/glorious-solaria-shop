@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import { useNavigate } from 'react-router-dom'
 
+import HeroImage from "../../asserts/eco-woman2.png"
 import { useRegisterUser } from '../../queries/user-queries'
 import type { RegisterUserParams } from '../../api/api-service.types'
 
@@ -42,7 +43,7 @@ export function Register() {
   }
 
   return (
-    <Container>
+    <Container backgroundimage={HeroImage}>
       <FormWrapper>
         <Title>CREATE ACCOUNT</Title>
         <Form onSubmit={handleSubmit(handleSubmitRegisterUser)}>

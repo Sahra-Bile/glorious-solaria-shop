@@ -1,92 +1,146 @@
 import { styled } from 'styled-components'
-import { loadStripe } from '@stripe/stripe-js'
+import { Add, Remove } from '@material-ui/icons'
+import Button from '@material-ui/core/Button'
 
+import { UpdateUserInfo } from '../login/update-user-info'
 import { useCartItems } from '../../context/cart-context'
+import HeroImage from '../../asserts/checkout-2.png'
 import { MediaQueries } from '../../utils/style-constants'
 
-export const LeftWrapper = styled.div`
-  width: 100%;
-  max-width: 2000px;
-  margin: 100px auto;
-  margin-top: 50px;
-  padding-bottom: 40px;
-  height: 100%;
+import { CheckoutForm } from './checkout-form'
+
+type ContainerProps = {
+  backgroundimage?: string
+}
+
+export const CheckoutWrapper = styled.div<ContainerProps>`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
-`
-const ProductWrapper = styled.div`
-  width: 75%;
-  padding: 15px;
-  border-radius: 5px;
-  background-color: #ebf3ec;
+  flex-direction: column;
+  width: 100%;
+  background: ${({ backgroundimage }) =>
+    backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 4rem 3rem;
+  gap: 0.5rem;
 
   @media ${MediaQueries.mdUp} {
-    width: 90%;
-    max-width: 800px;
+    flex-direction: row;
+    gap: 2.5rem;
+  }
+
+  div {
+    flex: 2;
+  }
+  section {
+    flex: 3;
   }
 `
-const Header = styled.h1`
-  font-size: 2rem;
-  text-align: center;
+
+const OrderSummaryWrapper = styled.div`
+  padding: 20px;
+  border-bottom: 1px solid teal;
+  background-color: #8daaa3;
+`
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
   padding: 15px;
+  background-color: #e0e0d6;
   color: black;
+
+  div {
+    flex: 1;
+  }
+
+  .information,
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+
+  img {
+    max-width: 80px;
+    object-fit: cover;
+  }
 `
-const Image = styled.img`
-  width: 300px;
+
+const Amount = styled.span`
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
 `
-const InformationWrapper = styled.div`
-  flex: 1;
-`
+
+function ProductList() {
+  const { cartItems, removeFromCart, addToCart } = useCartItems()
+  return (
+    <Wrapper>
+      {cartItems.map((item) => (
+        <div key={item.product.variantId} style={{ borderBottom: '1px solid #1d6453' }}>
+          <div>
+            <h3>{item.product.productName}</h3>
+            <img src={item.product.image_2} alt={item.product.productName} />
+            <div className="information">
+              <p>Price: ${item.product.price}</p>
+              <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
+            </div>
+            <div className="buttons">
+              <Button
+                size="medium"
+                disableElevation
+                variant="contained"
+                onClick={() => removeFromCart(item.product.variantId)}
+              >
+                <Remove />
+              </Button>
+              <Amount>{item.amount}</Amount>
+              <Button size="medium" disableElevation variant="contained" onClick={() => addToCart(item)}>
+                <Add />
+              </Button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </Wrapper>
+  )
+}
+
+type OrderSummaryProps = {
+  total: any
+}
+
+function OrderSummary({ total }: OrderSummaryProps) {
+  return (
+    <OrderSummaryWrapper>
+      <h3>Order Summary</h3>
+      <p>Total: ${total}</p>
+      <CheckoutForm />
+    </OrderSummaryWrapper>
+  )
+}
 
 export function Checkout() {
-  const { cartItems } = useCartItems()
+  const { cartItems, calculateTotal } = useCartItems()
+  const total = calculateTotal(cartItems)
 
-
-  const makePayment = async (event: any) => {
-    event.preventDefault()
-    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY as string);
-
-    const headers = {
-      "Content-Type": "application/json"
-    }
-    const response = await fetch("http://localhost:9000/api/create-checkout-session", {
-      method: "POST",
-      headers,
-      body: JSON.stringify(cartItems)
-    });
-
-    const session = await response.json();
-
-    const result = await stripe?.redirectToCheckout({
-      sessionId: session.id
-    });
-
-    if (result?.error) {
-      // eslint-disable-next-line no-console
-      console.log(result.error.message)
-    }
-
-
-  }
   return (
-    <section>
-      <LeftWrapper>
-        <Header>In your cart</Header>
-        {cartItems.map((item) => (
-          <ProductWrapper key={item.product.variantId}>
-            <Image src={item.product.image_2} alt={item.product.productName} />
-            <InformationWrapper>
-              <h3>{item.product.productName}</h3>
-              <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
-            </InformationWrapper>
-          </ProductWrapper>
-        ))}
-        <form onSubmit={makePayment}>
-          <button type="submit">Checkout</button>
-        </form>
-      </LeftWrapper>
-    </section>
+    <CheckoutWrapper backgroundimage={HeroImage}>
+      <section>
+        <ProductList />
+        <OrderSummary total={total} />
+      </section>
+      <UpdateUserInfo />
+    </CheckoutWrapper>
   )
 }

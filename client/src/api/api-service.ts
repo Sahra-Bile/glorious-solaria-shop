@@ -24,8 +24,8 @@ export const getProductById = async (id: number): Promise<SingleProductVariantsP
   return response.data
 }
 
-export const updateUserInfo = ({ googleUserId, params }: { googleUserId: string; params: AddressParams }) =>
-  axiosInstance.put(`/users/${googleUserId}`, params)
+export const updateUserInfo = ({ userId, params }: { userId: number; params: AddressParams }) =>
+  axiosInstance.put(`/users/${userId}`, params)
 
 export const register = ({ params }: { params: RegisterUserParams }) =>
   axiosInstance.post('/register', params)

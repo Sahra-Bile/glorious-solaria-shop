@@ -52,11 +52,11 @@ class UserController {
   }
 
   public async updateUser(  req: Request, res: Response ): Promise<void> {
-    const googleUserId = req.params.id;
+    const userId = Number(req.params.id);
     const updatedData = req.body as AddressParams;
 
     try {
-      const updatedUser = await authService.default.updateUseAddress(googleUserId, updatedData);
+      const updatedUser = await authService.default.updateUseAddress(userId, updatedData);
       res.status(200).json(updatedUser);
     } catch (error) {
       res.status(500).json({ message: "Error updating user", error });
@@ -97,7 +97,7 @@ public googleAuthCallback = asyncHandler((req: Request, res: Response, next: Nex
     });
 
     // Redirect to the frontend with token
-    res.redirect(`http://localhost:3000/update-user-info?token=${token}`);
+    res.redirect(`http://localhost:3000/checkout?token=${token}`);
   })(req, res, next);
 });
 

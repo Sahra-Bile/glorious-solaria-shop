@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useCartItems } from '../../context/cart-context'
 import { MediaQueries } from '../../utils/style-constants'
-import { useAuth } from '../../queries/user-queries'
+import { useAuth } from '../../context/auth-context'
 
 import { CartItem } from './cart-items'
 
@@ -57,7 +57,8 @@ const Button = styled.button`
 
 export function Cart() {
   const { addToCart, removeFromCart, cartItems, calculateTotal, setCartOpen } = useCartItems()
-  const isAuthenticated = useAuth()
+  const { isAuthenticated } = useAuth();
+
 
   return (
     <Wrapper>
