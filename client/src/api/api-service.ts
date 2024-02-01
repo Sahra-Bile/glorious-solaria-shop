@@ -30,5 +30,5 @@ export const updateUserInfo = ({ userId, params }: { userId: number; params: Add
 export const register = ({ params }: { params: RegisterUserParams }) =>
   axiosInstance.post('/register', params)
 
-  export const logIn = ({ params }: { params: LogInParams }) =>
-  axiosInstance.post('/login', params)
+export const logIn = ({ params }: { params: LogInParams }) => axiosInstance.post('/login', params)
+export const getUserById = ({ id }: { id: number }) => axiosInstance.get(`/users/${id}`)

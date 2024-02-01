@@ -136,7 +136,7 @@ class DatabaseService {
 
   
   public async register(user: UserParams): Promise<void> {
-    const sql = `INSERT INTO users(firstName, lastName, email, password, confirmPassword) VALUES (?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO users(firstName, lastName, email, password, confirmPassword, phone, address, city, zipCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     
     const values = [
       user.firstName,
@@ -144,6 +144,10 @@ class DatabaseService {
       user.email,
       user.password,
       user.confirmPassword,
+      user.phone,
+      user.address,
+      user.city,
+      user.zipCode
     ];
   
     try {

@@ -8,6 +8,10 @@ export type UserParams = {
   password?: string;
   confirmPassword?: string;
   userProfilePicture: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  zipCode?: string;
 };
 
 export type AddressParams = {

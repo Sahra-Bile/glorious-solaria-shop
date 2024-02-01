@@ -44,6 +44,8 @@ export function AppRoutes() {
             <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
             <Route path="*" element={<NoMatch />} />
+
+
           </Routes>
         </PageContent>
         <Footer />

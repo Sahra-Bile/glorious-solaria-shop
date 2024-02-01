@@ -1,11 +1,9 @@
-
 import { useNavigate } from 'react-router'
 import { styled } from 'styled-components'
 
 import { useCartItems } from '../../context/cart-context'
 import { Container } from '../login/login-register.styles'
 import Image from '../../asserts/checkout-2.png'
-
 
 export const Button = styled.button`
   border: none;
@@ -41,7 +39,6 @@ const Heading = styled.h1`
   margin-bottom: 10px;
   text-align: center;
   color: black;
-
 `
 const Paragraph = styled.p`
   font-size: 20px;
@@ -49,44 +46,59 @@ const Paragraph = styled.p`
   text-align: center;
   color: black;
 `
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   border-bottom: 1px solid teal;
   padding: 100px;
   background-color: #8daaa3;
   border-radius: 20px;
   box-shadow: 0 0 20px 0 rgba(238, 230, 230, 0.845);
+
 `
 
 export function Success() {
   const navigate = useNavigate()
-  const { cartItems, clearCart } = useCartItems()
+  const { cartItems, clearCart, calculateTotal } = useCartItems()
 
   return (
     <Container backgroundimage={Image}>
-      <Wrapper >
+      <Wrapper>
         <Heading>Thank you for your order</Heading>
         <Paragraph>
-          We are currently processing your order and will <br />
-          send you a confirmation email shortly!
+          Your order has been received and is currently being processed. <br /> A confirmation email will be
+          sent to you shortly.
         </Paragraph>
-        <h2>Order Summary</h2>
+        <h2>Order Summary:</h2>
         {cartItems.map((item) => (
-          <div key={item.product.variantId} >
+          <div key={item.product.variantId}>
             <div>
-              <h3>{item.product.productName}</h3>
+              <h2>{item.product.productName}</h2>
               <div className="information">
-                <span>Amount:{item.amount}</span>
+                <Paragraph>Quantity: {item.amount} </Paragraph>
                 <Paragraph>Total: ${(item.amount * item.product.price).toFixed(2)}</Paragraph>
               </div>
             </div>
           </div>
         ))}
-        <Button onClick={() => {
-          clearCart();
-          navigate('/shop');
-        }}>Continue Shopping</Button>
+        <h2>Overall Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
+        <div>
+          <Paragraph>
+            Thank you once again for choosing us. <br /> We hope you will be pleased with your purchase!
+          </Paragraph>
+        </div>
+        <Button
+          onClick={() => {
+            clearCart()
+            navigate('/shop')
+          }}
+        >
+          Continue Shopping
+        </Button>
       </Wrapper>
-
-    </Container >
+    </Container>
   )
 }

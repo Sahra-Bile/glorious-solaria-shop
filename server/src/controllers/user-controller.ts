@@ -22,7 +22,7 @@ class UserController {
       const emailExists = await authService.default.findUserByEmail(body.email);
       if (!emailExists) {
         await authService.default.register(body);
-        res.status(201).json({ message: `Created a user account successfully! ${body}` });
+        res.status(201).json(body.email);
       } else {
         res.status(409).json(`User with email ${body.email} already exists!` );
       }
