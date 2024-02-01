@@ -18,6 +18,8 @@ type CartValueContext = {
   setCartOpen: (cartOpen: boolean) => void
   calculateTotalAmount: () => void
   clearCart: () => void
+  isAuthenticated: boolean
+  setIsAuthenticated: (isAuthenticated: boolean) => void
 } | null
 
 const CartContext = createContext<CartValueContext>(null)
@@ -28,6 +30,7 @@ type Props = {
 
 export function CartProvider({ children }: Props) {
   const [cartOpen, setCartOpen] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [cartItems, setCartItems] = useState<CartItemType[]>(() => {
     const localData = localStorage.getItem('cart')
     return localData ? JSON.parse(localData) : []
@@ -109,6 +112,8 @@ export function CartProvider({ children }: Props) {
         setCartOpen,
         calculateTotalAmount,
         clearCart,
+        isAuthenticated,
+        setIsAuthenticated,
       }}
     >
       {children}

@@ -16,13 +16,9 @@ export const data = [
     title: "About",
   },
   {
-    id: 5,
+    id: 4,
     Link: "/contact",
     title: "Contact ",
   },
-  {
-    id: 4,
-    Link: "/login",
-    title: "Login",
-  },
+  
 ];

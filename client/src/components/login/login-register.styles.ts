@@ -39,7 +39,7 @@ export const Form = styled.form`
   gap: 0.5rem;
 `
 export const Agreement = styled.span`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 100px;
   margin: 20px 0px;
   padding-bottom: 10px;

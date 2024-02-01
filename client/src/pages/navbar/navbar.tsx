@@ -9,6 +9,7 @@ import { styled } from 'styled-components'
 import { Cart } from '../../components/cart/cart'
 import { useCartItems } from '../../context/cart-context'
 
+
 import {
   BasketIcon,
   Container,
@@ -29,11 +30,16 @@ const StyledButton = styled(IconButton)`
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { cartOpen, setCartOpen, getTotalItems, cartItems } = useCartItems()
+  const { cartOpen, setCartOpen, getTotalItems, cartItems, isAuthenticated, setIsAuthenticated } =
+    useCartItems()
   const navRef = React.useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
+  }
+  const handleLogout = () => {
+    localStorage.removeItem('authToken')
+    setIsAuthenticated(false)
   }
 
   useEffect(() => {
@@ -49,6 +55,11 @@ export function Navbar() {
       document.removeEventListener('mousedown', handleOutsideClick)
     }
   }, [isOpen, navRef])
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken')
+    setIsAuthenticated(Boolean(token))
+  }, [isAuthenticated])
 
   return (
     <Nav>
@@ -92,6 +103,17 @@ export function Navbar() {
               </ListItemLink>
             </ListItem>
           ))}
+          <ListItem>
+            {isAuthenticated ? (
+              <ListItemLink to="" onClick={handleLogout}>
+                Logout
+              </ListItemLink>
+            ) : (
+              <ListItemLink as={Link} to="/login">
+                Login
+              </ListItemLink>
+            )}
+          </ListItem>
           <ListItem>
             <StyledButton onClick={() => setCartOpen(true)}>
               <Badge badgeContent={getTotalItems(cartItems)} color="secondary">

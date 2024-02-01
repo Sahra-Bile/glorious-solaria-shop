@@ -47,7 +47,7 @@ export const Button = styled.button`
   background-color: #1d6453;
   text-align: center;
   cursor: pointer;
-  width:60%;
+  width: 60%;
   font-size: 18px;
   &:hover {
     opacity: 0.7;
@@ -179,8 +179,8 @@ export function Register() {
             })}
           />
           <Agreement>
-            By registering for an account, I agree to the collection and use of my personal information as
-            outlined in the PRIVACY POLICY
+            By registering for an account, I consent to the collection, storage, and use of my personal
+            information <br /> as described in the Privacy Policy.
             <Checkbox color="default" onChange={() => setIsAcknowledged(!isAcknowledged)} />
           </Agreement>
           <Button type="submit" disabled={!isValid || !isAcknowledged}>
