@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+
 import { useNavigate } from 'react-router'
 import { styled } from 'styled-components'
 
 import { useCartItems } from '../../context/cart-context'
 import { Container } from '../login/login-register.styles'
 import Image from '../../asserts/checkout-2.png'
+
 
 export const Button = styled.button`
   border: none;
@@ -36,45 +37,56 @@ export const Button = styled.button`
   }
 `
 const Heading = styled.h1`
-  font-size: 60px;
-  margin-bottom: 10px;
-  text-align: center;
-  color: white;
-`
-
-const Paragraph = styled.p`
   font-size: 30px;
   margin-bottom: 10px;
   text-align: center;
-  color: white;
+  color: black;
+
+`
+const Paragraph = styled.p`
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: black;
+`
+const Wrapper = styled.div` 
+  border-bottom: 1px solid teal;
+  padding: 100px;
+  background-color: #8daaa3;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 0 rgba(238, 230, 230, 0.845);
 `
 
 export function Success() {
   const navigate = useNavigate()
-  const { cartItems, clearCart, calculateTotal } = useCartItems()
-  const total = calculateTotal(cartItems)
-
-
-  useEffect(() => {
-    if (cartItems.length !== 0) {
-      clearCart()
-    }
-  }, [clearCart, cartItems])
+  const { cartItems, clearCart } = useCartItems()
 
   return (
     <Container backgroundimage={Image}>
-      <div>
+      <Wrapper >
         <Heading>Thank you for your order</Heading>
         <Paragraph>
           We are currently processing your order and will <br />
           send you a confirmation email shortly!
         </Paragraph>
-        <Paragraph>
-          Total: <span>${total}</span>
-        </Paragraph>
-        <Button onClick={() => navigate('/shop')}>Continue Shopping</Button>
-      </div>
+        <h2>Order Summary</h2>
+        {cartItems.map((item) => (
+          <div key={item.product.variantId} >
+            <div>
+              <h3>{item.product.productName}</h3>
+              <div className="information">
+                <span>Amount:{item.amount}</span>
+                <Paragraph>Total: ${(item.amount * item.product.price).toFixed(2)}</Paragraph>
+              </div>
+            </div>
+          </div>
+        ))}
+        <Button onClick={() => {
+          clearCart();
+          navigate('/shop');
+        }}>Continue Shopping</Button>
+      </Wrapper>
 
-    </Container>
+    </Container >
   )
 }

@@ -9,6 +9,7 @@ import { MediaQueries } from '../../utils/style-constants'
 
 import { CheckoutForm } from './checkout-form'
 
+
 type ContainerProps = {
   backgroundimage?: string
 }
@@ -16,36 +17,25 @@ type ContainerProps = {
 export const CheckoutWrapper = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: flex-start;
   flex-direction: column;
-  width: 100%;
   background: ${({ backgroundimage }) =>
     backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
   background-size: cover;
   background-position: center;
   text-align: center;
-  padding: 4rem 3rem;
-  gap: 0.5rem;
-
+  padding: 4rem 5rem;
   @media ${MediaQueries.mdUp} {
-    flex-direction: row;
-    gap: 2.5rem;
-  }
-
-  div {
-    flex: 2;
-  }
-  section {
-    flex: 3;
+   flex-direction: row;
   }
 `
-
 const OrderSummaryWrapper = styled.div`
   padding: 20px;
   border-bottom: 1px solid teal;
   background-color: #8daaa3;
 `
 const Wrapper = styled.div`
+  margin-top: 100px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -60,7 +50,6 @@ const Wrapper = styled.div`
   .information,
   .buttons {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding-bottom: 5px;
   }
@@ -70,16 +59,13 @@ const Wrapper = styled.div`
     object-fit: cover;
   }
 `
-
-const Amount = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid teal;
+const ProductCardWrapper = styled.div`
+  width: 100%;
+  max-width: 1000px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin: 0px 5px;
+  flex-direction: column;
 `
 
 function ProductList() {
@@ -88,14 +74,23 @@ function ProductList() {
     <Wrapper>
       {cartItems.map((item) => (
         <div key={item.product.variantId} style={{ borderBottom: '1px solid #1d6453' }}>
-          <div>
-            <h3>{item.product.productName}</h3>
-            <img src={item.product.image_2} alt={item.product.productName} />
-            <div className="information">
+          <h3>{item.product.productName}</h3>
+
+
+          <ProductCardWrapper>
+            <div>
+              <img src={item.product.image_2} alt={item.product.productName} />
+            </div>
+
+            <div>
               <p>Price: ${item.product.price}</p>
+            </div>
+            <div>
               <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
             </div>
-            <div className="buttons">
+
+
+            <div>
               <Button
                 size="medium"
                 disableElevation
@@ -104,12 +99,12 @@ function ProductList() {
               >
                 <Remove />
               </Button>
-              <Amount>{item.amount}</Amount>
+              <span>{item.amount}</span>
               <Button size="medium" disableElevation variant="contained" onClick={() => addToCart(item)}>
                 <Add />
               </Button>
             </div>
-          </div>
+          </ProductCardWrapper>
         </div>
       ))}
     </Wrapper>
@@ -136,11 +131,11 @@ export function Checkout() {
 
   return (
     <CheckoutWrapper backgroundimage={HeroImage}>
-      <section>
+      <UpdateUserInfo />
+      <div style={{ display: 'flex', flexDirection: 'column', width: '45%' }}>
         <ProductList />
         <OrderSummary total={total} />
-      </section>
-      <UpdateUserInfo />
+      </div>
     </CheckoutWrapper>
   )
 }
