@@ -71,11 +71,7 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* {cartItems.length > 0 && (
-          <Link to={isAuthenticated ? '/checkout' : '/login'}>
-            <Button onClick={() => setCartOpen(false)}>Checkout</Button>
-          </Link>
-        )} */}
+
       <Button type="submit" disabled={!stripe}>
         Order
       </Button>

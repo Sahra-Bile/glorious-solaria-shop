@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import emailjs from "@emailjs/browser";
 import { AddIcCallSharp, Email, Home } from "@material-ui/icons";
 
 import {
@@ -20,7 +20,7 @@ import {
   MessageContainer,
   Paragraph,
   TextArea,
-} from "./contact.styles"
+} from "./contact.styles";
 
 type FormData = {
   name: string;
@@ -28,7 +28,9 @@ type FormData = {
   message: string;
 };
 
-
+const templateId = "template_sq5mimm";
+const serviceId = "service_xetqzkc";
+const publicKey = "5BUctxtwb5HjEpcrA";
 
 export function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -43,15 +45,17 @@ export function Contact() {
     if (form.current) {
       emailjs
         .sendForm(
-          process.env.REACT_APP_SERVICE_ID || '',
-          process.env.REACT_APP_TEMPLATE_ID || '',
+          serviceId,
+          templateId,
           form.current,
-          process.env.REACT_APP_PUBLIC_KEY || '',
+          publicKey
+
         )
         .then(
           (result) => {
+
             // eslint-disable-next-line no-console
-            console.log("Email successfully sent", result.text);
+            console.log("Email successfully sent");
             reset();
           },
           (error) => {
@@ -68,42 +72,39 @@ export function Contact() {
         <ContactWrapper>
           <Heading>Contact</Heading>
           <Paragraph>
-            If you have any questions, feedback, or just want to say hello, we&#39;d
+            If you have any questions, feedback, or just want to say hello, we&apos;d
             love to hear from you! Fill out the form with your details,
           </Paragraph>
-          <Paragraph>
-            {" "}
-            and we&#39; ll get back to you as soon as possible. Your insights and
-            inquiries are invaluable to us.
-          </Paragraph>
+          <Paragraph> and we&apos;ll get back to you as soon as possible.
+            Your insights and inquiries are invaluable to us.</Paragraph>
         </ContactWrapper>
         <ListWrapper>
           <ListContainer>
             <IconPlaceholder>
-              <AddIcCallSharp fontSize="large" />
+              <AddIcCallSharp />
             </IconPlaceholder>
-
+            <List>Phone</List>
             <List>+ 467 456 7890</List>
           </ListContainer>
           <ListContainer>
             <IconPlaceholder>
-              <Email fontSize="large" />
+              <Email />
             </IconPlaceholder>
-
+            <List>Email</List>
             <List>info@glorious-solaria.com</List>
           </ListContainer>
           <ListContainer>
             <IconPlaceholder>
-              <Home fontSize="large" />
+              <Home />
             </IconPlaceholder>
-
+            <List>Address</List>
             <List>Solarievägen 12 </List>
             <List>1234 Stockholm</List>
           </ListContainer>
         </ListWrapper>
         <MessageContainer>
           <Header>Contact Us</Header>
-          <Form onSubmit={handleSubmit(sendEmail)}>
+          <Form ref={form} onSubmit={handleSubmit(sendEmail)}>
             <Label>Name</Label>
             <Input
               placeholder="Sara"
