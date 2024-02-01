@@ -1,4 +1,6 @@
 import { styled } from 'styled-components'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Add, Remove } from '@material-ui/icons'
 import Button from '@material-ui/core/Button'
 
@@ -8,7 +10,6 @@ import HeroImage from '../../asserts/checkout-2.png'
 import { MediaQueries } from '../../utils/style-constants'
 
 import { CheckoutForm } from './checkout-form'
-
 
 type ContainerProps = {
   backgroundimage?: string
@@ -26,7 +27,7 @@ export const CheckoutWrapper = styled.div<ContainerProps>`
   text-align: center;
   padding: 4rem 5rem;
   @media ${MediaQueries.mdUp} {
-   flex-direction: row;
+    flex-direction: row;
   }
 `
 const OrderSummaryWrapper = styled.div`
@@ -76,7 +77,6 @@ function ProductList() {
         <div key={item.product.variantId} style={{ borderBottom: '1px solid #1d6453' }}>
           <h3>{item.product.productName}</h3>
 
-
           <ProductCardWrapper>
             <div>
               <img src={item.product.image_2} alt={item.product.productName} />
@@ -88,7 +88,6 @@ function ProductList() {
             <div>
               <p>Total: ${(item.amount * item.product.price).toFixed(2)}</p>
             </div>
-
 
             <div>
               <Button
@@ -128,6 +127,18 @@ function OrderSummary({ total }: OrderSummaryProps) {
 export function Checkout() {
   const { cartItems, calculateTotal } = useCartItems()
   const total = calculateTotal(cartItems)
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = new URLSearchParams(location.search).get('token')
+    if (token) {
+      localStorage.setItem('authToken', token)
+      // Redirect to last visited page
+      const lastPage = localStorage.getItem('lastVisitedPage') || '/defaultPage'
+      navigate(lastPage, { replace: true })
+    }
+  }, [location])
 
   return (
     <CheckoutWrapper backgroundimage={HeroImage}>
