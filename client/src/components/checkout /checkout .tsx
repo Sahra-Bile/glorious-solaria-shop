@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import { Add, Remove } from '@material-ui/icons'
 import Button from '@material-ui/core/Button'
 
-import { UpdateUserInfo } from '../login/update-user-info'
 import { useCartItems } from '../../context/cart-context'
 import HeroImage from '../../asserts/checkout-2.png'
 import { MediaQueries } from '../../utils/style-constants'
@@ -15,20 +14,30 @@ type ContainerProps = {
   backgroundimage?: string
 }
 
-export const CheckoutWrapper = styled.div<ContainerProps>`
-  display: flex;
-  justify-content: center;
-  align-content: flex-start;
-  flex-direction: column;
+export const CheckoutWrapper = styled.section<ContainerProps>`
+  width: 100%;
   background: ${({ backgroundimage }) =>
     backgroundimage ? `url(${backgroundimage}) center/cover no-repeat` : 'none'};
   background-size: cover;
   background-position: center;
   text-align: center;
-  padding: 4rem 5rem;
-  @media ${MediaQueries.mdUp} {
-    flex-direction: row;
+  padding: 4rem 2rem;
+`
+const CheckoutCardWrapper = styled.div`
+  max-width: 800px;
+  width: 100%;
+  @media ${MediaQueries.lgUp} {
+    width: 100%;
   }
+`
+const CheckoutContainer = styled.section`
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
 const OrderSummaryWrapper = styled.div`
   padding: 20px;
@@ -111,7 +120,7 @@ function ProductList() {
 }
 
 type OrderSummaryProps = {
-  total: any
+  total: number
 }
 
 function OrderSummary({ total }: OrderSummaryProps) {
@@ -142,11 +151,12 @@ export function Checkout() {
 
   return (
     <CheckoutWrapper backgroundimage={HeroImage}>
-      <UpdateUserInfo />
-      <div style={{ display: 'flex', flexDirection: 'column', width: '45%' }}>
-        <ProductList />
-        <OrderSummary total={total} />
-      </div>
+      <CheckoutContainer>
+        <CheckoutCardWrapper>
+          <ProductList />
+          <OrderSummary total={total} />
+        </CheckoutCardWrapper>
+      </CheckoutContainer>
     </CheckoutWrapper>
   )
 }

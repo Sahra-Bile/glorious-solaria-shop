@@ -20,12 +20,7 @@ export const Container = styled.div<ContainerProps>`
   text-align: center;
   padding: 4rem 1rem;
   gap: 1rem;
-
-  @media ${MediaQueries.mdUp} {
-    margin-top: 0;
-  }
 `;
-
 
 export const Title = styled.h1`
   font-size: 24px;

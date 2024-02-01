@@ -12,7 +12,7 @@ import { Agreement, Button, Container, Form, Title, StyledInput, FormWrapper } f
 
 export function Register() {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
-  const { mutate: registerUser, isLoading } = useRegisterUser()
+  const { mutate: registerUser, isLoading, error } = useRegisterUser()
   const navigate = useNavigate()
 
   const {
@@ -41,6 +41,7 @@ export function Register() {
       },
     )
   }
+  const errorMessage = error?.response?.data as string
 
   return (
     <Container backgroundimage={HeroImage}>
@@ -90,6 +91,7 @@ export function Register() {
           <Button type="submit" disabled={!isValid || !isAcknowledged}>
             {isLoading ? 'loading...' : 'CREATE'}
           </Button>
+          {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
         </Form>
       </FormWrapper>
     </Container>

@@ -15,16 +15,16 @@ class UserController {
 
   public registerUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const body = req.body;
+      const body = req.body 
       body.password = utils.hashPassword(body.password);
       body.confirmPassword = utils.hashPassword(body.confirmPassword);
       
       const emailExists = await authService.default.findUserByEmail(body.email);
       if (!emailExists) {
         await authService.default.register(body);
-        res.status(201).json({ message: 'Created a user account successfully!' });
+        res.status(201).json({ message: `Created a user account successfully! ${body}` });
       } else {
-        res.status(409).json({ message: `User with email ${body.email} already exists!` });
+        res.status(409).json(`User with email ${body.email} already exists!` );
       }
     } catch (error) {
       next(error); 

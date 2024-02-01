@@ -70,12 +70,6 @@ class DatabaseService {
         addressData.zipCode,
         userId
       ]);
-      
-      // if (result.stmt.change > 0) {
-      //   // Användaren uppdaterades framgångsrikt
-      // } else {
-      //   // Ingen uppdatering skedde, kanske userId inte fanns?
-      // }
     
     } catch (e) {
       console.error(`Error updating address: ${e}`);
