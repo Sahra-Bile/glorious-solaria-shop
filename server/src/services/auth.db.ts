@@ -37,6 +37,15 @@ class DatabaseService {
     return userList;
   }
 
+  public async getUserById(id: number): Promise<UserParams | undefined> {
+    await this.connect();
+    const user = await this.db.get<UserParams>(
+      `SELECT * FROM users WHERE userId = ?`,
+      [id]
+    );
+    return user;
+  }
+
   public async findUserByGoogleId(googleId: string): Promise<UserParams | undefined> {
     const user = await this.db.get<UserParams>(`SELECT * FROM users WHERE googleUserId = ?`, [googleId]);
     return user;

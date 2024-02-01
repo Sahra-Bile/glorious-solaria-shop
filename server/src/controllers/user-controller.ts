@@ -51,6 +51,20 @@ class UserController {
     res.status(200).json(userList);
   }
 
+  public async getUserById(req: Request, res: Response): Promise<void> {
+    const userId = Number(req.params.id);
+
+    const user = await authService.default.getUserById(userId);
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res
+        .status(404)
+        .json({ message: `user with id ${userId} not found` });
+    }
+  }
+
   public async updateUser(  req: Request, res: Response ): Promise<void> {
     const userId = Number(req.params.id);
     const updatedData = req.body as AddressParams;
