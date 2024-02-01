@@ -87,6 +87,17 @@ export function Navbar() {
               </ListItem>
             ))}
             <ListItem>
+              {isAuthenticated ? (
+                <ListItemLink to="" onClick={handleLogout}>
+                  Logout
+                </ListItemLink>
+              ) : (
+                <ListItemLink as={Link} to="/login">
+                  Login
+                </ListItemLink>
+              )}
+            </ListItem>
+            <ListItem>
               <StyledButton onClick={() => setCartOpen(true)}>
                 <Badge badgeContent={getTotalItems(cartItems)} color="secondary">
                   <BasketIcon fontSize="small" />
