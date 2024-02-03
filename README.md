@@ -1,7 +1,7 @@
 Welcome to Glorious Solaria!
-Glorious Solaria is a webshop designed for women with discerning taste. This project is my thesis work and represents a complete web application with a frontend built in React, TypeScript, and styled-components, and a backend in Node.js, Express, and TypeScript, using a SQLite database.
+Glorious Solaria is a webshop designed for women with discerning taste. This project is my thesis work and represents a complete web application with a frontend built in React, TypeScript, and Styled-components, and a backend in Node.js, Express, and TypeScript, using a SQLite database.
 Technologies:
-* Frontend: React, TypeScript, styled-components, react-hook-form, react-query
+* Frontend: React, TypeScript, Styled-components, React-hook-form, React-Query
 * Backend: Node.js, Express, TypeScript, SQLite
 * Payment Solution: Stripe for payments, Email.js for sending emails, and Google API for login with Google account.
 Getting Started:
