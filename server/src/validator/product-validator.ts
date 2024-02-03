@@ -7,17 +7,17 @@ class ProductValidator {
         .optional()
         .isInt()
         .withMessage(
-          "The productId should be number and should not be empty"
+          "The productId should be number and should not empty"
         ),
       body("productName")
         .notEmpty()
-        .withMessage("The  product name value should not be empty"),
+        .withMessage("The  product name value should not empty"),
       body("description")
         .notEmpty()
-        .withMessage("The description value should not be empty"),
+        .withMessage("The description value should not empty"),
       body("image")
         .notEmpty()
-        .withMessage("The image value should not be empty"),
+        .withMessage("The image value should not empty"),
       body("categoryId")
         .notEmpty()
         .isNumeric()
@@ -53,7 +53,7 @@ class ProductValidator {
     return [
       param("id")
         .notEmpty()
-        .withMessage("The value should be not empty")
+        .withMessage("The value should not empty")
         .isInt()
         .withMessage("  the  id value should be  a nr"),
     ];

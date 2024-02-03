@@ -71,6 +71,7 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+
       <Button type="submit" disabled={!stripe}>
         Order
       </Button>

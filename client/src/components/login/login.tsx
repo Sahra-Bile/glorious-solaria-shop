@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLogIn } from '../../queries/user-queries'
 import type { LogInParams } from '../../api/api-service.types'
 import HeroImage from '../../asserts/eco-woman.png'
-import { useAuth } from '../../context/auth-context'
+import { useCartItems } from '../../context/cart-context'
 
 import {
   Button,
@@ -21,7 +21,7 @@ import {
 
 export function Login() {
   const { mutate: logIn, isLoading, error } = useLogIn()
-  const { logIn: logInWithAuth } = useAuth();
+  const { setIsAuthenticated } = useCartItems()
 
   const navigate = useNavigate()
 
@@ -42,8 +42,8 @@ export function Login() {
       { params: data },
       {
         onSuccess: () => {
-          logInWithAuth()
           reset()
+          setIsAuthenticated(true)
           const lastPage = localStorage.getItem('lastVisitedPage') || '/defaultPage'
           navigate(lastPage, { replace: true })
         },

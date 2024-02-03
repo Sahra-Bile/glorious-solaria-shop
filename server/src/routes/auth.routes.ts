@@ -10,11 +10,11 @@ authRoutes.get('/auth/google', UserController.default.googleAuth);
 authRoutes.get('/auth/google/callback', UserController.default.googleAuthCallback);
 
 authRoutes.get('/users', UserController.default.getAllUser)
+authRoutes.get("/users/:id", UserController.default.getUserById)
 authRoutes.post( '/register',UserController.default.registerUser,)
 authRoutes.post('/login', UserController.default.logIn,)
 authRoutes.put("/users/:id", UserController.default.updateUser)
 authRoutes.delete("/users/:id", UserController.default.deleteUserById)
-
 authRoutes.get('/logout', (req, res) => {
   req.logout(() => {
   });

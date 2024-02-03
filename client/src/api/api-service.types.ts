@@ -42,7 +42,11 @@ export type RegisterUserParams = {
   lastName: string
   email: string
   password: string
-  confirmPassword:string
+  confirmPassword: string
+  phone: string;
+  address: string;
+  city: string;
+  zipCode: string;
 }
 export type LogInParams = {
   email: string

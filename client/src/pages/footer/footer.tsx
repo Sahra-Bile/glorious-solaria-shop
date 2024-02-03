@@ -79,6 +79,9 @@ export function Footer() {
             <FooterLinkItem>
               <FooterLink to="/about">About Us</FooterLink>
             </FooterLinkItem>
+            <FooterLinkItem>
+              <FooterLink to="/contact">Contact Us</FooterLink>
+            </FooterLinkItem>
           </FooterLinkList>
         </FooterSection>
 

@@ -50,7 +50,7 @@ export function ProductDetails() {
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
   }
 
-  const images = [product?.image_2, product?.image_1, product?.image_3,].filter(Boolean)
+  const images = [product?.image_2, product?.image_1, product?.image_3].filter(Boolean)
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -62,8 +62,8 @@ export function ProductDetails() {
 
   const handleAddToCart = (singleProductVariant: SingleProductVariantsParam) => {
     const productVariantParam: ProductVariantsParams = {
+      variantId: productId,
       productId: product.productId,
-      variantId: singleProductVariant.variantId,
       productName: product.productName,
       price: singleProductVariant.price,
       image_1: singleProductVariant.image_1,
@@ -91,7 +91,6 @@ export function ProductDetails() {
       setQuantity(quantity - 1)
     }
   }
-
 
   return (
     <Container>

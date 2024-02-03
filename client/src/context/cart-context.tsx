@@ -1,105 +1,104 @@
+import type { ReactNode } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 
-
-import type { ReactNode } from 'react';
-import React, { createContext, useState, useEffect, useContext } from 'react';
-
-import type { ProductVariantsParams } from '../api/api-service.types';
-
+import type { ProductVariantsParams } from '../api/api-service.types'
 
 export type CartItemType = {
   product: ProductVariantsParams
-  amount: number;
-};
+  amount: number
+}
 
 type CartValueContext = {
-  cartItems: CartItemType[];
-  addToCart: (productVariant: CartItemType) => void;
-  removeFromCart: (id: number) => void;
-  getTotalItems: (items: CartItemType[]) => number;
-  calculateTotal: (items: CartItemType[]) => number;
-  cartOpen: boolean;
-  setCartOpen: (cartOpen: boolean) => void;
+  cartItems: CartItemType[]
+  addToCart: (productVariant: CartItemType) => void
+  removeFromCart: (id: number) => void
+  getTotalItems: (items: CartItemType[]) => number
+  calculateTotal: (items: CartItemType[]) => number
+  cartOpen: boolean
+  setCartOpen: (cartOpen: boolean) => void
   calculateTotalAmount: () => void
-} | null;
+  clearCart: () => void
+  isAuthenticated: boolean
+  setIsAuthenticated: (isAuthenticated: boolean) => void
+} | null
 
-const CartContext = createContext<CartValueContext>(null);
+const CartContext = createContext<CartValueContext>(null)
 
 type Props = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 export function CartProvider({ children }: Props) {
-  const [cartOpen, setCartOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [cartItems, setCartItems] = useState<CartItemType[]>(() => {
-    const localData = localStorage.getItem('cart');
-    return localData ? JSON.parse(localData) : [];
-  });
+    const localData = localStorage.getItem('cart')
+    return localData ? JSON.parse(localData) : []
+  })
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }, [cartItems]);
+    localStorage.setItem('cart', JSON.stringify(cartItems))
+  }, [cartItems])
 
   useEffect(() => {
     const handleStorageChange = () => {
-      const updatedCart = localStorage.getItem('cart');
+      const updatedCart = localStorage.getItem('cart')
       if (updatedCart) {
-        setCartItems(JSON.parse(updatedCart));
+        setCartItems(JSON.parse(updatedCart))
       }
-    };
+    }
 
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('storage', handleStorageChange)
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
-
-
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [])
 
   const addToCart = (clickedItem: CartItemType) => {
-    setCartItems(prev => {
+    setCartItems((prev) => {
       // Check if the item is already in the cart
-      const isItemInCart = prev.find(item => item.product.variantId === clickedItem.product.variantId);
+      const isItemInCart = prev.find((item) => item.product.variantId === clickedItem.product.variantId)
 
       if (isItemInCart) {
         // Update the quantity of the existing item
-        return prev.map(item =>
+        return prev.map((item) =>
           item.product.variantId === clickedItem.product.variantId
-            ? { ...item, amount: item.amount + clickedItem.amount }
-            : item
-        );
+            ? { ...item, amount: item.amount + 1 }
+            : item,
+        )
       }
       // Item is not in the cart, add it with its amount
-      return [...prev, clickedItem];
-    });
-  };
-
+      return [...prev, clickedItem]
+    })
+  }
+  const clearCart = () => {
+    localStorage.removeItem('cart')
+    setCartItems([])
+  }
 
   const removeFromCart = (id: number) => {
-    setCartItems(prev =>
+    setCartItems((prev) =>
       prev.reduce((ack, item) => {
         if (item.product.variantId === id) {
-          if (item.amount === 1) return ack;
-          return [...ack, { ...item, amount: item.amount - 1 }];
+          if (item.amount === 1) return ack
+          return [...ack, { ...item, amount: item.amount - 1 }]
         } else {
-          return [...ack, item];
+          return [...ack, item]
         }
-      }, [] as CartItemType[])
-    );
-  };
+      }, [] as CartItemType[]),
+    )
+  }
   const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.product.price, 0);
+    items.reduce((ack: number, item) => ack + item.amount * item.product.price, 0)
 
-
-  const getTotalItems = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount, 0);
+  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0)
 
   const calculateTotalAmount = () => {
     return cartItems.reduce((total, item) => {
-      return total + (item.amount * item.product.price);
-    }, 0);
-  };
-
+      return total + item.amount * item.product.price
+    }, 0)
+  }
 
   return (
     <CartContext.Provider
@@ -112,20 +111,20 @@ export function CartProvider({ children }: Props) {
         cartOpen,
         setCartOpen,
         calculateTotalAmount,
-
+        clearCart,
+        isAuthenticated,
+        setIsAuthenticated,
       }}
     >
       {children}
     </CartContext.Provider>
-  );
+  )
 }
 
 export const useCartItems = () => {
-  const context = useContext(CartContext);
+  const context = useContext(CartContext)
   if (!context) {
-    throw new Error(
-      "useCartItems must be used within a CartProvider"
-    );
+    throw new Error('useCartItems must be used within a CartProvider')
   }
-  return context;
-};
+  return context
+}

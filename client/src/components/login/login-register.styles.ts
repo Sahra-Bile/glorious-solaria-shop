@@ -20,12 +20,8 @@ export const Container = styled.div<ContainerProps>`
   text-align: center;
   padding: 4rem 1rem;
   gap: 1rem;
-
-  @media ${MediaQueries.mdUp} {
-    margin-top: 0;
-  }
+  margin-top: 70px;
 `;
-
 
 export const Title = styled.h1`
   font-size: 24px;
@@ -43,7 +39,7 @@ export const Form = styled.form`
   gap: 0.5rem;
 `
 export const Agreement = styled.span`
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 100px;
   margin: 20px 0px;
   padding-bottom: 10px;

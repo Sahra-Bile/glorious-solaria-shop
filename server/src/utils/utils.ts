@@ -25,11 +25,3 @@ export const getJWTToken = (user: UserParams) => {
 export const verifyJWT = (token: string) => {
   return jwt.verify(token, process.env.JWT_SECRET || 'superSecret')
 }
-
-// export const decodeJWT = (token: string) => {
-//   return (
-//     jwt_decode<JwtPayload>(token || 'superSecret') ||
-//     null ||
-//     process.env.JWT_SECRET
-//   )
-// }

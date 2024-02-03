@@ -15,16 +15,16 @@ class UserController {
 
   public registerUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const body = req.body;
+      const body = req.body 
       body.password = utils.hashPassword(body.password);
       body.confirmPassword = utils.hashPassword(body.confirmPassword);
       
       const emailExists = await authService.default.findUserByEmail(body.email);
       if (!emailExists) {
         await authService.default.register(body);
-        res.status(201).json({ message: 'Created a user account successfully!' });
+        res.status(201).json(body.email);
       } else {
-        res.status(409).json({ message: `User with email ${body.email} already exists!` });
+        res.status(409).json(`User with email ${body.email} already exists!` );
       }
     } catch (error) {
       next(error); 
@@ -49,6 +49,20 @@ class UserController {
   public async getAllUser( req: Request,res: Response) {
     const userList = await authService.default.getAllUsers();
     res.status(200).json(userList);
+  }
+
+  public async getUserById(req: Request, res: Response): Promise<void> {
+    const userId = Number(req.params.id);
+
+    const user = await authService.default.getUserById(userId);
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res
+        .status(404)
+        .json({ message: `user with id ${userId} not found` });
+    }
   }
 
   public async updateUser(  req: Request, res: Response ): Promise<void> {

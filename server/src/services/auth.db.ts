@@ -37,6 +37,15 @@ class DatabaseService {
     return userList;
   }
 
+  public async getUserById(id: number): Promise<UserParams | undefined> {
+    await this.connect();
+    const user = await this.db.get<UserParams>(
+      `SELECT * FROM users WHERE userId = ?`,
+      [id]
+    );
+    return user;
+  }
+
   public async findUserByGoogleId(googleId: string): Promise<UserParams | undefined> {
     const user = await this.db.get<UserParams>(`SELECT * FROM users WHERE googleUserId = ?`, [googleId]);
     return user;
@@ -63,19 +72,13 @@ class DatabaseService {
   }
   public async updateUseAddress(userId: number, addressData: AddressParams) {
     try {
-      const result = await this.db.run("UPDATE users SET phone = ?, address = ?, city = ?, zipCode = ? WHERE userId = ?", [
+      await this.db.run("UPDATE users SET phone = ?, address = ?, city = ?, zipCode = ? WHERE userId = ?", [
         addressData.phone,
         addressData.address,
         addressData.city,
         addressData.zipCode,
         userId
       ]);
-      
-      // if (result.stmt.change > 0) {
-      //   // Användaren uppdaterades framgångsrikt
-      // } else {
-      //   // Ingen uppdatering skedde, kanske userId inte fanns?
-      // }
     
     } catch (e) {
       console.error(`Error updating address: ${e}`);
@@ -133,7 +136,7 @@ class DatabaseService {
 
   
   public async register(user: UserParams): Promise<void> {
-    const sql = `INSERT INTO users(firstName, lastName, email, password, confirmPassword) VALUES (?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO users(firstName, lastName, email, password, confirmPassword, phone, address, city, zipCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     
     const values = [
       user.firstName,
@@ -141,6 +144,10 @@ class DatabaseService {
       user.email,
       user.password,
       user.confirmPassword,
+      user.phone,
+      user.address,
+      user.city,
+      user.zipCode
     ];
   
     try {

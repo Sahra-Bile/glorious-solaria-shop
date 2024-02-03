@@ -79,13 +79,11 @@ export function SearchBar(props: SearchBarProps) {
           <CustomButton
             onClick={() => onSearch(searchTerm)}
             label="Search"
-
           />
         }
         {isSearchPerformed && <CustomButton
           onClick={() => onClear()}
           label="Clear"
-
         />}
       </SearchForm>
     </SearchBarContainer>
