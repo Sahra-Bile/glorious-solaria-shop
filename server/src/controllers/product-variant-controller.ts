@@ -53,7 +53,7 @@ class ProductVariantController {
       const productVariant =
         await productVariantDB.default.getAllProductVariants(page, limit);
 
-      // Räkna totala antalet poster för att beräkna totala sidor
+      // get total rows
       const totalRows =
         await productVariantDB.default.getTotalProductVariantCount();
       const totalPages = Math.ceil(totalRows / limit);

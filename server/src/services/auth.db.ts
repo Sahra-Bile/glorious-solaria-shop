@@ -72,7 +72,7 @@ class DatabaseService {
   }
   public async updateUseAddress(userId: number, addressData: AddressParams) {
     try {
-      const result = await this.db.run("UPDATE users SET phone = ?, address = ?, city = ?, zipCode = ? WHERE userId = ?", [
+      await this.db.run("UPDATE users SET phone = ?, address = ?, city = ?, zipCode = ? WHERE userId = ?", [
         addressData.phone,
         addressData.address,
         addressData.city,
