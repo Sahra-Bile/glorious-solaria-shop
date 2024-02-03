@@ -186,8 +186,9 @@ export function Register() {
           <Button type="submit" disabled={!isValid || !isAcknowledged}>
             {isLoading ? 'loading...' : 'CREATE'}
           </Button>
-          {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+
         </Form>
+        {errorMessage && <div style={{ color: 'black', fontSize: '20px' }}>{errorMessage}</div>}
       </FormWrapper>
     </Container>
   )
