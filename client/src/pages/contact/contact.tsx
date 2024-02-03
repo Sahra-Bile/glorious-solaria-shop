@@ -28,10 +28,6 @@ type FormData = {
   message: string;
 };
 
-const templateId = "template_sq5mimm";
-const serviceId = "service_xetqzkc";
-const publicKey = "5BUctxtwb5HjEpcrA";
-
 export function Contact() {
   const form = useRef<HTMLFormElement>(null);
   const {
@@ -45,10 +41,10 @@ export function Contact() {
     if (form.current) {
       emailjs
         .sendForm(
-          serviceId,
-          templateId,
+          process.env.REACT_APP_SERVICE_ID as string,
+          process.env.REACT_APP_TEMPLATE_ID as string,
           form.current,
-          publicKey
+          process.env.REACT_APP_PUBLIC_KEY as string
 
         )
         .then(
