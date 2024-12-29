@@ -44,7 +44,7 @@ export class SQLiteClient {
   }
 
   public async close(): Promise<void> {
-    await this.db.close();
+     this.db.close();
   }
 }
 export const createConnection = async (

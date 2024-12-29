@@ -25,7 +25,7 @@ const stripe = new Stripe((process.env.STRIPE_SECRET as string));
 
 
 
-//! Konfiguration av CORS, Session, BodyParser
+//! configration av CORS, Session, BodyParser
 app.use(cors({
   origin: 'http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 

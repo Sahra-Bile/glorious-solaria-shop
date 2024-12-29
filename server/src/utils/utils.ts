@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { UserParams } from '../models'
-import jwt_decode, { JwtPayload } from 'jwt-decode'
 
 export const hashPassword = (password: string) => {
   const hashValue = bcrypt.hashSync(password, 8)
